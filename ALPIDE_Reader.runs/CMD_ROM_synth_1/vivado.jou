@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2018.3 (64-bit)
+# SW Build 2405991 on Thu Dec  6 23:38:27 MST 2018
+# IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+# Start of session at: Wed Dec 18 00:05:43 2019
+# Process ID: 13564
+# Current directory: D:/Progetti_vivado/ALPIDE_Reader/ALPIDE_Reader.runs/CMD_ROM_synth_1
+# Command line: vivado.exe -log CMD_ROM.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source CMD_ROM.tcl
+# Log file: D:/Progetti_vivado/ALPIDE_Reader/ALPIDE_Reader.runs/CMD_ROM_synth_1/CMD_ROM.vds
+# Journal file: D:/Progetti_vivado/ALPIDE_Reader/ALPIDE_Reader.runs/CMD_ROM_synth_1\vivado.jou
+#-----------------------------------------------------------
+source CMD_ROM.tcl -notrace

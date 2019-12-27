@@ -1,0 +1,88 @@
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+-------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
+| Date         : Fri Dec 27 16:29:33 2019
+| Host         : DESKTOP-EKOU29H running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file ALPIDE_Carrier_control_sets_placed.rpt
+| Design       : ALPIDE_Carrier
+| Device       : xc7a35ti
+-------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Number of unique control sets                            |    18 |
+| Unused register locations in slices containing registers |    63 |
++----------------------------------------------------------+-------+
+
+
+2. Histogram
+------------
+
++--------+--------------+
+| Fanout | Control Sets |
++--------+--------------+
+|      1 |            4 |
+|      3 |            1 |
+|      4 |            4 |
+|      5 |            1 |
+|      8 |            5 |
+|     14 |            1 |
+|    16+ |            2 |
++--------+--------------+
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              35 |           15 |
+| No           | No                    | Yes                    |              17 |           12 |
+| No           | Yes                   | No                     |               0 |            0 |
+| Yes          | No                    | No                     |              26 |            8 |
+| Yes          | No                    | Yes                    |              13 |            4 |
+| Yes          | Yes                   | No                     |              38 |           10 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++------------------------------------------+---------------------------------------------+----------------------------------------+------------------+----------------+
+|               Clock Signal               |                Enable Signal                |            Set/Reset Signal            | Slice Load Count | Bel Load Count |
++------------------------------------------+---------------------------------------------+----------------------------------------+------------------+----------------+
+|  pin_in_reg_i_1_n_0                      |                                             |                                        |                1 |              1 |
+|  MMCM/inst/clk_out1                      | pwr_enable0                                 |                                        |                1 |              1 |
+|  MMCM/inst/clk_out1                      | rst_n_io0                                   |                                        |                1 |              1 |
+|  MMCM/inst/clk_out2                      |                                             |                                        |                1 |              1 |
+|  MMCM/inst/clk_out2                      |                                             | u1/rstn                                |                2 |              3 |
+|  MMCM/inst/clk_out1                      | u2/FSM_onehot_state_fsm[3]_i_1_n_0          |                                        |                1 |              4 |
+|  MMCM/inst/clk_out1                      | u2/word_cnt                                 |                                        |                1 |              4 |
+|  MMCM/inst/clk_out1                      | u2/FSM_sequential_ALPIDEC_state_reg[2]_0[0] | u1/rstn                                |                2 |              4 |
+|  MMCM/inst/clk_out1                      | idle_cnt                                    | u1/rstn                                |                1 |              4 |
+|  MMCM/inst/clk_out1                      | u2/FSM_sequential_ALPIDEC_state_reg[2][0]   | u1/rstn                                |                1 |              5 |
+|  MMCM/inst/clk_out1                      | u2/FSM_onehot_state_fsm[1]_i_1__0_n_0       |                                        |                1 |              8 |
+|  MMCM/inst/clk_out1                      | u2/word_in0                                 | u2/FSM_sequential_ALPIDEC_state_reg[0] |                2 |              8 |
+|  MMCM/inst/clk_out1                      | u2/E[0]                                     |                                        |                3 |              8 |
+|  MMCM/inst/clk_out2_phase_shifter_en_clk |                                             |                                        |                1 |              8 |
+|  MMCM/inst/clk_out1_phase_shifter_en_clk |                                             |                                        |                1 |              8 |
+|  MMCM/inst/clk_out1                      |                                             | u1/rstn                                |               10 |             14 |
+|  MMCM/inst/clk_out1                      |                                             |                                        |               11 |             17 |
+|  MMCM/inst/clk_out2                      | u1/word_cnt0                                | u1/word_cnt[30]_i_1_n_0                |                8 |             30 |
++------------------------------------------+---------------------------------------------+----------------------------------------+------------------+----------------+
+
+
