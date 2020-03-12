@@ -1,0 +1,35 @@
+
+from subprocess import call
+
+
+file=open("Rawdata.txt","r")
+rawdata=file.readlines()
+file.close()
+file=open("Decodeddata.txt","w")
+for i in rawdata:
+	if (i & 0xF00000) == 0xA00000:		#chip header
+		plane_id = (i & 0x0F0000)>>16
+		bc = (i & 0x00FF00)>>8
+		file.write("CHIP HEADER: plane=%d\n" % plane_id)
+		file.write("Bunch counter=%d\n" % bc)
+	elif (i & 0xF00000) == 0xB00000:	#chip trailer
+		ro_flags = (i & 0x0F0000)>>16
+		file.write("CHIP TRAILER: flags=0x%x01\n" % ro_flags)
+	elif (i & 0xF00000) == 0xE00000:	#chip empty
+		plane_id = (i & 0x0F0000)>>16
+		bc = (i & 0x00FF00)>>8
+		file.write("CHIP EMPTY: plane=%d\n" % plane_id)
+		file.write("Bunch counter=%d\n" % bc)
+	elif (i & 0xE00000) == 0xC00000:	#reagion header
+		region = (i & 0x1F0000)>>16
+		file.write("REAGION_HEADER: region=%d\n" % region)
+	elif (i & 0xC00000) == 0x400000:	#short
+		x = (region<<5)|((i & 0x3C0000)>>15|(i & 0x000100)>>8	#region*32+encoder_id*2+addr(0)
+		y = (i & 0x03FF00)>>9
+		file.write("DATA_SHORT: x=%d , y=%d\n" % x,y) 
+	elif (i & 0xC00000) == 0x000000:	#long
+	elif (i == 0xF1FFFF):	#busy on
+	elif (i == 0xF0FFFF):	#busy off
+	else:
+		print "ALPIDE not initialized"
+file.close()

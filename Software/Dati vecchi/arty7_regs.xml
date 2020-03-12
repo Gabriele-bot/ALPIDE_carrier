@@ -1,0 +1,5 @@
+<node id="TOP">
+  <node id="regs"   address="0x000000"  mode="block" size="0x00100"  description="FIFO registers" permission = "r" fwinfo="endpoint;width=8"/>
+  <node id="cmd"   address="0x00100"  mode="block" size="0x006"  description="cmd registers" permission = "rw" fwinfo="endpoint;width=3"/>
+  <node id="reg_read"   address="0x000200" mode="single"   description="data on register" permission = "r" fwinfo="endpoint;width=1"/>
+</node>
