@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="R_W_PLL_synth_1" LaunchPart="xc7z010clg400-1" LaunchTime="1579186882">
+  <File Type="PA-TCL" Name="R_W_PLL.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="R_W_PLL_drc_synth.rpt"/>
+  <File Type="REPORTS-TCL" Name="R_W_PLL_reports.tcl"/>
+  <File Type="RDS-RDS" Name="R_W_PLL.vds"/>
+  <File Type="RDS-UTIL" Name="R_W_PLL_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="R_W_PLL_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="R_W_PLL.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="R_W_PLL_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="R_W_PLL_timing_summary_synth.pb"/>
+  <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/R_W_PLL">
+    <File Path="$PSRCDIR/sources_1/ip/R_W_PLL/R_W_PLL.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopModule" Val="R_W_PLL"/>
+      <Option Name="UseBlackboxStub" Val="1"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="BlockSrcs" RelSrcDir="$PSRCDIR/R_W_PLL">
+    <File Path="$PSRCDIR/sources_1/ip/R_W_PLL/R_W_PLL.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopModule" Val="R_W_PLL"/>
+      <Option Name="UseBlackboxStub" Val="1"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1">
+    <Filter Type="Utils"/>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
+    <Step Id="synth_design"/>
+  </Strategy>
+</GenRun>

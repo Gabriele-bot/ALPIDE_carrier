@@ -1,0 +1,24 @@
+<node id="TOP">
+  <node id="regs"   address="0x000000"  mode="block" size="0x00100"  description="DATA registers" permission ="r" fwinfo="endpoint;width=8"/>
+  <node id="reg_read"   address="0x000200" mode="single"   description="data on register" permission = "r" fwinfo="endpoint;width=1"/>
+  <node id="CSR"   address="0x002000"  description="CTRL and STATUS registers" fwinfo="endpoint;width=4">
+    <node id="ctrl"  address="0x000000">
+      <node id="strt"  mask="0x1"/>
+      <node id="op_sw"  mask="0x1E"/>
+    </node>
+    <node id="status"  address="0x00001">
+      <node id="powered"  mask="0x000001"/>
+      <node id="init"  mask="0x000002"/>
+      <node id="busy"  mask="0x000004"/>
+      <node id="FIFO_full"  mask="0x000008"/>
+      <node id="FIFO_empty"  mask="0x000010"/>
+    </node>
+  </node>
+  <node id="cmd_addr"   address="0x003000" description="cmd and registers" permission = "rw" fwinfo="endpoint;width=3">
+    <node id="RR_addr"  address="0x000000"/>
+    <node id="OP_command"  address="0x000001"/>
+    <node id="Chip_ID"  address="0x000002"/>
+    <node id="WR_addr"  address="0x000003"/>
+    <node id="WR_data"  address="0x000004"/>
+  </node>	
+</node>

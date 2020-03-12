@@ -1,0 +1,61 @@
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
+| Date         : Thu Jan 16 16:03:27 2020
+| Host         : DESKTOP-EKOU29H running 64-bit major release  (build 9200)
+| Command      : report_methodology -file ALPIDE_Test_methodology_drc_routed.rpt -pb ALPIDE_Test_methodology_drc_routed.pb -rpx ALPIDE_Test_methodology_drc_routed.rpx
+| Design       : ALPIDE_Test
+| Device       : xc7z010clg400-1
+| Speed File   : -1
+| Design State : Fully Routed
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Report Methodology
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+             Max violations: <unlimited>
+             Violations found: 5
++-----------+----------+-------------------------------+------------+
+| Rule      | Severity | Description                   | Violations |
++-----------+----------+-------------------------------+------------+
+| TIMING-18 | Warning  | Missing input or output delay | 4          |
+| TIMING-20 | Warning  | Non-clocked latch             | 1          |
++-----------+----------+-------------------------------+------------+
+
+2. REPORT DETAILS
+-----------------
+TIMING-18#1 Warning
+Missing input or output delay  
+An input delay is missing on CTRL relative to clock(s) DCLK
+Related violations: <none>
+
+TIMING-18#2 Warning
+Missing input or output delay  
+An input delay is missing on rst relative to clock(s) DCLK
+Related violations: <none>
+
+TIMING-18#3 Warning
+Missing input or output delay  
+An input delay is missing on sw relative to clock(s) DCLK
+Related violations: <none>
+
+TIMING-18#4 Warning
+Missing input or output delay  
+An output delay is missing on read_err relative to clock(s) DCLK
+Related violations: <none>
+
+TIMING-20#1 Warning
+Non-clocked latch  
+The latch pin_in_reg cannot be properly analyzed as its control pin pin_in_reg/G is not reached by a timing clock
+Related violations: <none>
+
+

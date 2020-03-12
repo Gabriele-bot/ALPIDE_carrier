@@ -1,0 +1,86 @@
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+----------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
+| Date         : Thu Jan 16 16:03:08 2020
+| Host         : DESKTOP-EKOU29H running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file ALPIDE_Test_control_sets_placed.rpt
+| Design       : ALPIDE_Test
+| Device       : xc7z010
+----------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Number of unique control sets                            |    19 |
+| Unused register locations in slices containing registers |    40 |
++----------------------------------------------------------+-------+
+
+
+2. Histogram
+------------
+
++--------+--------------+
+| Fanout | Control Sets |
++--------+--------------+
+|      1 |            2 |
+|      4 |            6 |
+|      8 |           10 |
+|    16+ |            1 |
++--------+--------------+
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              33 |           10 |
+| No           | No                    | Yes                    |               4 |            1 |
+| No           | Yes                   | No                     |               0 |            0 |
+| Yes          | No                    | No                     |              56 |           17 |
+| Yes          | No                    | Yes                    |              13 |            4 |
+| Yes          | Yes                   | No                     |              30 |            8 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++------------------------------------+----------------------------------------------+-------------------------------+------------------+----------------+
+|            Clock Signal            |                 Enable Signal                |        Set/Reset Signal       | Slice Load Count | Bel Load Count |
++------------------------------------+----------------------------------------------+-------------------------------+------------------+----------------+
+|  MMCM/inst/clk_out1                | Read_FSM/FSM_sequential_rr_state_reg[0]      | rst_IBUF                      |                1 |              1 |
+|  pin_in_reg_i_1_n_0                |                                              |                               |                1 |              1 |
+|  MMCM/inst/clk_out1                |                                              | rst_IBUF                      |                1 |              4 |
+|  MMCM/inst/clk_out1                | idle_cnt                                     | rst_IBUF                      |                1 |              4 |
+|  MMCM/inst/clk_out1                | Write_FSM/word_cnt                           |                               |                1 |              4 |
+|  MMCM/inst/clk_out1                | Write_FSM/FSM_onehot_state_fsm[3]_i_1__0_n_0 |                               |                1 |              4 |
+|  MMCM/inst/clk_out1                | Write_FSM/idle_cnt_reg[1][0]                 | rst_IBUF                      |                1 |              4 |
+|  MMCM/inst/clk_out2                | Read_FSM/FSM_onehot_state_fsm[3]_i_1_n_0     | rst_IBUF                      |                1 |              4 |
+|  MMCM/inst/clk_out1                |                                              |                               |                5 |              8 |
+|  MMCM/inst/clk_out1                | Read_FSM/byte_cnt_reg[0]_0[0]                |                               |                5 |              8 |
+|  MMCM/inst/clk_out1                | Read_FSM/E[0]                                |                               |                1 |              8 |
+|  MMCM/inst/clk_out1                | Read_FSM/byte_cnt_reg[0]_0[1]                |                               |                3 |              8 |
+|  MMCM/inst/clk_out1                | Write_FSM/FSM_onehot_state_fsm[1]_i_1__0_n_0 |                               |                1 |              8 |
+|  MMCM/inst/clk_out1                | Write_FSM/E[0]                               |                               |                3 |              8 |
+|  MMCM/inst/clk_out2_R_W_PLL_en_clk |                                              |                               |                1 |              8 |
+|  MMCM/inst/clk_out1_R_W_PLL_en_clk |                                              |                               |                1 |              8 |
+|  MMCM/inst/clk_out2                |                                              |                               |                2 |              8 |
+|  MMCM/inst/clk_out2                | Read_FSM/word_buff0                          |                               |                2 |              8 |
+|  MMCM/inst/clk_out2                | Read_FSM/word_cnt0                           | Read_FSM/word_cnt[30]_i_1_n_0 |                8 |             30 |
++------------------------------------+----------------------------------------------+-------------------------------+------------------+----------------+
+
+

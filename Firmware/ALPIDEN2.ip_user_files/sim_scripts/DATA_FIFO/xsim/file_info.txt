@@ -1,0 +1,2 @@
+DATA_FIFO.v,verilog,xil_defaultlib,../../../ip/DATA_FIFO/sim/DATA_FIFO.v,
+glbl.v,Verilog,xil_defaultlib,glbl.v

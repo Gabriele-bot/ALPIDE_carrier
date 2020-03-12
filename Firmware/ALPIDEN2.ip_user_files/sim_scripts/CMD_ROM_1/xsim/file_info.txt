@@ -1,0 +1,2 @@
+CMD_ROM.v,verilog,xil_defaultlib,../../../ip/CMD_ROM_1/sim/CMD_ROM.v,
+glbl.v,Verilog,xil_defaultlib,glbl.v
