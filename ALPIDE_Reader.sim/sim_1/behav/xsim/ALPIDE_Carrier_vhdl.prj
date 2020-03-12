@@ -1,8 +1,0 @@
-# compile vhdl design source files
-vhdl xil_defaultlib  \
-"../../../../ALPIDE_Reader.srcs/sources_1/new/read_byte.vhd" \
-"../../../../ALPIDE_Reader.srcs/sources_1/new/send_byte.vhd" \
-"../../../../ALPIDE_Reader.srcs/sources_1/new/ALPIDE_Carrier.vhd" \
-
-# Do not sort compile order
-nosort

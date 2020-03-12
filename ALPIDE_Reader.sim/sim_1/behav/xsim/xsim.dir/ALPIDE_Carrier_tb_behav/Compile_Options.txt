@@ -1,1 +1,0 @@
--wto "ccc19e1945b84675998edd886920c9eb" --incr --debug "typical" --relax --mt "2" -L "blk_mem_gen_v8_4_2" -L "xil_defaultlib" -L "unisims_ver" -L "unimacro_ver" -L "secureip" -L "xpm" --snapshot "ALPIDE_Carrier_tb_behav" "xil_defaultlib.ALPIDE_Carrier_tb" "xil_defaultlib.glbl" -log "elaborate.log" 
