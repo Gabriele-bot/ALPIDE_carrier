@@ -214,9 +214,10 @@ def save_hitmap(matrix, file_name):
 	cbar=plt.colorbar(psm, shrink=0.5, ax=ax)
 	cbar.set_label("N. hits")
 	plt.axis('scaled')
+	ax.set(xlim=(0, 1023), ylim=(0, 511))
 	plt.xlabel("Column")
 	plt.ylabel("Row")
-	plt.savefig(file_name, dpi=2000)
+	plt.savefig(file_name, dpi=1600)
 
 def save_hitmap_logscale(matrix, file_name):
 	fig, ax = plt.subplots()
@@ -225,9 +226,10 @@ def save_hitmap_logscale(matrix, file_name):
 	cbar=plt.colorbar(psm, shrink=0.5, ax=ax)
 	cbar.set_label("N. hits")
 	plt.axis('scaled')
+	ax.set(xlim=(0, 1023), ylim=(0, 511))
 	plt.xlabel("Column")
 	plt.ylabel("Row")
-	plt.savefig(file_name, dpi=2000)
+	plt.savefig(file_name, dpi=1600)
 
 def ADC_calibration():
 	writeregister(0x0610, 0x0001)  # calibration mode and AVSS ADC input discriminator = 0

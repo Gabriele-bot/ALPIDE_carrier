@@ -1,9 +1,12 @@
 # ALPIDE_carrier
 Firmware
--Simple ALPIDE-to-FPGA comuniction (via CTRL port @40MHZ)
--ALPIDE simulation with DE0 nano
-
+-----
+1.Simple ALPIDE-to-FPGA comuniction (via CTRL port @40MHZ)
+2.ALPIDE simulation with DE0 nano
+=====
 Software
--ALPIDE command console (DEMO to be improved)
--Cluster analyzer
+----
+1.ALPIDE command console (DEMO to be improved)
+2.Cluster analyzer
+3.Hitmap decoder
 
