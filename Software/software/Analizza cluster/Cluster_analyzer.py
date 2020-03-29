@@ -1,43 +1,49 @@
 import numpy as np
+from subprocess import call
 
 def find_next_pixel(yf,xf,hmap):
 	global hitmap
-	if yf!=511 and yf!=0 and xf!=1023 and xf!=0:
+	if xf!=1023:
 		if hmap[yf,xf+1]>=1:
 			next_pixel = [yf,xf+1]
 			hitmap[yf,xf+1]=0
 			return next_pixel
+	if xf!=1023 and yf !=511:
 		if hmap[yf+1,xf+1]>=1:
 			next_pixel = [yf+1,xf+1]
 			hitmap[yf+1,xf+1]=0
 			return next_pixel
+	if yf !=511:
 		if hmap[yf+1,xf]>=1:
 			next_pixel = [yf+1,xf]
 			hitmap[yf+1,xf]=0
 			return next_pixel
+	if xf!=0 and yf !=511:
 		if hmap[yf+1,xf-1]>=1:
 			next_pixel = [yf+1,xf-1]
 			hitmap[yf+1,xf-1]=0
 			return next_pixel
+	if xf!=0:
 		if hmap[yf,xf-1]>=1:
 			next_pixel = [yf,xf-1]
 			hitmap[yf,xf-1]=0
 			return next_pixel
+	if xf!=0 and yf !=0:
 		if hmap[yf-1,xf-1]>=1:
 			next_pixel = [yf-1,xf-1]
 			hitmap[yf-1,xf-1]=0
 			return next_pixel
+	if yf !=0:
 		if hmap[yf-1,xf]>=1:
 			next_pixel = [yf-1,xf]
 			hitmap[yf-1,xf]=0
 			return next_pixel
+	if xf!=1023 and yf !=0:
 		if hmap[yf-1,xf+1]>=1:
 			next_pixel = [yf-1,xf+1]
 			hitmap[yf-1,xf+1]=0
 			return next_pixel
-		next_pixel = [-1,-1]
-	else:
-		next_pixel = [-1,-1]
+	next_pixel = [-1,-1]
 	return next_pixel
 
 
@@ -70,6 +76,17 @@ while k < len(cluster_size):
 	else:
 		k=k+1
 
+file = open("Cluster_histo.txt", "w")
+histo = np.zeros(26)
+for j in range(26):
+	for l in range(len(cluster_size)):
+		if cluster_size[l] == j+1:
+			histo[j] = histo[j] + 1
+
+for j in range(len(histo)):
+	file.write("%d	%d\n" % (j+1, histo[j]))
+
+file.close()
 
 mean = np.mean(cluster_size)
 std=np.nanstd(cluster_size)
