@@ -6,4 +6,5 @@ Firmware
 Software
 -ALPIDE command console (DEMO to be improved)
 -Cluster analyzer
+-Hitmap decoder
 

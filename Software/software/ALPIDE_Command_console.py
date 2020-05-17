@@ -129,7 +129,7 @@ def pulse_test(mode_cfg):
 	pixel_fraction = float(n_events) / 200
 	string_1 = 'Pulse test, %f' % (pixel_fraction * 100)
 	string = string_1 + chr(37) + ' pixels respond\n'
-	print string
+	#print string
 	writeregister(0x0007, 0x0000)
 	writeregister(0x0008, 0x0000)
 	get_status()
@@ -206,6 +206,21 @@ def decode_data(): #decode data and save as txt file DecodedData.txt
 	file.write("Total events detected=%d \n" % n_events)
 	file.close()
 	print "File saved as DecodedData.txt"
+
+def print_error():
+	get_status()
+	if err_slave:  # more then 51 clk cycles driven by slave
+		print
+		"Slave drive on time out"
+	if err_idle:
+		print
+		"high signal not detected on idle phase"
+	if err_read:
+		print
+		"stop bit not detected"
+	if err_chip_id:
+		print
+		"different chip ID recieved"
 
 def save_hitmap(matrix, file_name):
 	fig, ax = plt.subplots()
@@ -520,6 +535,7 @@ if __name__ == "__main__":
 				writeregister(0x0004, 0x0018)	# FROMU CFG reg 1, enable internal STROBE(bit 3), enable busy monitoring (bit 4)
 				writeregister(0x0005, STB_dur)	#STROBE duration STB_dur*25ns
 				writeregister(0x0006, STB_gap)	#gap between 2 STROBES	STB_gap*25ns
+				Total_readout_time=time.time()
 				send_cmd(trigger_cmd)	#need to first external start the STROBE generation
 				send_cmd(read_out)
 				while True:
@@ -532,15 +548,15 @@ if __name__ == "__main__":
 							for word in FIFO:
 								n_data = n_data + 1
 								if (word & 0xF00000) == 0xA00000:  # chip header
-									plane_id = (word & 0x0F0000) >> 16
+									#plane_id = (word & 0x0F0000) >> 16
 									bc = (word & 0x00FF00) >> 8
 								elif (word & 0xF00000) == 0xB00000:  # chip trailer
 									ro_flags = (word & 0x0F0000) >> 16
 									if ro_flags != 0x0 :
 										file.write("Read out flags [0x%x] detected on bunch counter  %d\n" % (ro_flags, bc))
-								elif (word & 0xF00000) == 0xE00000:  # chip empty
-									plane_id = (word & 0x0F0000) >> 16
-									bc = (word & 0x00FF00) >> 8
+								#elif (word & 0xF00000) == 0xE00000:  # chip empty
+									#plane_id = (word & 0x0F0000) >> 16
+									#bc = (word & 0x00FF00) >> 8
 								elif (word & 0xE00000) == 0xC00000:  # reagion header
 									region= (word>>16) & 0x1F
 								elif (word & 0xC00000) == 0x400000:  # short
@@ -572,43 +588,36 @@ if __name__ == "__main__":
 								elif word == 0xF0FFFF:	#busy off
 									n_busy = n_busy + 1
 								#else:
-						hw.getNode("CSR.ctrl.mem_read").write(0b1)
-						hw.getNode("CSR.ctrl.mem_read").write(0b0)
-						hw.dispatch()
+							hw.getNode("CSR.ctrl.mem_read").write(0b1)
+							hw.getNode("CSR.ctrl.mem_read").write(0b0)
+							hw.dispatch()
 					except KeyboardInterrupt:
 						hw.getNode("CSR.ctrl.ro_stop").write(0b1)
 						hw.dispatch()
+						writeregister(0x0004, 0x0000)  # FROMU CFG reg 1, disable internal STROBE
+						Total_readout_time=time.time()-Total_readout_time
 						break
-				get_status()
-				if err_slave:  # more then 51 clk cycles driven by slave
-					print
-					"Slave drive on time out"
-				if err_idle:
-					print
-					"high signal not detected on idle phase"
-				if err_read:
-					print
-					"stop bit not detected"
-				if err_chip_id:
-					print
-					"different chip ID recieved"
+				print_error()
 				dead_time = float(n_idle)/n_data*100
 				print """
 				Data recieved	= %d
+				Readout_time = %fs
 				Data idle recieved	= %d
 				Data busy recieved	= %d
 				Dead time [percentage] = %f
 				Events detected	= %d
-				""" % (n_data, n_idle, n_busy, dead_time, n_events)
+				Throughput[Mbps] = %f
+				""" % (n_data, Total_readout_time,  n_idle, n_busy, dead_time, n_events, n_data*24/(Total_readout_time*1000000))
 				np.save('hitmap_matrix', hitmap_matrix)
 				file.close()	#close Read out flags txt file
-				save_hitmap(hitmap_matrix, 'Hitmap.png')
-				save_hitmap_logscale(hitmap_matrix, 'Hitmap_log.png')
+				#save_hitmap(hitmap_matrix, 'Hitmap.png')
+				#save_hitmap_logscale(hitmap_matrix, 'Hitmap_log.png')
 				time.sleep(0.001)
 				hw.getNode("CSR.ctrl.ro_stop").write(0b0)
 				hw.dispatch()
 			else:
 				print "ALPIDE not initialized"
+
 		elif ip == "rord":	#raw data readout
 			if initialized:
 				raw_data=[]
@@ -633,24 +642,11 @@ if __name__ == "__main__":
 					except KeyboardInterrupt:
 						hw.getNode("CSR.ctrl.ro_stop").write(0b1)	#send stop  read out to FPGA
 						hw.dispatch()
-						time.sleep(0.001)
 						writeregister(0x0004, 0x0000)  # FROMU CFG reg 1, disable internal STROBE
 						np.save('Rawdata', raw_data)  # save data on npy file
 						raw_data = []
 						break
-				get_status()
-				if err_slave:  # more then 51 clk cycles driven by slave
-					print
-					"Slave drive on time out"
-				if err_idle:
-					print
-					"high signal not detected on idle phase"
-				if err_read:
-					print
-					"stop bit not detected"
-				if err_chip_id:
-					print
-					"different chip ID recieved"
+				print_error()
 				time.sleep(0.001)
 				hw.getNode("CSR.ctrl.ro_stop").write(0b0)
 				hw.dispatch()
@@ -838,24 +834,12 @@ if __name__ == "__main__":
 				n_pixel_masked = 0
 				for row in range(512):
 					for column in range (1024):
-						if hitmap_matrix[row,column] > 3:
+						if hitmap_matrix[row,column] > 2:
 							n_pixel_masked = n_pixel_masked + 1
 							maskPixel(column,row, True)
 							print "\nMasked pixel x=%d  y=%d\n" % (column, row)
 				print "Masked %d Pixels in total" % n_pixel_masked
-				get_status()
-				if err_slave:  # more then 51 clk cycles driven by slave
-					print
-					"Slave drive on time out"
-				if err_idle:
-					print
-					"high signal not detected on idle phase"
-				if err_read:
-					print
-					"stop bit not detected"
-				if err_chip_id:
-					print
-					"different chip ID recieved"
+				print_error()
 				time.sleep(0.001)
 				hw.getNode("CSR.ctrl.ro_stop").write(0b0)
 				hw.dispatch()

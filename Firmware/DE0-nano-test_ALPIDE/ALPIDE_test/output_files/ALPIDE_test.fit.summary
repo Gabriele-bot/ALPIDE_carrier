@@ -1,0 +1,16 @@
+Fitter Status : Successful - Wed Jan 22 11:38:44 2020
+Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+Revision Name : ALPIDE_test
+Top-level Entity Name : ALPIDE_Test
+Family : Cyclone IV E
+Device : EP4CE22F17C6
+Timing Models : Final
+Total logic elements : 292 / 22,320 ( 1 % )
+    Total combinational functions : 275 / 22,320 ( 1 % )
+    Dedicated logic registers : 187 / 22,320 ( < 1 % )
+Total registers : 187
+Total pins : 14 / 154 ( 9 % )
+Total virtual pins : 0
+Total memory bits : 0 / 608,256 ( 0 % )
+Embedded Multiplier 9-bit elements : 0 / 132 ( 0 % )
+Total PLLs : 1 / 4 ( 25 % )

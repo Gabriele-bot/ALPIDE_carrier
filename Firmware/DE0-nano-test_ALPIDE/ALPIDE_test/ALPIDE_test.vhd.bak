@@ -1,0 +1,40 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+
+entity ALPIDE_Carrier is
+    Port ( CTRL : inout STD_LOGIC;  --data pin
+           DCLK : in STD_LOGIC;    --40MHz
+           btn : in STD_LOGIC;  --validate option
+           rstn : in STD_LOGIC := '1';  --Arty resetn
+           rst_n_io : in STD_LOGIC ;    --ALPIDE resetn 
+           pwr_enable : in STD_LOGIC ; --ALPIDE power enable
+           data_led : out STD_LOGIC_VECTOR ( 7 downto 0 ) ;
+           busy_led : out STD_LOGIC ;
+           error_led : out STD_LOGIC );      
+end ALPIDE_Carrier;
+
+architecture Behavioral of ALPIDE_Carrier is
+
+component PH90
+	Port (inclk0 : in STD_LOGIC;
+         c0 : out STD_LOGIC; --40MHz base clock
+         c1 : out STD_LOGIC  --90° phase shifted 40MHz clock
+         );
+end component;  
+
+signal c0, c1 : STD_LOGIC;
+
+begin
+
+	PH90_inst : PH90 PORT MAP (
+		inclk0	 => DCLK,
+		c0	 => c0,
+		c1	 => c1
+	);
+
+	
+	
+end Behavioral;

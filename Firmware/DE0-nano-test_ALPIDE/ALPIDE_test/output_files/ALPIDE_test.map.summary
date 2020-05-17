@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Wed Jan 22 11:38:26 2020
+Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+Revision Name : ALPIDE_test
+Top-level Entity Name : ALPIDE_Test
+Family : Cyclone IV E
+Total logic elements : 303
+    Total combinational functions : 275
+    Dedicated logic registers : 187
+Total registers : 187
+Total pins : 14
+Total virtual pins : 0
+Total memory bits : 0
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 1

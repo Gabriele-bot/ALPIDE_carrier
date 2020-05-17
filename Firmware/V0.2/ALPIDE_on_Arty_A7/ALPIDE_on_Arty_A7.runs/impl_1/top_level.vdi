@@ -1,0 +1,677 @@
+#-----------------------------------------------------------
+# Vivado v2018.3 (64-bit)
+# SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+# IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+# Start of session at: Sun May 17 11:40:18 2020
+# Process ID: 8467
+# Current directory: /home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.runs/impl_1
+# Command line: vivado -log top_level.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source top_level.tcl -notrace
+# Log file: /home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.runs/impl_1/top_level.vdi
+# Journal file: /home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.runs/impl_1/vivado.jou
+#-----------------------------------------------------------
+source top_level.tcl -notrace
+Command: link_design -top top_level -part xc7a35tcsg324-1
+Design is defaulting to srcset: sources_1
+Design is defaulting to constrset: constrs_1
+INFO: [Project 1-454] Reading design checkpoint '/home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.runs/impl_1/.Xil/Vivado-8467-gabriele-HP-Laptop/tri_mode_ethernet_mac_0_2/tri_mode_ethernet_mac_0.dcp' for cell 'eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i'
+INFO: [Netlist 29-17] Analyzing 248 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2018.3
+INFO: [Device 21-403] Loading part xc7a35tcsg324-1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+WARNING: [Opt 31-32] Removing redundant IBUF since it is not being driven by a top-level port. eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/mii_interface/mii_rx_er_ibuf_i 
+Resolution: The tool has removed redundant IBUF. To resolve this warning, check for redundant IBUF in the input design.
+WARNING: [Opt 31-33] Removing redundant OBUF since it is not driving a top-level port. eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/mii_interface/mii_tx_er_obuf_i 
+Resolution: The tool has removed redundant OBUF. To resolve this warning, check for redundant OBUF in the input design.
+WARNING: [Constraints 18-550] Could not create 'IBUF_LOW_PWR' constraint because net 'eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/mii_rx_er' is not directly connected to top level port. Synthesis is ignored for IBUF_LOW_PWR but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'DRIVE' constraint because net 'eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/mii_tx_er' is not directly connected to top level port. Synthesis is ignored for DRIVE but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'SLEW' constraint because net 'eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/mii_tx_er' is not directly connected to top level port. Synthesis is ignored for SLEW but preserved for implementation.
+Parsing XDC File [/home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.srcs/sources_1/ip/tri_mode_ethernet_mac_0_2/synth/tri_mode_ethernet_mac_0_board.xdc] for cell 'eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0'
+Finished Parsing XDC File [/home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.srcs/sources_1/ip/tri_mode_ethernet_mac_0_2/synth/tri_mode_ethernet_mac_0_board.xdc] for cell 'eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0'
+Parsing XDC File [/home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.srcs/sources_1/ip/tri_mode_ethernet_mac_0_2/synth/tri_mode_ethernet_mac_0.xdc] for cell 'eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0'
+Finished Parsing XDC File [/home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.srcs/sources_1/ip/tri_mode_ethernet_mac_0_2/synth/tri_mode_ethernet_mac_0.xdc] for cell 'eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0'
+Parsing XDC File [/home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.srcs/constrs_1/imports/constrs_1/mapping.xdc]
+WARNING: [Vivado 12-584] No ports matched 'op_sw_i[0]'. [/home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.srcs/constrs_1/imports/constrs_1/mapping.xdc:46]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.srcs/constrs_1/imports/constrs_1/mapping.xdc:46]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'op_sw_i[1]'. [/home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.srcs/constrs_1/imports/constrs_1/mapping.xdc:47]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.srcs/constrs_1/imports/constrs_1/mapping.xdc:47]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'op_sw_i[2]'. [/home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.srcs/constrs_1/imports/constrs_1/mapping.xdc:48]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.srcs/constrs_1/imports/constrs_1/mapping.xdc:48]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'op_sw_i[3]'. [/home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.srcs/constrs_1/imports/constrs_1/mapping.xdc:49]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.srcs/constrs_1/imports/constrs_1/mapping.xdc:49]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'btn_i'. [/home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.srcs/constrs_1/imports/constrs_1/mapping.xdc:72]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.srcs/constrs_1/imports/constrs_1/mapping.xdc:72]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'wcmd_enable_i'. [/home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.srcs/constrs_1/imports/constrs_1/mapping.xdc:73]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.srcs/constrs_1/imports/constrs_1/mapping.xdc:73]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+Finished Parsing XDC File [/home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.srcs/constrs_1/imports/constrs_1/mapping.xdc]
+Parsing XDC File [/home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.srcs/constrs_1/imports/constrs_1/timing.xdc]
+INFO: [Timing 38-35] Done setting XDC timing constraints. [/home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.srcs/constrs_1/imports/constrs_1/timing.xdc:7]
+INFO: [Timing 38-2] Deriving generated clocks [/home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.srcs/constrs_1/imports/constrs_1/timing.xdc:7]
+get_clocks: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2147.445 ; gain = 507.516 ; free physical = 2789 ; free virtual = 5589
+Finished Parsing XDC File [/home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.srcs/constrs_1/imports/constrs_1/timing.xdc]
+Parsing XDC File [/home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.srcs/sources_1/ip/tri_mode_ethernet_mac_0_2/synth/tri_mode_ethernet_mac_0_clocks.xdc] for cell 'eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0'
+WARNING: [Vivado 12-4365] The following ports on current instance 'eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0' could not be traversed to top level ports, the result will not contain these ports '{mii_rx_er}'. [/home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.srcs/sources_1/ip/tri_mode_ethernet_mac_0_2/synth/tri_mode_ethernet_mac_0_clocks.xdc:26]
+CRITICAL WARNING: [Constraints 18-376] set_input_delay: more than one reference clocks specified. [/home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.srcs/sources_1/ip/tri_mode_ethernet_mac_0_2/synth/tri_mode_ethernet_mac_0_clocks.xdc:26]
+WARNING: [Vivado 12-4365] The following ports on current instance 'eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0' could not be traversed to top level ports, the result will not contain these ports '{mii_rx_er}'. [/home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.srcs/sources_1/ip/tri_mode_ethernet_mac_0_2/synth/tri_mode_ethernet_mac_0_clocks.xdc:27]
+CRITICAL WARNING: [Constraints 18-376] set_input_delay: more than one reference clocks specified. [/home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.srcs/sources_1/ip/tri_mode_ethernet_mac_0_2/synth/tri_mode_ethernet_mac_0_clocks.xdc:27]
+Finished Parsing XDC File [/home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.srcs/sources_1/ip/tri_mode_ethernet_mac_0_2/synth/tri_mode_ethernet_mac_0_clocks.xdc] for cell 'eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0'
+Sourcing Tcl File [/home/gabriele/Programmi/Vivado/Vivado/2018.3/data/ip/xpm/xpm_fifo/tcl/xpm_fifo_rst.tcl] for cell 'FIFO/xpm_fifo_sync_inst'
+Finished Sourcing Tcl File [/home/gabriele/Programmi/Vivado/Vivado/2018.3/data/ip/xpm/xpm_fifo/tcl/xpm_fifo_rst.tcl] for cell 'FIFO/xpm_fifo_sync_inst'
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2147.445 ; gain = 0.000 ; free physical = 2797 ; free virtual = 5597
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 9 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 1 instances
+  RAM64X1D => RAM64X1D (RAMD64E, RAMD64E): 8 instances
+
+10 Infos, 13 Warnings, 8 Critical Warnings and 0 Errors encountered.
+link_design completed successfully
+link_design: Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 2147.445 ; gain = 743.375 ; free physical = 2797 ; free virtual = 5597
+Command: place_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7a35t'
+INFO: [DRC 23-27] Running DRC with 4 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+Running DRC as a precondition to command place_design
+INFO: [DRC 23-27] Running DRC with 4 threads
+WARNING: [DRC CHECK-3] Report rule limit reached: REQP-1839 rule limit reached: 20 violations have been found.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0/ENARDEN (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0/WEA[0] (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0/WEA[1] (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0/WEA[2] (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0/WEA[3] (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_1 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_1/ENARDEN (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_1 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_1/WEA[0] (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_1 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_1/WEA[1] (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_1 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_1/WEA[2] (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_1 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_1/WEA[3] (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_2 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_2/ENARDEN (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_2 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_2/WEA[0] (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_2 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_2/WEA[1] (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_2 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_2/WEA[2] (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_2 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_2/WEA[3] (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_3 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_3/ENARDEN (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_3 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_3/WEA[0] (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_3 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_3/WEA[1] (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_3 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_3/WEA[2] (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_3 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_3/WEA[3] (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors, 21 Warnings
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+Starting Placer Task
+INFO: [Place 30-611] Multithreading enabled for place_design using a maximum of 4 CPUs
+
+Phase 1 Placer Initialization
+
+Phase 1.1 Placer Initialization Netlist Sorting
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2179.461 ; gain = 0.000 ; free physical = 2790 ; free virtual = 5590
+Phase 1.1 Placer Initialization Netlist Sorting | Checksum: 1aee54053
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.03 . Memory (MB): peak = 2179.461 ; gain = 0.000 ; free physical = 2790 ; free virtual = 5590
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2193.461 ; gain = 0.000 ; free physical = 2790 ; free virtual = 5590
+
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device
+CRITICAL WARNING: [Place 30-73] Invalid constraint on register 'eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/mii_interface/mii_tx_er_obuf_reg'. It has the property IOB=TRUE, but it is not driving or driven by any IO element.
+CRITICAL WARNING: [Place 30-73] Invalid constraint on register 'eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/mii_interface/rx_er_to_mac_reg'. It has the property IOB=TRUE, but it is not driving or driven by any IO element.
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device | Checksum: d17af40a
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 2193.461 ; gain = 14.000 ; free physical = 2778 ; free virtual = 5578
+
+Phase 1.3 Build Placer Netlist Model
+Phase 1.3 Build Placer Netlist Model | Checksum: 12ca1a855
+
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:03 . Memory (MB): peak = 2204.105 ; gain = 24.645 ; free physical = 2756 ; free virtual = 5556
+
+Phase 1.4 Constrain Clocks/Macros
+Phase 1.4 Constrain Clocks/Macros | Checksum: 12ca1a855
+
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:03 . Memory (MB): peak = 2204.105 ; gain = 24.645 ; free physical = 2756 ; free virtual = 5556
+Phase 1 Placer Initialization | Checksum: 12ca1a855
+
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:03 . Memory (MB): peak = 2204.105 ; gain = 24.645 ; free physical = 2756 ; free virtual = 5556
+
+Phase 2 Global Placement
+
+Phase 2.1 Floorplanning
+Phase 2.1 Floorplanning | Checksum: 15189f074
+
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:03 . Memory (MB): peak = 2204.105 ; gain = 24.645 ; free physical = 2747 ; free virtual = 5547
+
+Phase 2.2 Physical Synthesis In Placer
+INFO: [Physopt 32-65] No nets found for high-fanout optimization.
+INFO: [Physopt 32-232] Optimized 0 net. Created 0 new instance.
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-456] No candidate cells for DSP register optimization found in the design.
+INFO: [Physopt 32-775] End 2 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-677] No candidate cells for Shift Register optimization found in the design
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-526] No candidate cells for BRAM register optimization found in the design
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-949] No candidate nets found for HD net replication
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2212.109 ; gain = 0.000 ; free physical = 2738 ; free virtual = 5539
+
+Summary of Physical Synthesis Optimizations
+============================================
+
+
+----------------------------------------------------------------------------------------------------------------------------------------
+|  Optimization                  |  Added Cells  |  Removed Cells  |  Optimized Cells/Nets  |  Dont Touch  |  Iterations  |  Elapsed   |
+----------------------------------------------------------------------------------------------------------------------------------------
+|  Very High Fanout              |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  DSP Register                  |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Shift Register                |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  BRAM Register                 |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  HD Interface Net Replication  |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Total                         |            0  |              0  |                     0  |           0  |           5  |  00:00:00  |
+----------------------------------------------------------------------------------------------------------------------------------------
+
+
+Phase 2.2 Physical Synthesis In Placer | Checksum: 1f773e0fc
+
+Time (s): cpu = 00:00:18 ; elapsed = 00:00:08 . Memory (MB): peak = 2212.109 ; gain = 32.648 ; free physical = 2740 ; free virtual = 5541
+Phase 2 Global Placement | Checksum: 1a8942256
+
+Time (s): cpu = 00:00:19 ; elapsed = 00:00:08 . Memory (MB): peak = 2212.109 ; gain = 32.648 ; free physical = 2742 ; free virtual = 5542
+
+Phase 3 Detail Placement
+
+Phase 3.1 Commit Multi Column Macros
+Phase 3.1 Commit Multi Column Macros | Checksum: 1a8942256
+
+Time (s): cpu = 00:00:19 ; elapsed = 00:00:08 . Memory (MB): peak = 2212.109 ; gain = 32.648 ; free physical = 2742 ; free virtual = 5542
+
+Phase 3.2 Commit Most Macros & LUTRAMs
+Phase 3.2 Commit Most Macros & LUTRAMs | Checksum: 1d389bfbb
+
+Time (s): cpu = 00:00:20 ; elapsed = 00:00:09 . Memory (MB): peak = 2212.109 ; gain = 32.648 ; free physical = 2738 ; free virtual = 5539
+
+Phase 3.3 Area Swap Optimization
+Phase 3.3 Area Swap Optimization | Checksum: 1aa2a7b30
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:09 . Memory (MB): peak = 2212.109 ; gain = 32.648 ; free physical = 2739 ; free virtual = 5539
+
+Phase 3.4 Pipeline Register Optimization
+Phase 3.4 Pipeline Register Optimization | Checksum: 14446ac13
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:09 . Memory (MB): peak = 2212.109 ; gain = 32.648 ; free physical = 2739 ; free virtual = 5539
+
+Phase 3.5 Fast Optimization
+Phase 3.5 Fast Optimization | Checksum: 1a6503847
+
+Time (s): cpu = 00:00:22 ; elapsed = 00:00:10 . Memory (MB): peak = 2212.109 ; gain = 32.648 ; free physical = 2738 ; free virtual = 5539
+
+Phase 3.6 Small Shape Detail Placement
+Phase 3.6 Small Shape Detail Placement | Checksum: 2662cb40a
+
+Time (s): cpu = 00:00:24 ; elapsed = 00:00:12 . Memory (MB): peak = 2212.109 ; gain = 32.648 ; free physical = 2733 ; free virtual = 5533
+
+Phase 3.7 Re-assign LUT pins
+Phase 3.7 Re-assign LUT pins | Checksum: 1fe47bbab
+
+Time (s): cpu = 00:00:24 ; elapsed = 00:00:12 . Memory (MB): peak = 2212.109 ; gain = 32.648 ; free physical = 2733 ; free virtual = 5533
+
+Phase 3.8 Pipeline Register Optimization
+Phase 3.8 Pipeline Register Optimization | Checksum: 16249067e
+
+Time (s): cpu = 00:00:25 ; elapsed = 00:00:12 . Memory (MB): peak = 2212.109 ; gain = 32.648 ; free physical = 2733 ; free virtual = 5533
+
+Phase 3.9 Fast Optimization
+Phase 3.9 Fast Optimization | Checksum: 172cadb57
+
+Time (s): cpu = 00:00:27 ; elapsed = 00:00:13 . Memory (MB): peak = 2212.109 ; gain = 32.648 ; free physical = 2732 ; free virtual = 5532
+Phase 3 Detail Placement | Checksum: 172cadb57
+
+Time (s): cpu = 00:00:27 ; elapsed = 00:00:13 . Memory (MB): peak = 2212.109 ; gain = 32.648 ; free physical = 2732 ; free virtual = 5532
+
+Phase 4 Post Placement Optimization and Clean-Up
+
+Phase 4.1 Post Commit Optimization
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+
+Phase 4.1.1 Post Placement Optimization
+Post Placement Optimization Initialization | Checksum: 171fceae7
+
+Phase 4.1.1.1 BUFG Insertion
+INFO: [Place 46-46] BUFG insertion identified 0 candidate nets, 0 success, 0 bufg driver replicated, 0 skipped for placement/routing, 0 skipped for timing, 0 skipped for netlist change reason
+Phase 4.1.1.1 BUFG Insertion | Checksum: 171fceae7
+
+Time (s): cpu = 00:00:29 ; elapsed = 00:00:14 . Memory (MB): peak = 2218.109 ; gain = 38.648 ; free physical = 2732 ; free virtual = 5532
+INFO: [Place 30-746] Post Placement Timing Summary WNS=-0.477. For the most accurate timing information please run report_timing.
+Phase 4.1.1 Post Placement Optimization | Checksum: 18ce5ad8d
+
+Time (s): cpu = 00:00:43 ; elapsed = 00:00:27 . Memory (MB): peak = 2218.109 ; gain = 38.648 ; free physical = 2727 ; free virtual = 5528
+Phase 4.1 Post Commit Optimization | Checksum: 18ce5ad8d
+
+Time (s): cpu = 00:00:43 ; elapsed = 00:00:27 . Memory (MB): peak = 2218.109 ; gain = 38.648 ; free physical = 2727 ; free virtual = 5528
+
+Phase 4.2 Post Placement Cleanup
+Phase 4.2 Post Placement Cleanup | Checksum: 18ce5ad8d
+
+Time (s): cpu = 00:00:44 ; elapsed = 00:00:27 . Memory (MB): peak = 2218.109 ; gain = 38.648 ; free physical = 2728 ; free virtual = 5529
+
+Phase 4.3 Placer Reporting
+Phase 4.3 Placer Reporting | Checksum: 18ce5ad8d
+
+Time (s): cpu = 00:00:44 ; elapsed = 00:00:27 . Memory (MB): peak = 2218.109 ; gain = 38.648 ; free physical = 2728 ; free virtual = 5529
+
+Phase 4.4 Final Placement Cleanup
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2218.109 ; gain = 0.000 ; free physical = 2728 ; free virtual = 5529
+Phase 4.4 Final Placement Cleanup | Checksum: c3386bdc
+
+Time (s): cpu = 00:00:44 ; elapsed = 00:00:27 . Memory (MB): peak = 2218.109 ; gain = 38.648 ; free physical = 2728 ; free virtual = 5529
+Phase 4 Post Placement Optimization and Clean-Up | Checksum: c3386bdc
+
+Time (s): cpu = 00:00:44 ; elapsed = 00:00:27 . Memory (MB): peak = 2218.109 ; gain = 38.648 ; free physical = 2728 ; free virtual = 5529
+Ending Placer Task | Checksum: 08ae1cc7
+
+Time (s): cpu = 00:00:44 ; elapsed = 00:00:27 . Memory (MB): peak = 2218.109 ; gain = 38.648 ; free physical = 2738 ; free virtual = 5539
+INFO: [Common 17-83] Releasing license: Implementation
+36 Infos, 34 Warnings, 10 Critical Warnings and 0 Errors encountered.
+place_design completed successfully
+place_design: Time (s): cpu = 00:00:46 ; elapsed = 00:00:28 . Memory (MB): peak = 2218.109 ; gain = 70.664 ; free physical = 2738 ; free virtual = 5539
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2218.109 ; gain = 0.000 ; free physical = 2738 ; free virtual = 5539
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Writing placer database...
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2221.297 ; gain = 0.000 ; free physical = 2732 ; free virtual = 5536
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.41 . Memory (MB): peak = 2221.297 ; gain = 3.188 ; free physical = 2724 ; free virtual = 5535
+INFO: [Common 17-1381] The checkpoint '/home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.runs/impl_1/top_level_placed.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_io -file top_level_io_placed.rpt
+report_io: Time (s): cpu = 00:00:00.09 ; elapsed = 00:00:00.13 . Memory (MB): peak = 2222.297 ; gain = 1.000 ; free physical = 2727 ; free virtual = 5530
+INFO: [runtcl-4] Executing : report_utilization -file top_level_utilization_placed.rpt -pb top_level_utilization_placed.pb
+INFO: [runtcl-4] Executing : report_control_sets -verbose -file top_level_control_sets_placed.rpt
+report_control_sets: Time (s): cpu = 00:00:00.08 ; elapsed = 00:00:00.10 . Memory (MB): peak = 2222.297 ; gain = 0.000 ; free physical = 2735 ; free virtual = 5538
+Command: route_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7a35t'
+Running DRC as a precondition to command route_design
+INFO: [DRC 23-27] Running DRC with 4 threads
+WARNING: [DRC PLIO-6] Placement Constraints Check for IO constraints: Invalid constraint on register eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/mii_interface/mii_tx_er_obuf_reg. It has the property IOB=TRUE, but it is not driving or driven by any IO element.
+WARNING: [DRC PLIO-6] Placement Constraints Check for IO constraints: Invalid constraint on register eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/mii_interface/rx_er_to_mac_reg. It has the property IOB=TRUE, but it is not driving or driven by any IO element.
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors, 2 Warnings
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+
+Starting Routing Task
+INFO: [Route 35-254] Multithreading enabled for route_design using a maximum of 4 CPUs
+Checksum: PlaceDB: 75255bf ConstDB: 0 ShapeSum: 15bc708 RouteDB: 0
+
+Phase 1 Build RT Design
+Phase 1 Build RT Design | Checksum: dc15fefb
+
+Time (s): cpu = 00:00:15 ; elapsed = 00:00:12 . Memory (MB): peak = 2325.973 ; gain = 99.676 ; free physical = 2618 ; free virtual = 5423
+Post Restoration Checksum: NetGraph: 1ca3d8d1 NumContArr: bf72262a Constraints: 0 Timing: 0
+
+Phase 2 Router Initialization
+
+Phase 2.1 Create Timer
+Phase 2.1 Create Timer | Checksum: dc15fefb
+
+Time (s): cpu = 00:00:15 ; elapsed = 00:00:12 . Memory (MB): peak = 2349.969 ; gain = 123.672 ; free physical = 2587 ; free virtual = 5392
+
+Phase 2.2 Fix Topology Constraints
+Phase 2.2 Fix Topology Constraints | Checksum: dc15fefb
+
+Time (s): cpu = 00:00:15 ; elapsed = 00:00:12 . Memory (MB): peak = 2362.969 ; gain = 136.672 ; free physical = 2572 ; free virtual = 5377
+
+Phase 2.3 Pre Route Cleanup
+Phase 2.3 Pre Route Cleanup | Checksum: dc15fefb
+
+Time (s): cpu = 00:00:15 ; elapsed = 00:00:12 . Memory (MB): peak = 2362.969 ; gain = 136.672 ; free physical = 2572 ; free virtual = 5377
+ Number of Nodes with overlaps = 0
+
+Phase 2.4 Update Timing
+Phase 2.4 Update Timing | Checksum: 15e5a76b9
+
+Time (s): cpu = 00:00:19 ; elapsed = 00:00:14 . Memory (MB): peak = 2377.969 ; gain = 151.672 ; free physical = 2560 ; free virtual = 5365
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=-0.488 | TNS=-26.095| WHS=-1.140 | THS=-159.088|
+
+Phase 2 Router Initialization | Checksum: 1c4e14957
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:15 . Memory (MB): peak = 2377.969 ; gain = 151.672 ; free physical = 2556 ; free virtual = 5360
+
+Phase 3 Initial Routing
+Phase 3 Initial Routing | Checksum: 23b86db89
+
+Time (s): cpu = 00:00:29 ; elapsed = 00:00:18 . Memory (MB): peak = 2380.969 ; gain = 154.672 ; free physical = 2554 ; free virtual = 5358
+
+Phase 4 Rip-up And Reroute
+
+Phase 4.1 Global Iteration 0
+ Number of Nodes with overlaps = 872
+ Number of Nodes with overlaps = 81
+ Number of Nodes with overlaps = 9
+ Number of Nodes with overlaps = 3
+ Number of Nodes with overlaps = 1
+ Number of Nodes with overlaps = 0
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=-1.904 | TNS=-136.073| WHS=N/A    | THS=N/A    |
+
+Phase 4.1 Global Iteration 0 | Checksum: e7053077
+
+Time (s): cpu = 00:00:38 ; elapsed = 00:00:22 . Memory (MB): peak = 2394.969 ; gain = 168.672 ; free physical = 2543 ; free virtual = 5347
+
+Phase 4.2 Global Iteration 1
+ Number of Nodes with overlaps = 4
+ Number of Nodes with overlaps = 0
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=-1.804 | TNS=-134.313| WHS=N/A    | THS=N/A    |
+
+Phase 4.2 Global Iteration 1 | Checksum: bc92f8c7
+
+Time (s): cpu = 00:00:50 ; elapsed = 00:00:34 . Memory (MB): peak = 2478.969 ; gain = 252.672 ; free physical = 2540 ; free virtual = 5344
+
+Phase 4.3 Global Iteration 2
+ Number of Nodes with overlaps = 5
+ Number of Nodes with overlaps = 1
+ Number of Nodes with overlaps = 0
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=-1.767 | TNS=-132.990| WHS=N/A    | THS=N/A    |
+
+Phase 4.3 Global Iteration 2 | Checksum: 299643f1c
+
+Time (s): cpu = 00:01:07 ; elapsed = 00:00:50 . Memory (MB): peak = 2679.969 ; gain = 453.672 ; free physical = 2527 ; free virtual = 5331
+Phase 4 Rip-up And Reroute | Checksum: 299643f1c
+
+Time (s): cpu = 00:01:07 ; elapsed = 00:00:50 . Memory (MB): peak = 2679.969 ; gain = 453.672 ; free physical = 2527 ; free virtual = 5331
+
+Phase 5 Delay and Skew Optimization
+
+Phase 5.1 Delay CleanUp
+
+Phase 5.1.1 Update Timing
+Phase 5.1.1 Update Timing | Checksum: 23a54a5bf
+
+Time (s): cpu = 00:01:08 ; elapsed = 00:00:50 . Memory (MB): peak = 2679.969 ; gain = 453.672 ; free physical = 2527 ; free virtual = 5331
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=-1.767 | TNS=-132.990| WHS=N/A    | THS=N/A    |
+
+Phase 5.1 Delay CleanUp | Checksum: 23a54a5bf
+
+Time (s): cpu = 00:01:08 ; elapsed = 00:00:50 . Memory (MB): peak = 2679.969 ; gain = 453.672 ; free physical = 2527 ; free virtual = 5331
+
+Phase 5.2 Clock Skew Optimization
+Phase 5.2 Clock Skew Optimization | Checksum: 23a54a5bf
+
+Time (s): cpu = 00:01:08 ; elapsed = 00:00:50 . Memory (MB): peak = 2679.969 ; gain = 453.672 ; free physical = 2527 ; free virtual = 5331
+Phase 5 Delay and Skew Optimization | Checksum: 23a54a5bf
+
+Time (s): cpu = 00:01:08 ; elapsed = 00:00:50 . Memory (MB): peak = 2679.969 ; gain = 453.672 ; free physical = 2527 ; free virtual = 5331
+
+Phase 6 Post Hold Fix
+
+Phase 6.1 Hold Fix Iter
+
+Phase 6.1.1 Update Timing
+Phase 6.1.1 Update Timing | Checksum: 26a6312a2
+
+Time (s): cpu = 00:01:09 ; elapsed = 00:00:51 . Memory (MB): peak = 2679.969 ; gain = 453.672 ; free physical = 2527 ; free virtual = 5331
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=-1.767 | TNS=-132.990| WHS=0.012  | THS=0.000  |
+
+Phase 6.1 Hold Fix Iter | Checksum: 22990491d
+
+Time (s): cpu = 00:01:09 ; elapsed = 00:00:51 . Memory (MB): peak = 2679.969 ; gain = 453.672 ; free physical = 2527 ; free virtual = 5331
+Phase 6 Post Hold Fix | Checksum: 22990491d
+
+Time (s): cpu = 00:01:09 ; elapsed = 00:00:51 . Memory (MB): peak = 2679.969 ; gain = 453.672 ; free physical = 2527 ; free virtual = 5331
+
+Phase 7 Route finalize
+
+Router Utilization Summary
+  Global Vertical Routing Utilization    = 2.06243 %
+  Global Horizontal Routing Utilization  = 2.60281 %
+  Routable Net Status*
+  *Does not include unroutable nets such as driverless and loadless.
+  Run report_route_status for detailed report.
+  Number of Failed Nets               = 0
+  Number of Unrouted Nets             = 0
+  Number of Partially Routed Nets     = 0
+  Number of Node Overlaps             = 0
+
+Congestion Report
+North Dir 1x1 Area, Max Cong = 57.6577%, No Congested Regions.
+South Dir 1x1 Area, Max Cong = 46.8468%, No Congested Regions.
+East Dir 1x1 Area, Max Cong = 50%, No Congested Regions.
+West Dir 1x1 Area, Max Cong = 58.8235%, No Congested Regions.
+
+------------------------------
+Reporting congestion hotspots
+------------------------------
+Direction: North
+----------------
+Congested clusters found at Level 0
+Effective congestion level: 0 Aspect Ratio: 1 Sparse Ratio: 0
+Direction: South
+----------------
+Congested clusters found at Level 0
+Effective congestion level: 0 Aspect Ratio: 1 Sparse Ratio: 0
+Direction: East
+----------------
+Congested clusters found at Level 0
+Effective congestion level: 0 Aspect Ratio: 1 Sparse Ratio: 0
+Direction: West
+----------------
+Congested clusters found at Level 0
+Effective congestion level: 0 Aspect Ratio: 1 Sparse Ratio: 0
+
+Phase 7 Route finalize | Checksum: 27e5a89cc
+
+Time (s): cpu = 00:01:09 ; elapsed = 00:00:51 . Memory (MB): peak = 2679.969 ; gain = 453.672 ; free physical = 2527 ; free virtual = 5331
+
+Phase 8 Verifying routed nets
+
+ Verification completed successfully
+Phase 8 Verifying routed nets | Checksum: 27e5a89cc
+
+Time (s): cpu = 00:01:09 ; elapsed = 00:00:51 . Memory (MB): peak = 2679.969 ; gain = 453.672 ; free physical = 2526 ; free virtual = 5330
+
+Phase 9 Depositing Routes
+Phase 9 Depositing Routes | Checksum: 2693baf69
+
+Time (s): cpu = 00:01:10 ; elapsed = 00:00:51 . Memory (MB): peak = 2679.969 ; gain = 453.672 ; free physical = 2526 ; free virtual = 5330
+
+Phase 10 Post Router Timing
+INFO: [Route 35-57] Estimated Timing Summary | WNS=-1.767 | TNS=-132.990| WHS=0.012  | THS=0.000  |
+
+WARNING: [Route 35-328] Router estimated timing not met.
+Resolution: For a complete and accurate timing signoff, report_timing_summary must be run after route_design. Alternatively, route_design can be run with the -timing_summary option to enable a complete timing signoff at the end of route_design.
+Phase 10 Post Router Timing | Checksum: 2693baf69
+
+Time (s): cpu = 00:01:10 ; elapsed = 00:00:51 . Memory (MB): peak = 2679.969 ; gain = 453.672 ; free physical = 2528 ; free virtual = 5332
+INFO: [Route 35-16] Router Completed Successfully
+
+Time (s): cpu = 00:01:10 ; elapsed = 00:00:51 . Memory (MB): peak = 2679.969 ; gain = 453.672 ; free physical = 2566 ; free virtual = 5369
+
+Routing Is Done.
+INFO: [Common 17-83] Releasing license: Implementation
+55 Infos, 37 Warnings, 10 Critical Warnings and 0 Errors encountered.
+route_design completed successfully
+route_design: Time (s): cpu = 00:01:12 ; elapsed = 00:00:53 . Memory (MB): peak = 2679.969 ; gain = 457.672 ; free physical = 2566 ; free virtual = 5369
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2679.969 ; gain = 0.000 ; free physical = 2566 ; free virtual = 5369
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Writing placer database...
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2679.969 ; gain = 0.000 ; free physical = 2559 ; free virtual = 5366
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.52 . Memory (MB): peak = 2679.969 ; gain = 0.000 ; free physical = 2550 ; free virtual = 5367
+INFO: [Common 17-1381] The checkpoint '/home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.runs/impl_1/top_level_routed.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_drc -file top_level_drc_routed.rpt -pb top_level_drc_routed.pb -rpx top_level_drc_routed.rpx
+Command: report_drc -file top_level_drc_routed.rpt -pb top_level_drc_routed.pb -rpx top_level_drc_routed.rpx
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 4 threads
+INFO: [Coretcl 2-168] The results of DRC are in file /home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.runs/impl_1/top_level_drc_routed.rpt.
+report_drc completed successfully
+INFO: [runtcl-4] Executing : report_methodology -file top_level_methodology_drc_routed.rpt -pb top_level_methodology_drc_routed.pb -rpx top_level_methodology_drc_routed.rpx
+Command: report_methodology -file top_level_methodology_drc_routed.rpt -pb top_level_methodology_drc_routed.pb -rpx top_level_methodology_drc_routed.rpx
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [DRC 23-133] Running Methodology with 4 threads
+INFO: [Coretcl 2-1520] The results of Report Methodology are in file /home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.runs/impl_1/top_level_methodology_drc_routed.rpt.
+report_methodology completed successfully
+INFO: [runtcl-4] Executing : report_power -file top_level_power_routed.rpt -pb top_level_power_summary_routed.pb -rpx top_level_power_routed.rpx
+Command: report_power -file top_level_power_routed.rpt -pb top_level_power_summary_routed.pb -rpx top_level_power_routed.rpx
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+WARNING: [Power 33-332] Found switching activity that implies high-fanout reset nets being asserted for excessive periods of time which may result in inaccurate power analysis.
+Resolution: To review and fix problems, please run Power Constraints Advisor in the GUI from Tools > Power Constraints Advisor or run report_power with the -advisory option to generate a text report.
+67 Infos, 38 Warnings, 10 Critical Warnings and 0 Errors encountered.
+report_power completed successfully
+INFO: [runtcl-4] Executing : report_route_status -file top_level_route_status.rpt -pb top_level_route_status.pb
+INFO: [runtcl-4] Executing : report_timing_summary -max_paths 10 -file top_level_timing_summary_routed.rpt -pb top_level_timing_summary_routed.pb -rpx top_level_timing_summary_routed.rpx -warn_on_violation 
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 4 CPUs
+CRITICAL WARNING: [Timing 38-282] The design failed to meet the timing requirements. Please see the timing summary report for details on the timing violations.
+INFO: [runtcl-4] Executing : report_incremental_reuse -file top_level_incremental_reuse_routed.rpt
+INFO: [Vivado_Tcl 4-1062] Incremental flow is disabled. No incremental reuse Info to report.
+INFO: [runtcl-4] Executing : report_clock_utilization -file top_level_clock_utilization_routed.rpt
+INFO: [runtcl-4] Executing : report_bus_skew -warn_on_violation -file top_level_bus_skew_routed.rpt -pb top_level_bus_skew_routed.pb -rpx top_level_bus_skew_routed.rpx
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 4 CPUs
+INFO: [Common 17-206] Exiting Vivado at Sun May 17 11:42:12 2020...
+#-----------------------------------------------------------
+# Vivado v2018.3 (64-bit)
+# SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+# IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+# Start of session at: Sun May 17 11:44:31 2020
+# Process ID: 10692
+# Current directory: /home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.runs/impl_1
+# Command line: vivado -log top_level.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source top_level.tcl -notrace
+# Log file: /home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.runs/impl_1/top_level.vdi
+# Journal file: /home/gabriele/ALPIDE_on_Arty_A7/ALPIDE_on_Arty_A7.runs/impl_1/vivado.jou
+#-----------------------------------------------------------
+source top_level.tcl -notrace
+Command: open_checkpoint top_level_routed.dcp
+
+Starting open_checkpoint Task
+
+Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.07 . Memory (MB): peak = 1386.039 ; gain = 0.000 ; free physical = 2557 ; free virtual = 5421
+INFO: [Netlist 29-17] Analyzing 248 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2018.3
+INFO: [Device 21-403] Loading part xc7a35tcsg324-1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+WARNING: [Constraints 18-550] Could not create 'IBUF_LOW_PWR' constraint because net 'eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/mii_rx_er' is not directly connected to top level port. Synthesis is ignored for IBUF_LOW_PWR but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'DRIVE' constraint because net 'eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/mii_tx_er' is not directly connected to top level port. Synthesis is ignored for DRIVE but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'SLEW' constraint because net 'eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/mii_tx_er' is not directly connected to top level port. Synthesis is ignored for SLEW but preserved for implementation.
+INFO: [Timing 38-478] Restoring timing data from binary archive.
+INFO: [Timing 38-479] Binary timing data restore complete.
+INFO: [Project 1-856] Restoring constraints from binary archive.
+INFO: [Project 1-853] Binary constraint restore complete.
+Reading XDEF placement.
+Reading placer database...
+Reading XDEF routing.
+Read XDEF File: Time (s): cpu = 00:00:00.48 ; elapsed = 00:00:00.54 . Memory (MB): peak = 2087.074 ; gain = 9.000 ; free physical = 1779 ; free virtual = 4643
+Restored from archive | CPU: 0.550000 secs | Memory: 10.662659 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:00.48 ; elapsed = 00:00:00.54 . Memory (MB): peak = 2087.074 ; gain = 9.000 ; free physical = 1779 ; free virtual = 4643
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2087.074 ; gain = 0.000 ; free physical = 1780 ; free virtual = 4644
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 10 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 1 instances
+  RAM64X1D => RAM64X1D (RAMD64E, RAMD64E): 8 instances
+  SRLC32E => SRL16E: 1 instances
+
+INFO: [Project 1-604] Checkpoint was created with Vivado v2018.3 (64-bit) build 2405991
+open_checkpoint: Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2087.074 ; gain = 701.035 ; free physical = 1779 ; free virtual = 4643
+WARNING: [Memdata 28-231] The XPM memory array ALPIDE_reader/ROM/xpm_memory_sprom_inst/xpm_memory_base_inst is configured as a ROM with synthesis optimization enabled. This configuration is currently not suported by updatemem and therefore you cannot update the bitstream with new ROM data. If you have a new .mem file you must rerun synthesis to initialize the BRAMs. Or you can set the MEMORY_OPTIMIZATION parameter to false and rerun synthesis.
+Command: write_bitstream -force top_level.bit
+Attempting to get a license for feature 'Implementation' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7a35t'
+CRITICAL WARNING: [Vivado 12-1790] Evaluation License Warning: This design contains one or more IP cores that use separately licensed features. If the design has been configured to make use of evaluation features, please note that these features will cease to function after a certain period of time. Please consult the core datasheet to determine whether the core which you have configured will be affected. Evaluation features should NOT be used in production systems.
+
+Evaluation cores found in this design:
+    IP core 'tri_mode_ethernet_mac_0' (tri_mode_ethernet_mac_0_block) was generated with multiple features:
+        IP feature 'eth_avb_endpoint@2015.04' was enabled using a design_linking license.
+        IP feature 'tri_mode_eth_mac@2015.04' was enabled using a bought license.
+
+Resolution: If a new IP Core license was added, in order for the new license to be picked up, the current netlist needs to be updated by resetting and re-generating the IP output products before bitstream generation.
+Running DRC as a precondition to command write_bitstream
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/gabriele/Programmi/Vivado/Vivado/2018.3/data/ip'.
+INFO: [DRC 23-27] Running DRC with 4 threads
+WARNING: [DRC CFGBVS-1] Missing CFGBVS and CONFIG_VOLTAGE Design Properties: Neither the CFGBVS nor CONFIG_VOLTAGE voltage property is set in the current_design.  Configuration bank voltage select (CFGBVS) must be set to VCCO or GND, and CONFIG_VOLTAGE must be set to the correct configuration voltage, in order to determine the I/O voltage support for the pins in bank 0.  It is suggested to specify these either using the 'Edit Device Properties' function in the GUI or directly in the XDC file using the following syntax:
+
+ set_property CFGBVS value1 [current_design]
+ #where value1 is either VCCO or GND
+
+ set_property CONFIG_VOLTAGE value2 [current_design]
+ #where value2 is the voltage provided to configuration bank 0
+
+Refer to the device configuration user guide for more information.
+WARNING: [DRC CHECK-3] Report rule limit reached: REQP-1839 rule limit reached: 20 violations have been found.
+WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A1' of cell eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/special_pause_address[2].LUT3_special_pause_inst is not included in the LUT equation: 'O6=0'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A1' of cell eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/special_pause_address[3].LUT3_special_pause_inst is not included in the LUT equation: 'O6=0'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A1' of cell eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/special_pause_address[4].LUT3_special_pause_inst is not included in the LUT equation: 'O6=0'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A1' of cell eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/special_pause_address[5].LUT3_special_pause_inst is not included in the LUT equation: 'O6=0'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A1' of cell eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/flow/tx/pause_fixed_field_lut[2].LUT4_special_pause_inst is not included in the LUT equation: 'O6=0'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A1' of cell eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/flow/tx/pause_fixed_field_lut[4].LUT4_special_pause_inst is not included in the LUT equation: 'O6=0'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A1' of cell eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/flow/tx/pause_fixed_field_lut[5].LUT4_special_pause_inst is not included in the LUT equation: 'O6=0'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A2' of cell eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/flow/tx/pause_fixed_field_lut[4].LUT4_special_pause_inst is not included in the LUT equation: 'O6=0'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A3' of cell eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/special_pause_address[2].LUT3_special_pause_inst is not included in the LUT equation: 'O6=0'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A3' of cell eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/special_pause_address[3].LUT3_special_pause_inst is not included in the LUT equation: 'O6=0'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A3' of cell eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/special_pause_address[4].LUT3_special_pause_inst is not included in the LUT equation: 'O6=0'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A3' of cell eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/special_pause_address[5].LUT3_special_pause_inst is not included in the LUT equation: 'O6=0'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A3' of cell eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/flow/tx/pause_fixed_field_lut[2].LUT4_special_pause_inst is not included in the LUT equation: 'O6=0'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A3' of cell eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/flow/tx/pause_fixed_field_lut[3].LUT4_special_pause_inst is not included in the LUT equation: 'O6=((~A1)*A2*A4)'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A3' of cell eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/flow/tx/pause_fixed_field_lut[5].LUT4_special_pause_inst is not included in the LUT equation: 'O6=0'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A4' of cell eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/special_pause_address[5].LUT3_special_pause_inst is not included in the LUT equation: 'O6=0'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A4' of cell eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/flow/tx/pause_fixed_field_lut[2].LUT4_special_pause_inst is not included in the LUT equation: 'O6=0'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A4' of cell eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/flow/tx/pause_fixed_field_lut[4].LUT4_special_pause_inst is not included in the LUT equation: 'O6=0'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A4' of cell eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/flow/tx/pause_fixed_field_lut[5].LUT4_special_pause_inst is not included in the LUT equation: 'O6=0'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A5' of cell eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/special_pause_address[2].LUT3_special_pause_inst is not included in the LUT equation: 'O6=0'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A5' of cell eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/special_pause_address[3].LUT3_special_pause_inst is not included in the LUT equation: 'O6=0'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A5' of cell eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/flow/tx/pause_fixed_field_lut[5].LUT4_special_pause_inst is not included in the LUT equation: 'O6=0'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A6' of cell eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/addr_filter_top/address_filter_inst/special_pause_address[4].LUT3_special_pause_inst is not included in the LUT equation: 'O6=0'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A6' of cell eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/flow/tx/pause_fixed_field_lut[2].LUT4_special_pause_inst is not included in the LUT equation: 'O6=0'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A6' of cell eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/flow/tx/pause_fixed_field_lut[4].LUT4_special_pause_inst is not included in the LUT equation: 'O6=0'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+WARNING: [DRC PDRC-153] Gated clock check: Net ALPIDE_reader/pin_in_reg_i_1_n_0 is a gated clock net sourced by a combinational pin ALPIDE_reader/pin_in_reg_i_1/O, cell ALPIDE_reader/pin_in_reg_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+WARNING: [DRC REQP-1577] Clock output buffering: MMCME2_ADV connectivity violation. The signal ALPIDE_reader/MMCM/clk_fout on the ALPIDE_reader/MMCM/MMCME2_BASE_inst/CLKFBOUT pin of ALPIDE_reader/MMCM/MMCME2_BASE_inst does not drive the same kind of BUFFER load as the other CLKOUT pins. Routing from the different buffer types will not be phase aligned.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0/ENARDEN (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0/WEA[0] (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0/WEA[1] (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0/WEA[2] (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0/WEA[3] (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_1 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_1/ENARDEN (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_1 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_1/WEA[0] (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_1 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_1/WEA[1] (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_1 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_1/WEA[2] (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_1 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_1/WEA[3] (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_2 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_2/ENARDEN (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_2 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_2/WEA[0] (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_2 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_2/WEA[1] (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_2 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_2/WEA[2] (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_2 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_2/WEA[3] (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_3 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_3/ENARDEN (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_3 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_3/WEA[0] (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_3 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_3/WEA[1] (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_3 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_3/WEA[2] (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_3 has an input control pin FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_3/WEA[3] (net: FIFO/xpm_fifo_sync_inst/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/ena) which is driven by a register (FIFO_wr_en_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC RTSTAT-10] No routable loads: 536 net(s) have no routable loads. The problem bus(es) and/or net(s) are Inst_system_clocks/BUFG_SYS_CLK_x4_n_0, eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/txgen/CRC_CE, eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/rxgen/CRC_CE, eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/rxgen/FRAME_DECODER/EQUAL_inferred__0/i__carry_n_1, eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/rxgen/FRAME_DECODER/EQUAL_inferred__0/i__carry_n_2, eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/rxgen/FRAME_DECODER/EQUAL_inferred__0/i__carry_n_3, eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/rxgen/FRAME_DECODER/FRAME_COUNTER_reg[0]_i_1_n_1, eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/rxgen/FRAME_DECODER/FRAME_COUNTER_reg[0]_i_1_n_2, eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/rxgen/FRAME_DECODER/FRAME_COUNTER_reg[0]_i_1_n_3, eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/rxgen/FRAME_DECODER/FRAME_COUNTER_reg[4]_i_1_n_1, eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/rxgen/FRAME_DECODER/FRAME_COUNTER_reg[4]_i_1_n_2, eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/rxgen/FRAME_DECODER/FRAME_COUNTER_reg[4]_i_1_n_3, eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/rxgen/FRAME_DECODER/FRAME_COUNTER_reg[8]_i_1_n_1, eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/rxgen/FRAME_DECODER/FRAME_COUNTER_reg[8]_i_1_n_2, eth_mac_block_1/trimac_sup_block/tri_mode_ethernet_mac_i/U0/tri_mode_ethernet_mac_0_core/rxgen/FRAME_DECODER/FRAME_COUNTER_reg[8]_i_1_n_3... and (the first 15 of 491 listed).
+INFO: [Vivado 12-3199] DRC finished with 0 Errors, 50 Warnings
+INFO: [Vivado 12-3200] Please refer to the DRC report (report_drc) for more information.
+INFO: [Designutils 20-2272] Running write_bitstream with 4 threads.
+Loading data files...
+Loading site data...
+Loading route data...
+Processing options...
+Creating bitmap...
+Creating bitstream...
+Writing bitstream ./top_level.bit...
+INFO: [Vivado 12-1842] Bitgen Completed Successfully.
+INFO: [Project 1-120] WebTalk data collection is mandatory when using a WebPACK part without a full Vivado license. To see the specific WebTalk data collected for your design, open the usage_statistics_webtalk.html or usage_statistics_webtalk.xml file in the implementation directory.
+INFO: [Common 17-83] Releasing license: Implementation
+22 Infos, 54 Warnings, 1 Critical Warnings and 0 Errors encountered.
+write_bitstream completed successfully
+write_bitstream: Time (s): cpu = 00:00:19 ; elapsed = 00:00:17 . Memory (MB): peak = 2531.230 ; gain = 444.156 ; free physical = 1693 ; free virtual = 4568
+INFO: [Common 17-206] Exiting Vivado at Sun May 17 11:45:06 2020...

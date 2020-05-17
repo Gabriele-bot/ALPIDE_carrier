@@ -1,0 +1,1 @@
+create_clock  -period 200.00 -waveform {0 5} [get_ports {DCLK}];

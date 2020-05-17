@@ -1,0 +1,1291 @@
+Timing Analyzer report for ALPIDE_test
+Wed Jan 22 11:38:54 2020
+Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Timing Analyzer Summary
+  3. Parallel Compilation
+  4. SDC File List
+  5. Clocks
+  6. Slow 1200mV 85C Model Fmax Summary
+  7. Timing Closure Recommendations
+  8. Slow 1200mV 85C Model Setup Summary
+  9. Slow 1200mV 85C Model Hold Summary
+ 10. Slow 1200mV 85C Model Recovery Summary
+ 11. Slow 1200mV 85C Model Removal Summary
+ 12. Slow 1200mV 85C Model Minimum Pulse Width Summary
+ 13. Slow 1200mV 85C Model Setup: 'DCLK'
+ 14. Slow 1200mV 85C Model Hold: 'DCLK'
+ 15. Slow 1200mV 85C Model Metastability Summary
+ 16. Slow 1200mV 0C Model Fmax Summary
+ 17. Slow 1200mV 0C Model Setup Summary
+ 18. Slow 1200mV 0C Model Hold Summary
+ 19. Slow 1200mV 0C Model Recovery Summary
+ 20. Slow 1200mV 0C Model Removal Summary
+ 21. Slow 1200mV 0C Model Minimum Pulse Width Summary
+ 22. Slow 1200mV 0C Model Setup: 'DCLK'
+ 23. Slow 1200mV 0C Model Hold: 'DCLK'
+ 24. Slow 1200mV 0C Model Metastability Summary
+ 25. Fast 1200mV 0C Model Setup Summary
+ 26. Fast 1200mV 0C Model Hold Summary
+ 27. Fast 1200mV 0C Model Recovery Summary
+ 28. Fast 1200mV 0C Model Removal Summary
+ 29. Fast 1200mV 0C Model Minimum Pulse Width Summary
+ 30. Fast 1200mV 0C Model Setup: 'DCLK'
+ 31. Fast 1200mV 0C Model Hold: 'DCLK'
+ 32. Fast 1200mV 0C Model Metastability Summary
+ 33. Multicorner Timing Analysis Summary
+ 34. Board Trace Model Assignments
+ 35. Input Transition Times
+ 36. Signal Integrity Metrics (Slow 1200mv 0c Model)
+ 37. Signal Integrity Metrics (Slow 1200mv 85c Model)
+ 38. Signal Integrity Metrics (Fast 1200mv 0c Model)
+ 39. Setup Transfers
+ 40. Hold Transfers
+ 41. Report TCCS
+ 42. Report RSKM
+ 43. Unconstrained Paths Summary
+ 44. Clock Status Summary
+ 45. Unconstrained Input Ports
+ 46. Unconstrained Output Ports
+ 47. Unconstrained Input Ports
+ 48. Unconstrained Output Ports
+ 49. Timing Analyzer Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2018  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++-----------------------------------------------------------------------------+
+; Timing Analyzer Summary                                                     ;
++-----------------------+-----------------------------------------------------+
+; Quartus Prime Version ; Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
+; Timing Analyzer       ; Legacy Timing Analyzer                              ;
+; Revision Name         ; ALPIDE_test                                         ;
+; Device Family         ; Cyclone IV E                                        ;
+; Device Name           ; EP4CE22F17C6                                        ;
+; Timing Models         ; Final                                               ;
+; Delay Model           ; Combined                                            ;
+; Rise/Fall Delays      ; Enabled                                             ;
++-----------------------+-----------------------------------------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 4           ;
+; Maximum allowed            ; 2           ;
+;                            ;             ;
+; Average used               ; 1.03        ;
+; Maximum used               ; 2           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   2.7%      ;
++----------------------------+-------------+
+
+
++----------------------------------------------------------+
+; SDC File List                                            ;
++----------------------+--------+--------------------------+
+; SDC File Path        ; Status ; Read at                  ;
++----------------------+--------+--------------------------+
+; output_files/top.sdc ; OK     ; Wed Jan 22 11:38:52 2020 ;
++----------------------+--------+--------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clocks                                                                                                                                                                           ;
++------------+------+---------+-----------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+----------+
+; Clock Name ; Type ; Period  ; Frequency ; Rise  ; Fall  ; Duty Cycle ; Divide by ; Multiply by ; Phase ; Offset ; Edge List ; Edge Shift ; Inverted ; Master ; Source ; Targets  ;
++------------+------+---------+-----------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+----------+
+; DCLK       ; Base ; 200.000 ; 5.0 MHz   ; 0.000 ; 5.000 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { DCLK } ;
++------------+------+---------+-----------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+----------+
+
+
++--------------------------------------------------+
+; Slow 1200mV 85C Model Fmax Summary               ;
++------------+-----------------+------------+------+
+; Fmax       ; Restricted Fmax ; Clock Name ; Note ;
++------------+-----------------+------------+------+
+; 159.46 MHz ; 159.46 MHz      ; DCLK       ;      ;
++------------+-----------------+------------+------+
+This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
+
+
+----------------------------------
+; Timing Closure Recommendations ;
+----------------------------------
+HTML report is unavailable in plain text report export.
+
+
++-------------------------------------+
+; Slow 1200mV 85C Model Setup Summary ;
++-------+---------+-------------------+
+; Clock ; Slack   ; End Point TNS     ;
++-------+---------+-------------------+
+; DCLK  ; 193.729 ; 0.000             ;
++-------+---------+-------------------+
+
+
++------------------------------------+
+; Slow 1200mV 85C Model Hold Summary ;
++-------+-------+--------------------+
+; Clock ; Slack ; End Point TNS      ;
++-------+-------+--------------------+
+; DCLK  ; 0.274 ; 0.000              ;
++-------+-------+--------------------+
+
+
+------------------------------------------
+; Slow 1200mV 85C Model Recovery Summary ;
+------------------------------------------
+No paths to report.
+
+
+-----------------------------------------
+; Slow 1200mV 85C Model Removal Summary ;
+-----------------------------------------
+No paths to report.
+
+
++---------------------------------------------------+
+; Slow 1200mV 85C Model Minimum Pulse Width Summary ;
++-------+-------+-----------------------------------+
+; Clock ; Slack ; End Point TNS                     ;
++-------+-------+-----------------------------------+
+; DCLK  ; 4.910 ; 0.000                             ;
++-------+-------+-----------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Slow 1200mV 85C Model Setup: 'DCLK'                                                                                                                            ;
++---------+----------------------------------------+---------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack   ; From Node                              ; To Node                               ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++---------+----------------------------------------+---------------------------------------+--------------+-------------+--------------+------------+------------+
+; 193.729 ; RR_addr[6]                             ; word_in[3]                            ; DCLK         ; DCLK        ; 200.000      ; -0.075     ; 6.211      ;
+; 194.023 ; RR_addr[7]                             ; word_in[3]                            ; DCLK         ; DCLK        ; 200.000      ; -0.075     ; 5.917      ;
+; 194.080 ; RR_addr[4]                             ; word_in[3]                            ; DCLK         ; DCLK        ; 200.000      ; -0.075     ; 5.860      ;
+; 194.222 ; RR_addr[6]                             ; word_in[0]                            ; DCLK         ; DCLK        ; 200.000      ; -0.085     ; 5.708      ;
+; 194.239 ; RR_addr[6]                             ; word_in[1]                            ; DCLK         ; DCLK        ; 200.000      ; -0.085     ; 5.691      ;
+; 194.255 ; RR_addr[5]                             ; word_in[3]                            ; DCLK         ; DCLK        ; 200.000      ; -0.075     ; 5.685      ;
+; 194.285 ; RR_addr[6]                             ; word_in[2]                            ; DCLK         ; DCLK        ; 200.000      ; -0.072     ; 5.658      ;
+; 194.399 ; RR_addr[6]                             ; word_in[7]                            ; DCLK         ; DCLK        ; 200.000      ; -0.072     ; 5.544      ;
+; 194.401 ; RR_addr[6]                             ; word_in[6]                            ; DCLK         ; DCLK        ; 200.000      ; -0.072     ; 5.542      ;
+; 194.500 ; RR_addr[3]                             ; word_in[3]                            ; DCLK         ; DCLK        ; 200.000      ; -0.075     ; 5.440      ;
+; 194.523 ; RR_addr[7]                             ; word_in[0]                            ; DCLK         ; DCLK        ; 200.000      ; -0.085     ; 5.407      ;
+; 194.533 ; RR_addr[7]                             ; word_in[1]                            ; DCLK         ; DCLK        ; 200.000      ; -0.085     ; 5.397      ;
+; 194.556 ; RR_addr[4]                             ; word_in[0]                            ; DCLK         ; DCLK        ; 200.000      ; -0.085     ; 5.374      ;
+; 194.579 ; RR_addr[7]                             ; word_in[2]                            ; DCLK         ; DCLK        ; 200.000      ; -0.072     ; 5.364      ;
+; 194.596 ; RR_addr[4]                             ; word_in[1]                            ; DCLK         ; DCLK        ; 200.000      ; -0.085     ; 5.334      ;
+; 194.650 ; RR_addr[6]                             ; word_in[4]                            ; DCLK         ; DCLK        ; 200.000      ; -0.085     ; 5.280      ;
+; 194.653 ; RR_addr[4]                             ; word_in[2]                            ; DCLK         ; DCLK        ; 200.000      ; -0.072     ; 5.290      ;
+; 194.693 ; RR_addr[7]                             ; word_in[7]                            ; DCLK         ; DCLK        ; 200.000      ; -0.072     ; 5.250      ;
+; 194.704 ; RR_addr[7]                             ; word_in[6]                            ; DCLK         ; DCLK        ; 200.000      ; -0.072     ; 5.239      ;
+; 194.731 ; RR_addr[5]                             ; word_in[0]                            ; DCLK         ; DCLK        ; 200.000      ; -0.085     ; 5.199      ;
+; 194.735 ; RR_addr[4]                             ; word_in[6]                            ; DCLK         ; DCLK        ; 200.000      ; -0.072     ; 5.208      ;
+; 194.766 ; RR_addr[4]                             ; word_in[7]                            ; DCLK         ; DCLK        ; 200.000      ; -0.072     ; 5.177      ;
+; 194.771 ; RR_addr[5]                             ; word_in[1]                            ; DCLK         ; DCLK        ; 200.000      ; -0.085     ; 5.159      ;
+; 194.772 ; RR_addr[2]                             ; word_in[3]                            ; DCLK         ; DCLK        ; 200.000      ; -0.075     ; 5.168      ;
+; 194.810 ; RR_addr[6]                             ; word_in[5]                            ; DCLK         ; DCLK        ; 200.000      ; -0.085     ; 5.120      ;
+; 194.828 ; RR_addr[5]                             ; word_in[2]                            ; DCLK         ; DCLK        ; 200.000      ; -0.072     ; 5.115      ;
+; 194.833 ; RR_addr[1]                             ; word_in[3]                            ; DCLK         ; DCLK        ; 200.000      ; -0.075     ; 5.107      ;
+; 194.910 ; RR_addr[5]                             ; word_in[6]                            ; DCLK         ; DCLK        ; 200.000      ; -0.072     ; 5.033      ;
+; 194.941 ; RR_addr[5]                             ; word_in[7]                            ; DCLK         ; DCLK        ; 200.000      ; -0.072     ; 5.002      ;
+; 194.956 ; RR_addr[7]                             ; word_in[4]                            ; DCLK         ; DCLK        ; 200.000      ; -0.085     ; 4.974      ;
+; 194.984 ; RR_addr[4]                             ; word_in[4]                            ; DCLK         ; DCLK        ; 200.000      ; -0.085     ; 4.946      ;
+; 195.000 ; RR_addr[3]                             ; word_in[0]                            ; DCLK         ; DCLK        ; 200.000      ; -0.085     ; 4.930      ;
+; 195.010 ; RR_addr[3]                             ; word_in[1]                            ; DCLK         ; DCLK        ; 200.000      ; -0.085     ; 4.920      ;
+; 195.056 ; RR_addr[3]                             ; word_in[2]                            ; DCLK         ; DCLK        ; 200.000      ; -0.072     ; 4.887      ;
+; 195.116 ; RR_addr[7]                             ; word_in[5]                            ; DCLK         ; DCLK        ; 200.000      ; -0.085     ; 4.814      ;
+; 195.144 ; RR_addr[4]                             ; word_in[5]                            ; DCLK         ; DCLK        ; 200.000      ; -0.085     ; 4.786      ;
+; 195.159 ; RR_addr[5]                             ; word_in[4]                            ; DCLK         ; DCLK        ; 200.000      ; -0.085     ; 4.771      ;
+; 195.170 ; RR_addr[3]                             ; word_in[7]                            ; DCLK         ; DCLK        ; 200.000      ; -0.072     ; 4.773      ;
+; 195.181 ; RR_addr[3]                             ; word_in[6]                            ; DCLK         ; DCLK        ; 200.000      ; -0.072     ; 4.762      ;
+; 195.272 ; RR_addr[2]                             ; word_in[0]                            ; DCLK         ; DCLK        ; 200.000      ; -0.085     ; 4.658      ;
+; 195.282 ; RR_addr[2]                             ; word_in[1]                            ; DCLK         ; DCLK        ; 200.000      ; -0.085     ; 4.648      ;
+; 195.286 ; RR_addr[0]                             ; word_in[2]                            ; DCLK         ; DCLK        ; 200.000      ; -0.072     ; 4.657      ;
+; 195.309 ; RR_addr[1]                             ; word_in[0]                            ; DCLK         ; DCLK        ; 200.000      ; -0.085     ; 4.621      ;
+; 195.319 ; RR_addr[0]                             ; word_in[3]                            ; DCLK         ; DCLK        ; 200.000      ; -0.075     ; 4.621      ;
+; 195.319 ; RR_addr[5]                             ; word_in[5]                            ; DCLK         ; DCLK        ; 200.000      ; -0.085     ; 4.611      ;
+; 195.328 ; RR_addr[2]                             ; word_in[2]                            ; DCLK         ; DCLK        ; 200.000      ; -0.072     ; 4.615      ;
+; 195.349 ; RR_addr[1]                             ; word_in[1]                            ; DCLK         ; DCLK        ; 200.000      ; -0.085     ; 4.581      ;
+; 195.400 ; RR_addr[0]                             ; word_in[7]                            ; DCLK         ; DCLK        ; 200.000      ; -0.072     ; 4.543      ;
+; 195.406 ; RR_addr[1]                             ; word_in[2]                            ; DCLK         ; DCLK        ; 200.000      ; -0.072     ; 4.537      ;
+; 195.411 ; RR_addr[0]                             ; word_in[6]                            ; DCLK         ; DCLK        ; 200.000      ; -0.072     ; 4.532      ;
+; 195.441 ; RR_addr[3]                             ; word_in[4]                            ; DCLK         ; DCLK        ; 200.000      ; -0.085     ; 4.489      ;
+; 195.442 ; RR_addr[2]                             ; word_in[7]                            ; DCLK         ; DCLK        ; 200.000      ; -0.072     ; 4.501      ;
+; 195.453 ; RR_addr[2]                             ; word_in[6]                            ; DCLK         ; DCLK        ; 200.000      ; -0.072     ; 4.490      ;
+; 195.488 ; RR_addr[1]                             ; word_in[6]                            ; DCLK         ; DCLK        ; 200.000      ; -0.072     ; 4.455      ;
+; 195.519 ; RR_addr[1]                             ; word_in[7]                            ; DCLK         ; DCLK        ; 200.000      ; -0.072     ; 4.424      ;
+; 195.600 ; RR_addr[3]                             ; word_in[5]                            ; DCLK         ; DCLK        ; 200.000      ; -0.085     ; 4.330      ;
+; 195.652 ; read_byte:Read_FSM|\read:word_cnt[0]   ; read_byte:Read_FSM|word_buff[7]       ; DCLK         ; DCLK        ; 200.000      ; -0.058     ; 4.305      ;
+; 195.652 ; read_byte:Read_FSM|\read:word_cnt[0]   ; read_byte:Read_FSM|word_buff[6]       ; DCLK         ; DCLK        ; 200.000      ; -0.058     ; 4.305      ;
+; 195.652 ; read_byte:Read_FSM|\read:word_cnt[0]   ; read_byte:Read_FSM|word_buff[5]       ; DCLK         ; DCLK        ; 200.000      ; -0.058     ; 4.305      ;
+; 195.652 ; read_byte:Read_FSM|\read:word_cnt[0]   ; read_byte:Read_FSM|word_buff[4]       ; DCLK         ; DCLK        ; 200.000      ; -0.058     ; 4.305      ;
+; 195.652 ; read_byte:Read_FSM|\read:word_cnt[0]   ; read_byte:Read_FSM|word_buff[0]       ; DCLK         ; DCLK        ; 200.000      ; -0.058     ; 4.305      ;
+; 195.652 ; read_byte:Read_FSM|\read:word_cnt[0]   ; read_byte:Read_FSM|word_buff[3]       ; DCLK         ; DCLK        ; 200.000      ; -0.058     ; 4.305      ;
+; 195.652 ; read_byte:Read_FSM|\read:word_cnt[0]   ; read_byte:Read_FSM|word_buff[1]       ; DCLK         ; DCLK        ; 200.000      ; -0.058     ; 4.305      ;
+; 195.652 ; read_byte:Read_FSM|\read:word_cnt[0]   ; read_byte:Read_FSM|word_buff[2]       ; DCLK         ; DCLK        ; 200.000      ; -0.058     ; 4.305      ;
+; 195.662 ; read_byte:Read_FSM|\read:word_cnt[20]  ; read_byte:Read_FSM|word_buff[7]       ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 4.298      ;
+; 195.662 ; read_byte:Read_FSM|\read:word_cnt[20]  ; read_byte:Read_FSM|word_buff[6]       ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 4.298      ;
+; 195.662 ; read_byte:Read_FSM|\read:word_cnt[20]  ; read_byte:Read_FSM|word_buff[5]       ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 4.298      ;
+; 195.662 ; read_byte:Read_FSM|\read:word_cnt[20]  ; read_byte:Read_FSM|word_buff[4]       ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 4.298      ;
+; 195.662 ; read_byte:Read_FSM|\read:word_cnt[20]  ; read_byte:Read_FSM|word_buff[0]       ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 4.298      ;
+; 195.662 ; read_byte:Read_FSM|\read:word_cnt[20]  ; read_byte:Read_FSM|word_buff[3]       ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 4.298      ;
+; 195.662 ; read_byte:Read_FSM|\read:word_cnt[20]  ; read_byte:Read_FSM|word_buff[1]       ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 4.298      ;
+; 195.662 ; read_byte:Read_FSM|\read:word_cnt[20]  ; read_byte:Read_FSM|word_buff[2]       ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 4.298      ;
+; 195.684 ; read_byte:Read_FSM|\read:word_cnt[28]  ; read_byte:Read_FSM|word_buff[7]       ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 4.276      ;
+; 195.684 ; read_byte:Read_FSM|\read:word_cnt[28]  ; read_byte:Read_FSM|word_buff[6]       ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 4.276      ;
+; 195.684 ; read_byte:Read_FSM|\read:word_cnt[28]  ; read_byte:Read_FSM|word_buff[5]       ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 4.276      ;
+; 195.684 ; read_byte:Read_FSM|\read:word_cnt[28]  ; read_byte:Read_FSM|word_buff[4]       ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 4.276      ;
+; 195.684 ; read_byte:Read_FSM|\read:word_cnt[28]  ; read_byte:Read_FSM|word_buff[0]       ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 4.276      ;
+; 195.684 ; read_byte:Read_FSM|\read:word_cnt[28]  ; read_byte:Read_FSM|word_buff[3]       ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 4.276      ;
+; 195.684 ; read_byte:Read_FSM|\read:word_cnt[28]  ; read_byte:Read_FSM|word_buff[1]       ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 4.276      ;
+; 195.684 ; read_byte:Read_FSM|\read:word_cnt[28]  ; read_byte:Read_FSM|word_buff[2]       ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 4.276      ;
+; 195.693 ; Write_byte:Write_FSM|\send:word_cnt[0] ; Write_byte:Write_FSM|state_fsm.s_high ; DCLK         ; DCLK        ; 200.000      ; -0.074     ; 4.248      ;
+; 195.713 ; read_byte:Read_FSM|\read:word_cnt[1]   ; read_byte:Read_FSM|word_buff[7]       ; DCLK         ; DCLK        ; 200.000      ; -0.058     ; 4.244      ;
+; 195.713 ; read_byte:Read_FSM|\read:word_cnt[1]   ; read_byte:Read_FSM|word_buff[6]       ; DCLK         ; DCLK        ; 200.000      ; -0.058     ; 4.244      ;
+; 195.713 ; read_byte:Read_FSM|\read:word_cnt[1]   ; read_byte:Read_FSM|word_buff[5]       ; DCLK         ; DCLK        ; 200.000      ; -0.058     ; 4.244      ;
+; 195.713 ; read_byte:Read_FSM|\read:word_cnt[1]   ; read_byte:Read_FSM|word_buff[4]       ; DCLK         ; DCLK        ; 200.000      ; -0.058     ; 4.244      ;
+; 195.713 ; read_byte:Read_FSM|\read:word_cnt[1]   ; read_byte:Read_FSM|word_buff[0]       ; DCLK         ; DCLK        ; 200.000      ; -0.058     ; 4.244      ;
+; 195.713 ; read_byte:Read_FSM|\read:word_cnt[1]   ; read_byte:Read_FSM|word_buff[3]       ; DCLK         ; DCLK        ; 200.000      ; -0.058     ; 4.244      ;
+; 195.713 ; read_byte:Read_FSM|\read:word_cnt[1]   ; read_byte:Read_FSM|word_buff[1]       ; DCLK         ; DCLK        ; 200.000      ; -0.058     ; 4.244      ;
+; 195.713 ; read_byte:Read_FSM|\read:word_cnt[1]   ; read_byte:Read_FSM|word_buff[2]       ; DCLK         ; DCLK        ; 200.000      ; -0.058     ; 4.244      ;
+; 195.713 ; RR_addr[2]                             ; word_in[4]                            ; DCLK         ; DCLK        ; 200.000      ; -0.085     ; 4.217      ;
+; 195.724 ; read_byte:Read_FSM|\read:word_cnt[30]  ; read_byte:Read_FSM|word_buff[7]       ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 4.236      ;
+; 195.724 ; read_byte:Read_FSM|\read:word_cnt[30]  ; read_byte:Read_FSM|word_buff[6]       ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 4.236      ;
+; 195.724 ; read_byte:Read_FSM|\read:word_cnt[30]  ; read_byte:Read_FSM|word_buff[5]       ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 4.236      ;
+; 195.724 ; read_byte:Read_FSM|\read:word_cnt[30]  ; read_byte:Read_FSM|word_buff[4]       ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 4.236      ;
+; 195.724 ; read_byte:Read_FSM|\read:word_cnt[30]  ; read_byte:Read_FSM|word_buff[0]       ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 4.236      ;
+; 195.724 ; read_byte:Read_FSM|\read:word_cnt[30]  ; read_byte:Read_FSM|word_buff[3]       ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 4.236      ;
+; 195.724 ; read_byte:Read_FSM|\read:word_cnt[30]  ; read_byte:Read_FSM|word_buff[1]       ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 4.236      ;
+; 195.724 ; read_byte:Read_FSM|\read:word_cnt[30]  ; read_byte:Read_FSM|word_buff[2]       ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 4.236      ;
+; 195.737 ; RR_addr[1]                             ; word_in[4]                            ; DCLK         ; DCLK        ; 200.000      ; -0.085     ; 4.193      ;
+; 195.787 ; read_byte:Read_FSM|\read:word_cnt[2]   ; read_byte:Read_FSM|word_buff[7]       ; DCLK         ; DCLK        ; 200.000      ; -0.058     ; 4.170      ;
++---------+----------------------------------------+---------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Slow 1200mV 85C Model Hold: 'DCLK'                                                                                                                              ;
++-------+-----------------------------------------+-----------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node                               ; To Node                                 ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+-----------------------------------------+-----------------------------------------+--------------+-------------+--------------+------------+------------+
+; 0.274 ; read_byte:Read_FSM|word_buff[6]         ; RR_addr[6]                              ; DCLK         ; DCLK        ; 0.000        ; 0.164      ; 0.595      ;
+; 0.279 ; read_byte:Read_FSM|word_buff[0]         ; RR_addr[0]                              ; DCLK         ; DCLK        ; 0.000        ; 0.164      ; 0.600      ;
+; 0.280 ; read_byte:Read_FSM|word_buff[2]         ; RR_addr[2]                              ; DCLK         ; DCLK        ; 0.000        ; 0.164      ; 0.601      ;
+; 0.280 ; read_byte:Read_FSM|word_buff[4]         ; RR_addr[4]                              ; DCLK         ; DCLK        ; 0.000        ; 0.164      ; 0.601      ;
+; 0.280 ; read_byte:Read_FSM|word_buff[7]         ; RR_addr[7]                              ; DCLK         ; DCLK        ; 0.000        ; 0.164      ; 0.601      ;
+; 0.358 ; read_byte:Read_FSM|state_fsm.s_wait_low ; read_byte:Read_FSM|state_fsm.s_wait_low ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.577      ;
+; 0.358 ; read_byte:Read_FSM|state_fsm.s_error    ; read_byte:Read_FSM|state_fsm.s_error    ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.577      ;
+; 0.358 ; read_byte:Read_FSM|\read:word[7]        ; read_byte:Read_FSM|\read:word[7]        ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.577      ;
+; 0.358 ; read_byte:Read_FSM|\read:word[6]        ; read_byte:Read_FSM|\read:word[6]        ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.577      ;
+; 0.358 ; read_byte:Read_FSM|\read:word[5]        ; read_byte:Read_FSM|\read:word[5]        ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.577      ;
+; 0.358 ; read_byte:Read_FSM|\read:word[4]        ; read_byte:Read_FSM|\read:word[4]        ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.577      ;
+; 0.358 ; read_byte:Read_FSM|\read:word[0]        ; read_byte:Read_FSM|\read:word[0]        ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.577      ;
+; 0.358 ; read_byte:Read_FSM|\read:word[3]        ; read_byte:Read_FSM|\read:word[3]        ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.577      ;
+; 0.358 ; read_byte:Read_FSM|\read:word[1]        ; read_byte:Read_FSM|\read:word[1]        ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.577      ;
+; 0.358 ; read_byte:Read_FSM|\read:word[2]        ; read_byte:Read_FSM|\read:word[2]        ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.577      ;
+; 0.358 ; read_byte:Read_FSM|state_fsm.s_read     ; read_byte:Read_FSM|state_fsm.s_read     ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.577      ;
+; 0.358 ; read_err~reg0                           ; read_err~reg0                           ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.577      ;
+; 0.358 ; current_task.reading                    ; current_task.reading                    ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.577      ;
+; 0.358 ; rr_state.s4                             ; rr_state.s4                             ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.577      ;
+; 0.358 ; rr_state.s5                             ; rr_state.s5                             ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.577      ;
+; 0.358 ; rr_state.s8                             ; rr_state.s8                             ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.577      ;
+; 0.358 ; rr_state.s3                             ; rr_state.s3                             ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.577      ;
+; 0.358 ; rr_state.s0                             ; rr_state.s0                             ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.577      ;
+; 0.358 ; rr_state.s7                             ; rr_state.s7                             ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.577      ;
+; 0.358 ; Write_byte:Write_FSM|state_fsm.s_idle   ; Write_byte:Write_FSM|state_fsm.s_idle   ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.577      ;
+; 0.358 ; Write_byte:Write_FSM|state_fsm.s_send   ; Write_byte:Write_FSM|state_fsm.s_send   ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.577      ;
+; 0.358 ; Write_byte:Write_FSM|ready              ; Write_byte:Write_FSM|ready              ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.577      ;
+; 0.358 ; we                                      ; we                                      ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.577      ;
+; 0.394 ; byte_cnt[7]                             ; byte_cnt[7]                             ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.613      ;
+; 0.399 ; Write_byte:Write_FSM|state_fsm.s_high   ; Write_byte:Write_FSM|state_fsm.s_idle   ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.618      ;
+; 0.400 ; Write_byte:Write_FSM|state_fsm.s_send   ; Write_byte:Write_FSM|pin_out            ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.619      ;
+; 0.401 ; read_byte:Read_FSM|state_fsm.s_high     ; read_byte:Read_FSM|state_fsm.s_error    ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.620      ;
+; 0.401 ; Write_byte:Write_FSM|state_fsm.s_send   ; Write_byte:Write_FSM|ready              ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.620      ;
+; 0.409 ; read_byte:Read_FSM|state_fsm.s_read     ; read_byte:Read_FSM|state_fsm.s_high     ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.628      ;
+; 0.414 ; read_byte:Read_FSM|word_buff[3]         ; RR_addr[3]                              ; DCLK         ; DCLK        ; 0.000        ; 0.164      ; 0.735      ;
+; 0.422 ; read_byte:Read_FSM|word_buff[1]         ; RR_addr[1]                              ; DCLK         ; DCLK        ; 0.000        ; 0.164      ; 0.743      ;
+; 0.424 ; read_byte:Read_FSM|word_buff[5]         ; RR_addr[5]                              ; DCLK         ; DCLK        ; 0.000        ; 0.164      ; 0.745      ;
+; 0.488 ; rr_state.s0                             ; current_task.idling_m                   ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.707      ;
+; 0.488 ; Write_byte:Write_FSM|state_fsm.s_idle   ; Write_byte:Write_FSM|pin_out            ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.707      ;
+; 0.513 ; rr_state.s5                             ; rr_state.s6                             ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.732      ;
+; 0.520 ; rr_state.s2                             ; re                                      ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.739      ;
+; 0.550 ; Write_byte:Write_FSM|word_sent          ; rr_state.s7                             ; DCLK         ; DCLK        ; 0.000        ; 0.061      ; 0.768      ;
+; 0.556 ; read_byte:Read_FSM|\read:word_cnt[10]   ; read_byte:Read_FSM|\read:word_cnt[10]   ; DCLK         ; DCLK        ; 0.000        ; 0.063      ; 0.776      ;
+; 0.556 ; read_byte:Read_FSM|\read:word_cnt[12]   ; read_byte:Read_FSM|\read:word_cnt[12]   ; DCLK         ; DCLK        ; 0.000        ; 0.063      ; 0.776      ;
+; 0.556 ; simple_cnt[3]                           ; simple_cnt[3]                           ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.775      ;
+; 0.557 ; read_byte:Read_FSM|\read:word_cnt[13]   ; read_byte:Read_FSM|\read:word_cnt[13]   ; DCLK         ; DCLK        ; 0.000        ; 0.063      ; 0.777      ;
+; 0.557 ; read_byte:Read_FSM|\read:word_cnt[11]   ; read_byte:Read_FSM|\read:word_cnt[11]   ; DCLK         ; DCLK        ; 0.000        ; 0.063      ; 0.777      ;
+; 0.557 ; Write_byte:Write_FSM|\send:word_cnt[13] ; Write_byte:Write_FSM|\send:word_cnt[13] ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.776      ;
+; 0.557 ; Write_byte:Write_FSM|\send:word_cnt[12] ; Write_byte:Write_FSM|\send:word_cnt[12] ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.776      ;
+; 0.557 ; Write_byte:Write_FSM|\send:word_cnt[14] ; Write_byte:Write_FSM|\send:word_cnt[14] ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.776      ;
+; 0.558 ; simple_cnt[5]                           ; simple_cnt[5]                           ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.777      ;
+; 0.558 ; byte_cnt[3]                             ; byte_cnt[3]                             ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.777      ;
+; 0.559 ; byte_cnt[2]                             ; byte_cnt[2]                             ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.778      ;
+; 0.561 ; simple_cnt[2]                           ; simple_cnt[2]                           ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.780      ;
+; 0.561 ; byte_cnt[5]                             ; byte_cnt[5]                             ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.780      ;
+; 0.561 ; read_byte:Read_FSM|busy_signal          ; rr_state.s3                             ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.780      ;
+; 0.562 ; simple_cnt[4]                           ; simple_cnt[4]                           ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.781      ;
+; 0.563 ; byte_cnt[4]                             ; byte_cnt[4]                             ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.782      ;
+; 0.565 ; idle_cnt[5]                             ; idle_cnt[5]                             ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.784      ;
+; 0.566 ; simple_cnt[6]                           ; simple_cnt[6]                           ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.785      ;
+; 0.566 ; idle_cnt[7]                             ; idle_cnt[7]                             ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.785      ;
+; 0.568 ; read_byte:Read_FSM|\read:word_cnt[2]    ; read_byte:Read_FSM|\read:word_cnt[2]    ; DCLK         ; DCLK        ; 0.000        ; 0.063      ; 0.788      ;
+; 0.568 ; read_byte:Read_FSM|\read:word_cnt[5]    ; read_byte:Read_FSM|\read:word_cnt[5]    ; DCLK         ; DCLK        ; 0.000        ; 0.063      ; 0.788      ;
+; 0.568 ; read_byte:Read_FSM|\read:word_cnt[14]   ; read_byte:Read_FSM|\read:word_cnt[14]   ; DCLK         ; DCLK        ; 0.000        ; 0.063      ; 0.788      ;
+; 0.568 ; FIFO_cnt[15]                            ; FIFO_cnt[15]                            ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.787      ;
+; 0.568 ; FIFO_cnt[13]                            ; FIFO_cnt[13]                            ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.787      ;
+; 0.568 ; FIFO_cnt[3]                             ; FIFO_cnt[3]                             ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.787      ;
+; 0.568 ; idle_cnt[6]                             ; idle_cnt[6]                             ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.787      ;
+; 0.569 ; read_byte:Read_FSM|\read:word_cnt[1]    ; read_byte:Read_FSM|\read:word_cnt[1]    ; DCLK         ; DCLK        ; 0.000        ; 0.063      ; 0.789      ;
+; 0.569 ; read_byte:Read_FSM|\read:word_cnt[4]    ; read_byte:Read_FSM|\read:word_cnt[4]    ; DCLK         ; DCLK        ; 0.000        ; 0.063      ; 0.789      ;
+; 0.569 ; read_byte:Read_FSM|\read:word_cnt[15]   ; read_byte:Read_FSM|\read:word_cnt[15]   ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.788      ;
+; 0.569 ; FIFO_cnt[29]                            ; FIFO_cnt[29]                            ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.788      ;
+; 0.569 ; FIFO_cnt[19]                            ; FIFO_cnt[19]                            ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.788      ;
+; 0.569 ; FIFO_cnt[11]                            ; FIFO_cnt[11]                            ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.788      ;
+; 0.569 ; FIFO_cnt[5]                             ; FIFO_cnt[5]                             ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.788      ;
+; 0.569 ; FIFO_cnt[1]                             ; FIFO_cnt[1]                             ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.788      ;
+; 0.569 ; Write_byte:Write_FSM|\send:word_cnt[2]  ; Write_byte:Write_FSM|\send:word_cnt[2]  ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.788      ;
+; 0.569 ; Write_byte:Write_FSM|\send:word_cnt[5]  ; Write_byte:Write_FSM|\send:word_cnt[5]  ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.788      ;
+; 0.569 ; Write_byte:Write_FSM|\send:word_cnt[15] ; Write_byte:Write_FSM|\send:word_cnt[15] ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.788      ;
+; 0.570 ; read_byte:Read_FSM|\read:word_cnt[7]    ; read_byte:Read_FSM|\read:word_cnt[7]    ; DCLK         ; DCLK        ; 0.000        ; 0.063      ; 0.790      ;
+; 0.570 ; read_byte:Read_FSM|\read:word_cnt[9]    ; read_byte:Read_FSM|\read:word_cnt[9]    ; DCLK         ; DCLK        ; 0.000        ; 0.063      ; 0.790      ;
+; 0.570 ; read_byte:Read_FSM|\read:word_cnt[17]   ; read_byte:Read_FSM|\read:word_cnt[17]   ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.789      ;
+; 0.570 ; read_byte:Read_FSM|\read:word_cnt[18]   ; read_byte:Read_FSM|\read:word_cnt[18]   ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.789      ;
+; 0.570 ; read_byte:Read_FSM|\read:word_cnt[21]   ; read_byte:Read_FSM|\read:word_cnt[21]   ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.789      ;
+; 0.570 ; read_byte:Read_FSM|\read:word_cnt[28]   ; read_byte:Read_FSM|\read:word_cnt[28]   ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.789      ;
+; 0.570 ; FIFO_cnt[31]                            ; FIFO_cnt[31]                            ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.789      ;
+; 0.570 ; FIFO_cnt[27]                            ; FIFO_cnt[27]                            ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.789      ;
+; 0.570 ; FIFO_cnt[21]                            ; FIFO_cnt[21]                            ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.789      ;
+; 0.570 ; FIFO_cnt[17]                            ; FIFO_cnt[17]                            ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.789      ;
+; 0.570 ; FIFO_cnt[6]                             ; FIFO_cnt[6]                             ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.789      ;
+; 0.570 ; Write_byte:Write_FSM|\send:word_cnt[1]  ; Write_byte:Write_FSM|\send:word_cnt[1]  ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.789      ;
+; 0.570 ; Write_byte:Write_FSM|\send:word_cnt[4]  ; Write_byte:Write_FSM|\send:word_cnt[4]  ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.789      ;
+; 0.570 ; Write_byte:Write_FSM|\send:word_cnt[10] ; Write_byte:Write_FSM|\send:word_cnt[10] ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.789      ;
+; 0.570 ; Write_byte:Write_FSM|\send:word_cnt[17] ; Write_byte:Write_FSM|\send:word_cnt[17] ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.789      ;
+; 0.570 ; Write_byte:Write_FSM|\send:word_cnt[18] ; Write_byte:Write_FSM|\send:word_cnt[18] ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.789      ;
+; 0.570 ; Write_byte:Write_FSM|\send:word_cnt[21] ; Write_byte:Write_FSM|\send:word_cnt[21] ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.789      ;
+; 0.570 ; Write_byte:Write_FSM|\send:word_cnt[28] ; Write_byte:Write_FSM|\send:word_cnt[28] ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.789      ;
+; 0.571 ; read_byte:Read_FSM|\read:word_cnt[20]   ; read_byte:Read_FSM|\read:word_cnt[20]   ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.790      ;
+; 0.571 ; read_byte:Read_FSM|\read:word_cnt[30]   ; read_byte:Read_FSM|\read:word_cnt[30]   ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.790      ;
+; 0.571 ; read_byte:Read_FSM|\read:word_cnt[26]   ; read_byte:Read_FSM|\read:word_cnt[26]   ; DCLK         ; DCLK        ; 0.000        ; 0.062      ; 0.790      ;
++-------+-----------------------------------------+-----------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
+-----------------------------------------------
+; Slow 1200mV 85C Model Metastability Summary ;
+-----------------------------------------------
+The design MTBF is not calculated because there are no specified synchronizers in the design.
+Number of Synchronizer Chains Found: 8
+Shortest Synchronizer Chain: 3 Registers
+Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
+Worst Case Available Settling Time: 395.790 ns
+
+
+
+
++--------------------------------------------------+
+; Slow 1200mV 0C Model Fmax Summary                ;
++------------+-----------------+------------+------+
+; Fmax       ; Restricted Fmax ; Clock Name ; Note ;
++------------+-----------------+------------+------+
+; 176.65 MHz ; 176.65 MHz      ; DCLK       ;      ;
++------------+-----------------+------------+------+
+This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
+
+
++------------------------------------+
+; Slow 1200mV 0C Model Setup Summary ;
++-------+---------+------------------+
+; Clock ; Slack   ; End Point TNS    ;
++-------+---------+------------------+
+; DCLK  ; 194.339 ; 0.000            ;
++-------+---------+------------------+
+
+
++-----------------------------------+
+; Slow 1200mV 0C Model Hold Summary ;
++-------+-------+-------------------+
+; Clock ; Slack ; End Point TNS     ;
++-------+-------+-------------------+
+; DCLK  ; 0.249 ; 0.000             ;
++-------+-------+-------------------+
+
+
+-----------------------------------------
+; Slow 1200mV 0C Model Recovery Summary ;
+-----------------------------------------
+No paths to report.
+
+
+----------------------------------------
+; Slow 1200mV 0C Model Removal Summary ;
+----------------------------------------
+No paths to report.
+
+
++--------------------------------------------------+
+; Slow 1200mV 0C Model Minimum Pulse Width Summary ;
++-------+-------+----------------------------------+
+; Clock ; Slack ; End Point TNS                    ;
++-------+-------+----------------------------------+
+; DCLK  ; 4.921 ; 0.000                            ;
++-------+-------+----------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Slow 1200mV 0C Model Setup: 'DCLK'                                                                                                                             ;
++---------+----------------------------------------+---------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack   ; From Node                              ; To Node                               ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++---------+----------------------------------------+---------------------------------------+--------------+-------------+--------------+------------+------------+
+; 194.339 ; RR_addr[6]                             ; word_in[3]                            ; DCLK         ; DCLK        ; 200.000      ; -0.070     ; 5.606      ;
+; 194.595 ; RR_addr[7]                             ; word_in[3]                            ; DCLK         ; DCLK        ; 200.000      ; -0.070     ; 5.350      ;
+; 194.675 ; RR_addr[4]                             ; word_in[3]                            ; DCLK         ; DCLK        ; 200.000      ; -0.070     ; 5.270      ;
+; 194.789 ; RR_addr[6]                             ; word_in[1]                            ; DCLK         ; DCLK        ; 200.000      ; -0.078     ; 5.148      ;
+; 194.790 ; RR_addr[6]                             ; word_in[0]                            ; DCLK         ; DCLK        ; 200.000      ; -0.078     ; 5.147      ;
+; 194.828 ; RR_addr[5]                             ; word_in[3]                            ; DCLK         ; DCLK        ; 200.000      ; -0.070     ; 5.117      ;
+; 194.830 ; RR_addr[6]                             ; word_in[2]                            ; DCLK         ; DCLK        ; 200.000      ; -0.067     ; 5.118      ;
+; 194.937 ; RR_addr[6]                             ; word_in[7]                            ; DCLK         ; DCLK        ; 200.000      ; -0.067     ; 5.011      ;
+; 194.945 ; RR_addr[6]                             ; word_in[6]                            ; DCLK         ; DCLK        ; 200.000      ; -0.067     ; 5.003      ;
+; 195.026 ; RR_addr[3]                             ; word_in[3]                            ; DCLK         ; DCLK        ; 200.000      ; -0.070     ; 4.919      ;
+; 195.045 ; RR_addr[7]                             ; word_in[1]                            ; DCLK         ; DCLK        ; 200.000      ; -0.078     ; 4.892      ;
+; 195.046 ; RR_addr[7]                             ; word_in[0]                            ; DCLK         ; DCLK        ; 200.000      ; -0.078     ; 4.891      ;
+; 195.086 ; RR_addr[7]                             ; word_in[2]                            ; DCLK         ; DCLK        ; 200.000      ; -0.067     ; 4.862      ;
+; 195.153 ; RR_addr[4]                             ; word_in[1]                            ; DCLK         ; DCLK        ; 200.000      ; -0.078     ; 4.784      ;
+; 195.154 ; RR_addr[4]                             ; word_in[0]                            ; DCLK         ; DCLK        ; 200.000      ; -0.078     ; 4.783      ;
+; 195.187 ; RR_addr[6]                             ; word_in[4]                            ; DCLK         ; DCLK        ; 200.000      ; -0.078     ; 4.750      ;
+; 195.193 ; RR_addr[7]                             ; word_in[7]                            ; DCLK         ; DCLK        ; 200.000      ; -0.067     ; 4.755      ;
+; 195.194 ; RR_addr[4]                             ; word_in[2]                            ; DCLK         ; DCLK        ; 200.000      ; -0.067     ; 4.754      ;
+; 195.201 ; RR_addr[7]                             ; word_in[6]                            ; DCLK         ; DCLK        ; 200.000      ; -0.067     ; 4.747      ;
+; 195.268 ; RR_addr[2]                             ; word_in[3]                            ; DCLK         ; DCLK        ; 200.000      ; -0.070     ; 4.677      ;
+; 195.301 ; RR_addr[4]                             ; word_in[7]                            ; DCLK         ; DCLK        ; 200.000      ; -0.067     ; 4.647      ;
+; 195.305 ; RR_addr[5]                             ; word_in[1]                            ; DCLK         ; DCLK        ; 200.000      ; -0.078     ; 4.632      ;
+; 195.306 ; RR_addr[5]                             ; word_in[0]                            ; DCLK         ; DCLK        ; 200.000      ; -0.078     ; 4.631      ;
+; 195.309 ; RR_addr[4]                             ; word_in[6]                            ; DCLK         ; DCLK        ; 200.000      ; -0.067     ; 4.639      ;
+; 195.324 ; RR_addr[6]                             ; word_in[5]                            ; DCLK         ; DCLK        ; 200.000      ; -0.078     ; 4.613      ;
+; 195.345 ; RR_addr[1]                             ; word_in[3]                            ; DCLK         ; DCLK        ; 200.000      ; -0.070     ; 4.600      ;
+; 195.346 ; RR_addr[5]                             ; word_in[2]                            ; DCLK         ; DCLK        ; 200.000      ; -0.067     ; 4.602      ;
+; 195.443 ; RR_addr[7]                             ; word_in[4]                            ; DCLK         ; DCLK        ; 200.000      ; -0.078     ; 4.494      ;
+; 195.453 ; RR_addr[5]                             ; word_in[7]                            ; DCLK         ; DCLK        ; 200.000      ; -0.067     ; 4.495      ;
+; 195.461 ; RR_addr[5]                             ; word_in[6]                            ; DCLK         ; DCLK        ; 200.000      ; -0.067     ; 4.487      ;
+; 195.476 ; RR_addr[3]                             ; word_in[1]                            ; DCLK         ; DCLK        ; 200.000      ; -0.078     ; 4.461      ;
+; 195.477 ; RR_addr[3]                             ; word_in[0]                            ; DCLK         ; DCLK        ; 200.000      ; -0.078     ; 4.460      ;
+; 195.517 ; RR_addr[3]                             ; word_in[2]                            ; DCLK         ; DCLK        ; 200.000      ; -0.067     ; 4.431      ;
+; 195.551 ; RR_addr[4]                             ; word_in[4]                            ; DCLK         ; DCLK        ; 200.000      ; -0.078     ; 4.386      ;
+; 195.580 ; RR_addr[7]                             ; word_in[5]                            ; DCLK         ; DCLK        ; 200.000      ; -0.078     ; 4.357      ;
+; 195.624 ; RR_addr[3]                             ; word_in[7]                            ; DCLK         ; DCLK        ; 200.000      ; -0.067     ; 4.324      ;
+; 195.632 ; RR_addr[3]                             ; word_in[6]                            ; DCLK         ; DCLK        ; 200.000      ; -0.067     ; 4.316      ;
+; 195.688 ; RR_addr[4]                             ; word_in[5]                            ; DCLK         ; DCLK        ; 200.000      ; -0.078     ; 4.249      ;
+; 195.703 ; RR_addr[5]                             ; word_in[4]                            ; DCLK         ; DCLK        ; 200.000      ; -0.078     ; 4.234      ;
+; 195.718 ; RR_addr[2]                             ; word_in[1]                            ; DCLK         ; DCLK        ; 200.000      ; -0.078     ; 4.219      ;
+; 195.719 ; RR_addr[2]                             ; word_in[0]                            ; DCLK         ; DCLK        ; 200.000      ; -0.078     ; 4.218      ;
+; 195.750 ; RR_addr[0]                             ; word_in[3]                            ; DCLK         ; DCLK        ; 200.000      ; -0.070     ; 4.195      ;
+; 195.759 ; RR_addr[2]                             ; word_in[2]                            ; DCLK         ; DCLK        ; 200.000      ; -0.067     ; 4.189      ;
+; 195.796 ; RR_addr[1]                             ; word_in[1]                            ; DCLK         ; DCLK        ; 200.000      ; -0.078     ; 4.141      ;
+; 195.797 ; RR_addr[1]                             ; word_in[0]                            ; DCLK         ; DCLK        ; 200.000      ; -0.078     ; 4.140      ;
+; 195.798 ; RR_addr[0]                             ; word_in[2]                            ; DCLK         ; DCLK        ; 200.000      ; -0.067     ; 4.150      ;
+; 195.837 ; RR_addr[1]                             ; word_in[2]                            ; DCLK         ; DCLK        ; 200.000      ; -0.067     ; 4.111      ;
+; 195.840 ; RR_addr[5]                             ; word_in[5]                            ; DCLK         ; DCLK        ; 200.000      ; -0.078     ; 4.097      ;
+; 195.866 ; RR_addr[2]                             ; word_in[7]                            ; DCLK         ; DCLK        ; 200.000      ; -0.067     ; 4.082      ;
+; 195.874 ; RR_addr[2]                             ; word_in[6]                            ; DCLK         ; DCLK        ; 200.000      ; -0.067     ; 4.074      ;
+; 195.874 ; RR_addr[3]                             ; word_in[4]                            ; DCLK         ; DCLK        ; 200.000      ; -0.078     ; 4.063      ;
+; 195.901 ; RR_addr[0]                             ; word_in[6]                            ; DCLK         ; DCLK        ; 200.000      ; -0.067     ; 4.047      ;
+; 195.905 ; RR_addr[0]                             ; word_in[7]                            ; DCLK         ; DCLK        ; 200.000      ; -0.067     ; 4.043      ;
+; 195.944 ; RR_addr[1]                             ; word_in[7]                            ; DCLK         ; DCLK        ; 200.000      ; -0.067     ; 4.004      ;
+; 195.952 ; RR_addr[1]                             ; word_in[6]                            ; DCLK         ; DCLK        ; 200.000      ; -0.067     ; 3.996      ;
+; 196.011 ; RR_addr[3]                             ; word_in[5]                            ; DCLK         ; DCLK        ; 200.000      ; -0.078     ; 3.926      ;
+; 196.102 ; Write_byte:Write_FSM|\send:word_cnt[0] ; Write_byte:Write_FSM|state_fsm.s_high ; DCLK         ; DCLK        ; 200.000      ; -0.067     ; 3.846      ;
+; 196.112 ; read_byte:Read_FSM|\read:word_cnt[20]  ; read_byte:Read_FSM|word_buff[7]       ; DCLK         ; DCLK        ; 200.000      ; -0.047     ; 3.856      ;
+; 196.112 ; read_byte:Read_FSM|\read:word_cnt[20]  ; read_byte:Read_FSM|word_buff[6]       ; DCLK         ; DCLK        ; 200.000      ; -0.047     ; 3.856      ;
+; 196.112 ; read_byte:Read_FSM|\read:word_cnt[20]  ; read_byte:Read_FSM|word_buff[5]       ; DCLK         ; DCLK        ; 200.000      ; -0.047     ; 3.856      ;
+; 196.112 ; read_byte:Read_FSM|\read:word_cnt[20]  ; read_byte:Read_FSM|word_buff[4]       ; DCLK         ; DCLK        ; 200.000      ; -0.047     ; 3.856      ;
+; 196.112 ; read_byte:Read_FSM|\read:word_cnt[20]  ; read_byte:Read_FSM|word_buff[0]       ; DCLK         ; DCLK        ; 200.000      ; -0.047     ; 3.856      ;
+; 196.112 ; read_byte:Read_FSM|\read:word_cnt[20]  ; read_byte:Read_FSM|word_buff[3]       ; DCLK         ; DCLK        ; 200.000      ; -0.047     ; 3.856      ;
+; 196.112 ; read_byte:Read_FSM|\read:word_cnt[20]  ; read_byte:Read_FSM|word_buff[1]       ; DCLK         ; DCLK        ; 200.000      ; -0.047     ; 3.856      ;
+; 196.112 ; read_byte:Read_FSM|\read:word_cnt[20]  ; read_byte:Read_FSM|word_buff[2]       ; DCLK         ; DCLK        ; 200.000      ; -0.047     ; 3.856      ;
+; 196.115 ; read_byte:Read_FSM|\read:word_cnt[30]  ; read_byte:Read_FSM|word_buff[7]       ; DCLK         ; DCLK        ; 200.000      ; -0.047     ; 3.853      ;
+; 196.115 ; read_byte:Read_FSM|\read:word_cnt[30]  ; read_byte:Read_FSM|word_buff[6]       ; DCLK         ; DCLK        ; 200.000      ; -0.047     ; 3.853      ;
+; 196.115 ; read_byte:Read_FSM|\read:word_cnt[30]  ; read_byte:Read_FSM|word_buff[5]       ; DCLK         ; DCLK        ; 200.000      ; -0.047     ; 3.853      ;
+; 196.115 ; read_byte:Read_FSM|\read:word_cnt[30]  ; read_byte:Read_FSM|word_buff[4]       ; DCLK         ; DCLK        ; 200.000      ; -0.047     ; 3.853      ;
+; 196.115 ; read_byte:Read_FSM|\read:word_cnt[30]  ; read_byte:Read_FSM|word_buff[0]       ; DCLK         ; DCLK        ; 200.000      ; -0.047     ; 3.853      ;
+; 196.115 ; read_byte:Read_FSM|\read:word_cnt[30]  ; read_byte:Read_FSM|word_buff[3]       ; DCLK         ; DCLK        ; 200.000      ; -0.047     ; 3.853      ;
+; 196.115 ; read_byte:Read_FSM|\read:word_cnt[30]  ; read_byte:Read_FSM|word_buff[1]       ; DCLK         ; DCLK        ; 200.000      ; -0.047     ; 3.853      ;
+; 196.115 ; read_byte:Read_FSM|\read:word_cnt[30]  ; read_byte:Read_FSM|word_buff[2]       ; DCLK         ; DCLK        ; 200.000      ; -0.047     ; 3.853      ;
+; 196.116 ; read_byte:Read_FSM|\read:word_cnt[0]   ; read_byte:Read_FSM|word_buff[7]       ; DCLK         ; DCLK        ; 200.000      ; -0.051     ; 3.848      ;
+; 196.116 ; read_byte:Read_FSM|\read:word_cnt[0]   ; read_byte:Read_FSM|word_buff[6]       ; DCLK         ; DCLK        ; 200.000      ; -0.051     ; 3.848      ;
+; 196.116 ; read_byte:Read_FSM|\read:word_cnt[0]   ; read_byte:Read_FSM|word_buff[5]       ; DCLK         ; DCLK        ; 200.000      ; -0.051     ; 3.848      ;
+; 196.116 ; read_byte:Read_FSM|\read:word_cnt[0]   ; read_byte:Read_FSM|word_buff[4]       ; DCLK         ; DCLK        ; 200.000      ; -0.051     ; 3.848      ;
+; 196.116 ; read_byte:Read_FSM|\read:word_cnt[0]   ; read_byte:Read_FSM|word_buff[0]       ; DCLK         ; DCLK        ; 200.000      ; -0.051     ; 3.848      ;
+; 196.116 ; read_byte:Read_FSM|\read:word_cnt[0]   ; read_byte:Read_FSM|word_buff[3]       ; DCLK         ; DCLK        ; 200.000      ; -0.051     ; 3.848      ;
+; 196.116 ; read_byte:Read_FSM|\read:word_cnt[0]   ; read_byte:Read_FSM|word_buff[1]       ; DCLK         ; DCLK        ; 200.000      ; -0.051     ; 3.848      ;
+; 196.116 ; read_byte:Read_FSM|\read:word_cnt[0]   ; read_byte:Read_FSM|word_buff[2]       ; DCLK         ; DCLK        ; 200.000      ; -0.051     ; 3.848      ;
+; 196.116 ; RR_addr[2]                             ; word_in[4]                            ; DCLK         ; DCLK        ; 200.000      ; -0.078     ; 3.821      ;
+; 196.124 ; read_byte:Read_FSM|\read:word_cnt[28]  ; read_byte:Read_FSM|word_buff[7]       ; DCLK         ; DCLK        ; 200.000      ; -0.047     ; 3.844      ;
+; 196.124 ; read_byte:Read_FSM|\read:word_cnt[28]  ; read_byte:Read_FSM|word_buff[6]       ; DCLK         ; DCLK        ; 200.000      ; -0.047     ; 3.844      ;
+; 196.124 ; read_byte:Read_FSM|\read:word_cnt[28]  ; read_byte:Read_FSM|word_buff[5]       ; DCLK         ; DCLK        ; 200.000      ; -0.047     ; 3.844      ;
+; 196.124 ; read_byte:Read_FSM|\read:word_cnt[28]  ; read_byte:Read_FSM|word_buff[4]       ; DCLK         ; DCLK        ; 200.000      ; -0.047     ; 3.844      ;
+; 196.124 ; read_byte:Read_FSM|\read:word_cnt[28]  ; read_byte:Read_FSM|word_buff[0]       ; DCLK         ; DCLK        ; 200.000      ; -0.047     ; 3.844      ;
+; 196.124 ; read_byte:Read_FSM|\read:word_cnt[28]  ; read_byte:Read_FSM|word_buff[3]       ; DCLK         ; DCLK        ; 200.000      ; -0.047     ; 3.844      ;
+; 196.124 ; read_byte:Read_FSM|\read:word_cnt[28]  ; read_byte:Read_FSM|word_buff[1]       ; DCLK         ; DCLK        ; 200.000      ; -0.047     ; 3.844      ;
+; 196.124 ; read_byte:Read_FSM|\read:word_cnt[28]  ; read_byte:Read_FSM|word_buff[2]       ; DCLK         ; DCLK        ; 200.000      ; -0.047     ; 3.844      ;
+; 196.169 ; read_byte:Read_FSM|\read:word_cnt[1]   ; read_byte:Read_FSM|word_buff[7]       ; DCLK         ; DCLK        ; 200.000      ; -0.051     ; 3.795      ;
+; 196.169 ; read_byte:Read_FSM|\read:word_cnt[1]   ; read_byte:Read_FSM|word_buff[6]       ; DCLK         ; DCLK        ; 200.000      ; -0.051     ; 3.795      ;
+; 196.169 ; read_byte:Read_FSM|\read:word_cnt[1]   ; read_byte:Read_FSM|word_buff[5]       ; DCLK         ; DCLK        ; 200.000      ; -0.051     ; 3.795      ;
+; 196.169 ; read_byte:Read_FSM|\read:word_cnt[1]   ; read_byte:Read_FSM|word_buff[4]       ; DCLK         ; DCLK        ; 200.000      ; -0.051     ; 3.795      ;
+; 196.169 ; read_byte:Read_FSM|\read:word_cnt[1]   ; read_byte:Read_FSM|word_buff[0]       ; DCLK         ; DCLK        ; 200.000      ; -0.051     ; 3.795      ;
+; 196.169 ; read_byte:Read_FSM|\read:word_cnt[1]   ; read_byte:Read_FSM|word_buff[3]       ; DCLK         ; DCLK        ; 200.000      ; -0.051     ; 3.795      ;
+; 196.169 ; read_byte:Read_FSM|\read:word_cnt[1]   ; read_byte:Read_FSM|word_buff[1]       ; DCLK         ; DCLK        ; 200.000      ; -0.051     ; 3.795      ;
+; 196.169 ; read_byte:Read_FSM|\read:word_cnt[1]   ; read_byte:Read_FSM|word_buff[2]       ; DCLK         ; DCLK        ; 200.000      ; -0.051     ; 3.795      ;
+; 196.194 ; RR_addr[1]                             ; word_in[4]                            ; DCLK         ; DCLK        ; 200.000      ; -0.078     ; 3.743      ;
+; 196.220 ; RR_addr[0]                             ; word_in[1]                            ; DCLK         ; DCLK        ; 200.000      ; -0.078     ; 3.717      ;
++---------+----------------------------------------+---------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Slow 1200mV 0C Model Hold: 'DCLK'                                                                                                                               ;
++-------+-----------------------------------------+-----------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node                               ; To Node                                 ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+-----------------------------------------+-----------------------------------------+--------------+-------------+--------------+------------+------------+
+; 0.249 ; read_byte:Read_FSM|word_buff[6]         ; RR_addr[6]                              ; DCLK         ; DCLK        ; 0.000        ; 0.147      ; 0.540      ;
+; 0.254 ; read_byte:Read_FSM|word_buff[0]         ; RR_addr[0]                              ; DCLK         ; DCLK        ; 0.000        ; 0.147      ; 0.545      ;
+; 0.255 ; read_byte:Read_FSM|word_buff[2]         ; RR_addr[2]                              ; DCLK         ; DCLK        ; 0.000        ; 0.147      ; 0.546      ;
+; 0.255 ; read_byte:Read_FSM|word_buff[4]         ; RR_addr[4]                              ; DCLK         ; DCLK        ; 0.000        ; 0.147      ; 0.546      ;
+; 0.255 ; read_byte:Read_FSM|word_buff[7]         ; RR_addr[7]                              ; DCLK         ; DCLK        ; 0.000        ; 0.147      ; 0.546      ;
+; 0.311 ; read_byte:Read_FSM|\read:word[7]        ; read_byte:Read_FSM|\read:word[7]        ; DCLK         ; DCLK        ; 0.000        ; 0.056      ; 0.511      ;
+; 0.311 ; read_byte:Read_FSM|\read:word[6]        ; read_byte:Read_FSM|\read:word[6]        ; DCLK         ; DCLK        ; 0.000        ; 0.056      ; 0.511      ;
+; 0.311 ; read_byte:Read_FSM|\read:word[5]        ; read_byte:Read_FSM|\read:word[5]        ; DCLK         ; DCLK        ; 0.000        ; 0.056      ; 0.511      ;
+; 0.311 ; read_byte:Read_FSM|\read:word[4]        ; read_byte:Read_FSM|\read:word[4]        ; DCLK         ; DCLK        ; 0.000        ; 0.056      ; 0.511      ;
+; 0.311 ; read_byte:Read_FSM|\read:word[0]        ; read_byte:Read_FSM|\read:word[0]        ; DCLK         ; DCLK        ; 0.000        ; 0.056      ; 0.511      ;
+; 0.311 ; read_byte:Read_FSM|\read:word[3]        ; read_byte:Read_FSM|\read:word[3]        ; DCLK         ; DCLK        ; 0.000        ; 0.056      ; 0.511      ;
+; 0.311 ; read_byte:Read_FSM|\read:word[1]        ; read_byte:Read_FSM|\read:word[1]        ; DCLK         ; DCLK        ; 0.000        ; 0.056      ; 0.511      ;
+; 0.311 ; read_byte:Read_FSM|\read:word[2]        ; read_byte:Read_FSM|\read:word[2]        ; DCLK         ; DCLK        ; 0.000        ; 0.056      ; 0.511      ;
+; 0.312 ; read_byte:Read_FSM|state_fsm.s_wait_low ; read_byte:Read_FSM|state_fsm.s_wait_low ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.511      ;
+; 0.312 ; read_byte:Read_FSM|state_fsm.s_error    ; read_byte:Read_FSM|state_fsm.s_error    ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.511      ;
+; 0.312 ; read_byte:Read_FSM|state_fsm.s_read     ; read_byte:Read_FSM|state_fsm.s_read     ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.511      ;
+; 0.312 ; read_err~reg0                           ; read_err~reg0                           ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.511      ;
+; 0.312 ; current_task.reading                    ; current_task.reading                    ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.511      ;
+; 0.312 ; rr_state.s4                             ; rr_state.s4                             ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.511      ;
+; 0.312 ; rr_state.s5                             ; rr_state.s5                             ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.511      ;
+; 0.312 ; rr_state.s8                             ; rr_state.s8                             ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.511      ;
+; 0.312 ; rr_state.s3                             ; rr_state.s3                             ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.511      ;
+; 0.312 ; rr_state.s0                             ; rr_state.s0                             ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.511      ;
+; 0.312 ; rr_state.s7                             ; rr_state.s7                             ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.511      ;
+; 0.312 ; Write_byte:Write_FSM|state_fsm.s_idle   ; Write_byte:Write_FSM|state_fsm.s_idle   ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.511      ;
+; 0.312 ; Write_byte:Write_FSM|state_fsm.s_send   ; Write_byte:Write_FSM|state_fsm.s_send   ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.511      ;
+; 0.312 ; Write_byte:Write_FSM|ready              ; Write_byte:Write_FSM|ready              ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.511      ;
+; 0.312 ; we                                      ; we                                      ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.511      ;
+; 0.347 ; byte_cnt[7]                             ; byte_cnt[7]                             ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.546      ;
+; 0.356 ; Write_byte:Write_FSM|state_fsm.s_high   ; Write_byte:Write_FSM|state_fsm.s_idle   ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.555      ;
+; 0.362 ; read_byte:Read_FSM|state_fsm.s_high     ; read_byte:Read_FSM|state_fsm.s_error    ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.561      ;
+; 0.363 ; Write_byte:Write_FSM|state_fsm.s_send   ; Write_byte:Write_FSM|pin_out            ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.562      ;
+; 0.364 ; Write_byte:Write_FSM|state_fsm.s_send   ; Write_byte:Write_FSM|ready              ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.563      ;
+; 0.371 ; read_byte:Read_FSM|state_fsm.s_read     ; read_byte:Read_FSM|state_fsm.s_high     ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.570      ;
+; 0.373 ; read_byte:Read_FSM|word_buff[3]         ; RR_addr[3]                              ; DCLK         ; DCLK        ; 0.000        ; 0.147      ; 0.664      ;
+; 0.379 ; read_byte:Read_FSM|word_buff[1]         ; RR_addr[1]                              ; DCLK         ; DCLK        ; 0.000        ; 0.147      ; 0.670      ;
+; 0.381 ; read_byte:Read_FSM|word_buff[5]         ; RR_addr[5]                              ; DCLK         ; DCLK        ; 0.000        ; 0.147      ; 0.672      ;
+; 0.435 ; Write_byte:Write_FSM|state_fsm.s_idle   ; Write_byte:Write_FSM|pin_out            ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.634      ;
+; 0.438 ; rr_state.s0                             ; current_task.idling_m                   ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.637      ;
+; 0.458 ; rr_state.s2                             ; re                                      ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.657      ;
+; 0.463 ; rr_state.s5                             ; rr_state.s6                             ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.662      ;
+; 0.499 ; Write_byte:Write_FSM|\send:word_cnt[12] ; Write_byte:Write_FSM|\send:word_cnt[12] ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.698      ;
+; 0.500 ; read_byte:Read_FSM|\read:word_cnt[12]   ; read_byte:Read_FSM|\read:word_cnt[12]   ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.699      ;
+; 0.500 ; simple_cnt[3]                           ; simple_cnt[3]                           ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.699      ;
+; 0.500 ; Write_byte:Write_FSM|\send:word_cnt[14] ; Write_byte:Write_FSM|\send:word_cnt[14] ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.699      ;
+; 0.501 ; read_byte:Read_FSM|\read:word_cnt[13]   ; read_byte:Read_FSM|\read:word_cnt[13]   ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.700      ;
+; 0.501 ; read_byte:Read_FSM|\read:word_cnt[10]   ; read_byte:Read_FSM|\read:word_cnt[10]   ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.700      ;
+; 0.501 ; read_byte:Read_FSM|\read:word_cnt[11]   ; read_byte:Read_FSM|\read:word_cnt[11]   ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.700      ;
+; 0.501 ; Write_byte:Write_FSM|\send:word_cnt[13] ; Write_byte:Write_FSM|\send:word_cnt[13] ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.700      ;
+; 0.502 ; simple_cnt[5]                           ; simple_cnt[5]                           ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.701      ;
+; 0.502 ; byte_cnt[2]                             ; byte_cnt[2]                             ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.701      ;
+; 0.502 ; byte_cnt[3]                             ; byte_cnt[3]                             ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.701      ;
+; 0.503 ; byte_cnt[5]                             ; byte_cnt[5]                             ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.702      ;
+; 0.503 ; Write_byte:Write_FSM|word_sent          ; rr_state.s7                             ; DCLK         ; DCLK        ; 0.000        ; 0.054      ; 0.701      ;
+; 0.504 ; simple_cnt[2]                           ; simple_cnt[2]                           ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.703      ;
+; 0.504 ; simple_cnt[4]                           ; simple_cnt[4]                           ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.703      ;
+; 0.504 ; read_byte:Read_FSM|busy_signal          ; rr_state.s3                             ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.703      ;
+; 0.506 ; byte_cnt[4]                             ; byte_cnt[4]                             ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.705      ;
+; 0.506 ; idle_cnt[5]                             ; idle_cnt[5]                             ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.705      ;
+; 0.508 ; idle_cnt[7]                             ; idle_cnt[7]                             ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.707      ;
+; 0.509 ; simple_cnt[6]                           ; simple_cnt[6]                           ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.708      ;
+; 0.510 ; FIFO_cnt[15]                            ; FIFO_cnt[15]                            ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.709      ;
+; 0.510 ; FIFO_cnt[13]                            ; FIFO_cnt[13]                            ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.709      ;
+; 0.510 ; FIFO_cnt[3]                             ; FIFO_cnt[3]                             ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.709      ;
+; 0.510 ; idle_cnt[6]                             ; idle_cnt[6]                             ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.709      ;
+; 0.511 ; read_byte:Read_FSM|\read:word_cnt[2]    ; read_byte:Read_FSM|\read:word_cnt[2]    ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.710      ;
+; 0.511 ; read_byte:Read_FSM|\read:word_cnt[5]    ; read_byte:Read_FSM|\read:word_cnt[5]    ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.710      ;
+; 0.511 ; read_byte:Read_FSM|\read:word_cnt[14]   ; read_byte:Read_FSM|\read:word_cnt[14]   ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.710      ;
+; 0.511 ; FIFO_cnt[29]                            ; FIFO_cnt[29]                            ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.710      ;
+; 0.511 ; FIFO_cnt[19]                            ; FIFO_cnt[19]                            ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.710      ;
+; 0.511 ; FIFO_cnt[11]                            ; FIFO_cnt[11]                            ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.710      ;
+; 0.511 ; FIFO_cnt[5]                             ; FIFO_cnt[5]                             ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.710      ;
+; 0.511 ; simple_cnt[7]                           ; simple_cnt[7]                           ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.710      ;
+; 0.511 ; Write_byte:Write_FSM|\send:word_cnt[2]  ; Write_byte:Write_FSM|\send:word_cnt[2]  ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.710      ;
+; 0.511 ; Write_byte:Write_FSM|\send:word_cnt[5]  ; Write_byte:Write_FSM|\send:word_cnt[5]  ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.710      ;
+; 0.511 ; Write_byte:Write_FSM|\send:word_cnt[15] ; Write_byte:Write_FSM|\send:word_cnt[15] ; DCLK         ; DCLK        ; 0.000        ; 0.056      ; 0.711      ;
+; 0.511 ; Write_byte:Write_FSM|\send:word_cnt[18] ; Write_byte:Write_FSM|\send:word_cnt[18] ; DCLK         ; DCLK        ; 0.000        ; 0.056      ; 0.711      ;
+; 0.511 ; Write_byte:Write_FSM|\send:word_cnt[21] ; Write_byte:Write_FSM|\send:word_cnt[21] ; DCLK         ; DCLK        ; 0.000        ; 0.056      ; 0.711      ;
+; 0.511 ; Write_byte:Write_FSM|\send:word_cnt[28] ; Write_byte:Write_FSM|\send:word_cnt[28] ; DCLK         ; DCLK        ; 0.000        ; 0.056      ; 0.711      ;
+; 0.512 ; read_byte:Read_FSM|\read:word_cnt[1]    ; read_byte:Read_FSM|\read:word_cnt[1]    ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.711      ;
+; 0.512 ; read_byte:Read_FSM|\read:word_cnt[4]    ; read_byte:Read_FSM|\read:word_cnt[4]    ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.711      ;
+; 0.512 ; read_byte:Read_FSM|\read:word_cnt[15]   ; read_byte:Read_FSM|\read:word_cnt[15]   ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.711      ;
+; 0.512 ; read_byte:Read_FSM|\read:word_cnt[18]   ; read_byte:Read_FSM|\read:word_cnt[18]   ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.711      ;
+; 0.512 ; read_byte:Read_FSM|\read:word_cnt[21]   ; read_byte:Read_FSM|\read:word_cnt[21]   ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.711      ;
+; 0.512 ; read_byte:Read_FSM|\read:word_cnt[28]   ; read_byte:Read_FSM|\read:word_cnt[28]   ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.711      ;
+; 0.512 ; FIFO_cnt[31]                            ; FIFO_cnt[31]                            ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.711      ;
+; 0.512 ; FIFO_cnt[27]                            ; FIFO_cnt[27]                            ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.711      ;
+; 0.512 ; FIFO_cnt[21]                            ; FIFO_cnt[21]                            ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.711      ;
+; 0.512 ; FIFO_cnt[17]                            ; FIFO_cnt[17]                            ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.711      ;
+; 0.512 ; FIFO_cnt[6]                             ; FIFO_cnt[6]                             ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.711      ;
+; 0.512 ; FIFO_cnt[1]                             ; FIFO_cnt[1]                             ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.711      ;
+; 0.512 ; Write_byte:Write_FSM|\send:word_cnt[30] ; Write_byte:Write_FSM|\send:word_cnt[30] ; DCLK         ; DCLK        ; 0.000        ; 0.056      ; 0.712      ;
+; 0.512 ; Write_byte:Write_FSM|\send:word_cnt[1]  ; Write_byte:Write_FSM|\send:word_cnt[1]  ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.711      ;
+; 0.512 ; Write_byte:Write_FSM|\send:word_cnt[4]  ; Write_byte:Write_FSM|\send:word_cnt[4]  ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.711      ;
+; 0.512 ; Write_byte:Write_FSM|\send:word_cnt[10] ; Write_byte:Write_FSM|\send:word_cnt[10] ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.711      ;
+; 0.512 ; Write_byte:Write_FSM|\send:word_cnt[17] ; Write_byte:Write_FSM|\send:word_cnt[17] ; DCLK         ; DCLK        ; 0.000        ; 0.056      ; 0.712      ;
+; 0.512 ; Write_byte:Write_FSM|\send:word_cnt[20] ; Write_byte:Write_FSM|\send:word_cnt[20] ; DCLK         ; DCLK        ; 0.000        ; 0.056      ; 0.712      ;
+; 0.512 ; Write_byte:Write_FSM|\send:word_cnt[26] ; Write_byte:Write_FSM|\send:word_cnt[26] ; DCLK         ; DCLK        ; 0.000        ; 0.056      ; 0.712      ;
+; 0.513 ; read_byte:Read_FSM|\read:word_cnt[17]   ; read_byte:Read_FSM|\read:word_cnt[17]   ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.712      ;
+; 0.513 ; read_byte:Read_FSM|\read:word_cnt[20]   ; read_byte:Read_FSM|\read:word_cnt[20]   ; DCLK         ; DCLK        ; 0.000        ; 0.055      ; 0.712      ;
++-------+-----------------------------------------+-----------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
+----------------------------------------------
+; Slow 1200mV 0C Model Metastability Summary ;
+----------------------------------------------
+The design MTBF is not calculated because there are no specified synchronizers in the design.
+Number of Synchronizer Chains Found: 8
+Shortest Synchronizer Chain: 3 Registers
+Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
+Worst Case Available Settling Time: 396.259 ns
+
+
+
+
++------------------------------------+
+; Fast 1200mV 0C Model Setup Summary ;
++-------+---------+------------------+
+; Clock ; Slack   ; End Point TNS    ;
++-------+---------+------------------+
+; DCLK  ; 196.390 ; 0.000            ;
++-------+---------+------------------+
+
+
++-----------------------------------+
+; Fast 1200mV 0C Model Hold Summary ;
++-------+-------+-------------------+
+; Clock ; Slack ; End Point TNS     ;
++-------+-------+-------------------+
+; DCLK  ; 0.134 ; 0.000             ;
++-------+-------+-------------------+
+
+
+-----------------------------------------
+; Fast 1200mV 0C Model Recovery Summary ;
+-----------------------------------------
+No paths to report.
+
+
+----------------------------------------
+; Fast 1200mV 0C Model Removal Summary ;
+----------------------------------------
+No paths to report.
+
+
++--------------------------------------------------+
+; Fast 1200mV 0C Model Minimum Pulse Width Summary ;
++-------+-------+----------------------------------+
+; Clock ; Slack ; End Point TNS                    ;
++-------+-------+----------------------------------+
+; DCLK  ; 5.000 ; 0.000                            ;
++-------+-------+----------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Fast 1200mV 0C Model Setup: 'DCLK'                                                                                                                             ;
++---------+----------------------------------------+---------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack   ; From Node                              ; To Node                               ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++---------+----------------------------------------+---------------------------------------+--------------+-------------+--------------+------------+------------+
+; 196.390 ; RR_addr[6]                             ; word_in[3]                            ; DCLK         ; DCLK        ; 200.000      ; -0.049     ; 3.568      ;
+; 196.545 ; RR_addr[7]                             ; word_in[3]                            ; DCLK         ; DCLK        ; 200.000      ; -0.049     ; 3.413      ;
+; 196.549 ; RR_addr[4]                             ; word_in[3]                            ; DCLK         ; DCLK        ; 200.000      ; -0.049     ; 3.409      ;
+; 196.649 ; RR_addr[5]                             ; word_in[3]                            ; DCLK         ; DCLK        ; 200.000      ; -0.049     ; 3.309      ;
+; 196.685 ; RR_addr[6]                             ; word_in[0]                            ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 3.267      ;
+; 196.715 ; RR_addr[6]                             ; word_in[1]                            ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 3.237      ;
+; 196.735 ; RR_addr[6]                             ; word_in[2]                            ; DCLK         ; DCLK        ; 200.000      ; -0.046     ; 3.226      ;
+; 196.781 ; RR_addr[6]                             ; word_in[6]                            ; DCLK         ; DCLK        ; 200.000      ; -0.046     ; 3.180      ;
+; 196.793 ; RR_addr[6]                             ; word_in[7]                            ; DCLK         ; DCLK        ; 200.000      ; -0.046     ; 3.168      ;
+; 196.817 ; RR_addr[3]                             ; word_in[3]                            ; DCLK         ; DCLK        ; 200.000      ; -0.049     ; 3.141      ;
+; 196.840 ; RR_addr[7]                             ; word_in[0]                            ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 3.112      ;
+; 196.844 ; RR_addr[4]                             ; word_in[0]                            ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 3.108      ;
+; 196.870 ; RR_addr[7]                             ; word_in[1]                            ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 3.082      ;
+; 196.874 ; RR_addr[4]                             ; word_in[1]                            ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 3.078      ;
+; 196.890 ; RR_addr[7]                             ; word_in[2]                            ; DCLK         ; DCLK        ; 200.000      ; -0.046     ; 3.071      ;
+; 196.894 ; RR_addr[4]                             ; word_in[2]                            ; DCLK         ; DCLK        ; 200.000      ; -0.046     ; 3.067      ;
+; 196.932 ; RR_addr[6]                             ; word_in[4]                            ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 3.020      ;
+; 196.936 ; RR_addr[7]                             ; word_in[6]                            ; DCLK         ; DCLK        ; 200.000      ; -0.046     ; 3.025      ;
+; 196.940 ; RR_addr[4]                             ; word_in[6]                            ; DCLK         ; DCLK        ; 200.000      ; -0.046     ; 3.021      ;
+; 196.944 ; RR_addr[5]                             ; word_in[0]                            ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 3.008      ;
+; 196.948 ; RR_addr[7]                             ; word_in[7]                            ; DCLK         ; DCLK        ; 200.000      ; -0.046     ; 3.013      ;
+; 196.952 ; RR_addr[4]                             ; word_in[7]                            ; DCLK         ; DCLK        ; 200.000      ; -0.046     ; 3.009      ;
+; 196.968 ; RR_addr[1]                             ; word_in[3]                            ; DCLK         ; DCLK        ; 200.000      ; -0.049     ; 2.990      ;
+; 196.968 ; RR_addr[2]                             ; word_in[3]                            ; DCLK         ; DCLK        ; 200.000      ; -0.049     ; 2.990      ;
+; 196.974 ; RR_addr[5]                             ; word_in[1]                            ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 2.978      ;
+; 196.994 ; RR_addr[5]                             ; word_in[2]                            ; DCLK         ; DCLK        ; 200.000      ; -0.046     ; 2.967      ;
+; 197.026 ; RR_addr[6]                             ; word_in[5]                            ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 2.926      ;
+; 197.040 ; RR_addr[5]                             ; word_in[6]                            ; DCLK         ; DCLK        ; 200.000      ; -0.046     ; 2.921      ;
+; 197.052 ; RR_addr[5]                             ; word_in[7]                            ; DCLK         ; DCLK        ; 200.000      ; -0.046     ; 2.909      ;
+; 197.087 ; RR_addr[7]                             ; word_in[4]                            ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 2.865      ;
+; 197.091 ; RR_addr[4]                             ; word_in[4]                            ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 2.861      ;
+; 197.112 ; RR_addr[3]                             ; word_in[0]                            ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 2.840      ;
+; 197.142 ; RR_addr[3]                             ; word_in[1]                            ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 2.810      ;
+; 197.162 ; RR_addr[3]                             ; word_in[2]                            ; DCLK         ; DCLK        ; 200.000      ; -0.046     ; 2.799      ;
+; 197.181 ; RR_addr[7]                             ; word_in[5]                            ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 2.771      ;
+; 197.185 ; RR_addr[4]                             ; word_in[5]                            ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 2.767      ;
+; 197.191 ; RR_addr[5]                             ; word_in[4]                            ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 2.761      ;
+; 197.208 ; RR_addr[3]                             ; word_in[6]                            ; DCLK         ; DCLK        ; 200.000      ; -0.046     ; 2.753      ;
+; 197.220 ; RR_addr[3]                             ; word_in[7]                            ; DCLK         ; DCLK        ; 200.000      ; -0.046     ; 2.741      ;
+; 197.258 ; RR_addr[0]                             ; word_in[3]                            ; DCLK         ; DCLK        ; 200.000      ; -0.049     ; 2.700      ;
+; 197.263 ; RR_addr[1]                             ; word_in[0]                            ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 2.689      ;
+; 197.263 ; RR_addr[2]                             ; word_in[0]                            ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 2.689      ;
+; 197.285 ; RR_addr[5]                             ; word_in[5]                            ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 2.667      ;
+; 197.289 ; RR_addr[0]                             ; word_in[2]                            ; DCLK         ; DCLK        ; 200.000      ; -0.046     ; 2.672      ;
+; 197.293 ; RR_addr[1]                             ; word_in[1]                            ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 2.659      ;
+; 197.293 ; RR_addr[2]                             ; word_in[1]                            ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 2.659      ;
+; 197.313 ; RR_addr[1]                             ; word_in[2]                            ; DCLK         ; DCLK        ; 200.000      ; -0.046     ; 2.648      ;
+; 197.313 ; RR_addr[2]                             ; word_in[2]                            ; DCLK         ; DCLK        ; 200.000      ; -0.046     ; 2.648      ;
+; 197.347 ; RR_addr[0]                             ; word_in[7]                            ; DCLK         ; DCLK        ; 200.000      ; -0.046     ; 2.614      ;
+; 197.351 ; RR_addr[0]                             ; word_in[6]                            ; DCLK         ; DCLK        ; 200.000      ; -0.046     ; 2.610      ;
+; 197.359 ; RR_addr[1]                             ; word_in[6]                            ; DCLK         ; DCLK        ; 200.000      ; -0.046     ; 2.602      ;
+; 197.359 ; RR_addr[2]                             ; word_in[6]                            ; DCLK         ; DCLK        ; 200.000      ; -0.046     ; 2.602      ;
+; 197.359 ; RR_addr[3]                             ; word_in[4]                            ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 2.593      ;
+; 197.371 ; RR_addr[1]                             ; word_in[7]                            ; DCLK         ; DCLK        ; 200.000      ; -0.046     ; 2.590      ;
+; 197.371 ; RR_addr[2]                             ; word_in[7]                            ; DCLK         ; DCLK        ; 200.000      ; -0.046     ; 2.590      ;
+; 197.453 ; RR_addr[3]                             ; word_in[5]                            ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 2.499      ;
+; 197.481 ; read_byte:Read_FSM|\read:word_cnt[0]   ; read_byte:Read_FSM|word_buff[7]       ; DCLK         ; DCLK        ; 200.000      ; -0.032     ; 2.494      ;
+; 197.481 ; read_byte:Read_FSM|\read:word_cnt[0]   ; read_byte:Read_FSM|word_buff[6]       ; DCLK         ; DCLK        ; 200.000      ; -0.032     ; 2.494      ;
+; 197.481 ; read_byte:Read_FSM|\read:word_cnt[0]   ; read_byte:Read_FSM|word_buff[5]       ; DCLK         ; DCLK        ; 200.000      ; -0.032     ; 2.494      ;
+; 197.481 ; read_byte:Read_FSM|\read:word_cnt[0]   ; read_byte:Read_FSM|word_buff[4]       ; DCLK         ; DCLK        ; 200.000      ; -0.032     ; 2.494      ;
+; 197.481 ; read_byte:Read_FSM|\read:word_cnt[0]   ; read_byte:Read_FSM|word_buff[0]       ; DCLK         ; DCLK        ; 200.000      ; -0.032     ; 2.494      ;
+; 197.481 ; read_byte:Read_FSM|\read:word_cnt[0]   ; read_byte:Read_FSM|word_buff[3]       ; DCLK         ; DCLK        ; 200.000      ; -0.032     ; 2.494      ;
+; 197.481 ; read_byte:Read_FSM|\read:word_cnt[0]   ; read_byte:Read_FSM|word_buff[1]       ; DCLK         ; DCLK        ; 200.000      ; -0.032     ; 2.494      ;
+; 197.481 ; read_byte:Read_FSM|\read:word_cnt[0]   ; read_byte:Read_FSM|word_buff[2]       ; DCLK         ; DCLK        ; 200.000      ; -0.032     ; 2.494      ;
+; 197.510 ; RR_addr[1]                             ; word_in[4]                            ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 2.442      ;
+; 197.510 ; RR_addr[2]                             ; word_in[4]                            ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 2.442      ;
+; 197.515 ; read_byte:Read_FSM|\read:word_cnt[1]   ; read_byte:Read_FSM|word_buff[7]       ; DCLK         ; DCLK        ; 200.000      ; -0.032     ; 2.460      ;
+; 197.515 ; read_byte:Read_FSM|\read:word_cnt[1]   ; read_byte:Read_FSM|word_buff[6]       ; DCLK         ; DCLK        ; 200.000      ; -0.032     ; 2.460      ;
+; 197.515 ; read_byte:Read_FSM|\read:word_cnt[1]   ; read_byte:Read_FSM|word_buff[5]       ; DCLK         ; DCLK        ; 200.000      ; -0.032     ; 2.460      ;
+; 197.515 ; read_byte:Read_FSM|\read:word_cnt[1]   ; read_byte:Read_FSM|word_buff[4]       ; DCLK         ; DCLK        ; 200.000      ; -0.032     ; 2.460      ;
+; 197.515 ; read_byte:Read_FSM|\read:word_cnt[1]   ; read_byte:Read_FSM|word_buff[0]       ; DCLK         ; DCLK        ; 200.000      ; -0.032     ; 2.460      ;
+; 197.515 ; read_byte:Read_FSM|\read:word_cnt[1]   ; read_byte:Read_FSM|word_buff[3]       ; DCLK         ; DCLK        ; 200.000      ; -0.032     ; 2.460      ;
+; 197.515 ; read_byte:Read_FSM|\read:word_cnt[1]   ; read_byte:Read_FSM|word_buff[1]       ; DCLK         ; DCLK        ; 200.000      ; -0.032     ; 2.460      ;
+; 197.515 ; read_byte:Read_FSM|\read:word_cnt[1]   ; read_byte:Read_FSM|word_buff[2]       ; DCLK         ; DCLK        ; 200.000      ; -0.032     ; 2.460      ;
+; 197.515 ; Write_byte:Write_FSM|\send:word_cnt[0] ; Write_byte:Write_FSM|state_fsm.s_high ; DCLK         ; DCLK        ; 200.000      ; -0.045     ; 2.447      ;
+; 197.546 ; read_byte:Read_FSM|\read:word_cnt[20]  ; read_byte:Read_FSM|word_buff[7]       ; DCLK         ; DCLK        ; 200.000      ; -0.029     ; 2.432      ;
+; 197.546 ; read_byte:Read_FSM|\read:word_cnt[20]  ; read_byte:Read_FSM|word_buff[6]       ; DCLK         ; DCLK        ; 200.000      ; -0.029     ; 2.432      ;
+; 197.546 ; read_byte:Read_FSM|\read:word_cnt[20]  ; read_byte:Read_FSM|word_buff[5]       ; DCLK         ; DCLK        ; 200.000      ; -0.029     ; 2.432      ;
+; 197.546 ; read_byte:Read_FSM|\read:word_cnt[20]  ; read_byte:Read_FSM|word_buff[4]       ; DCLK         ; DCLK        ; 200.000      ; -0.029     ; 2.432      ;
+; 197.546 ; read_byte:Read_FSM|\read:word_cnt[20]  ; read_byte:Read_FSM|word_buff[0]       ; DCLK         ; DCLK        ; 200.000      ; -0.029     ; 2.432      ;
+; 197.546 ; read_byte:Read_FSM|\read:word_cnt[20]  ; read_byte:Read_FSM|word_buff[3]       ; DCLK         ; DCLK        ; 200.000      ; -0.029     ; 2.432      ;
+; 197.546 ; read_byte:Read_FSM|\read:word_cnt[20]  ; read_byte:Read_FSM|word_buff[1]       ; DCLK         ; DCLK        ; 200.000      ; -0.029     ; 2.432      ;
+; 197.546 ; read_byte:Read_FSM|\read:word_cnt[20]  ; read_byte:Read_FSM|word_buff[2]       ; DCLK         ; DCLK        ; 200.000      ; -0.029     ; 2.432      ;
+; 197.550 ; RR_addr[0]                             ; word_in[4]                            ; DCLK         ; DCLK        ; 200.000      ; -0.055     ; 2.402      ;
+; 197.551 ; read_byte:Read_FSM|\read:word_cnt[2]   ; read_byte:Read_FSM|word_buff[7]       ; DCLK         ; DCLK        ; 200.000      ; -0.032     ; 2.424      ;
+; 197.551 ; read_byte:Read_FSM|\read:word_cnt[2]   ; read_byte:Read_FSM|word_buff[6]       ; DCLK         ; DCLK        ; 200.000      ; -0.032     ; 2.424      ;
+; 197.551 ; read_byte:Read_FSM|\read:word_cnt[2]   ; read_byte:Read_FSM|word_buff[5]       ; DCLK         ; DCLK        ; 200.000      ; -0.032     ; 2.424      ;
+; 197.551 ; read_byte:Read_FSM|\read:word_cnt[2]   ; read_byte:Read_FSM|word_buff[4]       ; DCLK         ; DCLK        ; 200.000      ; -0.032     ; 2.424      ;
+; 197.551 ; read_byte:Read_FSM|\read:word_cnt[2]   ; read_byte:Read_FSM|word_buff[0]       ; DCLK         ; DCLK        ; 200.000      ; -0.032     ; 2.424      ;
+; 197.551 ; read_byte:Read_FSM|\read:word_cnt[2]   ; read_byte:Read_FSM|word_buff[3]       ; DCLK         ; DCLK        ; 200.000      ; -0.032     ; 2.424      ;
+; 197.551 ; read_byte:Read_FSM|\read:word_cnt[2]   ; read_byte:Read_FSM|word_buff[1]       ; DCLK         ; DCLK        ; 200.000      ; -0.032     ; 2.424      ;
+; 197.551 ; read_byte:Read_FSM|\read:word_cnt[2]   ; read_byte:Read_FSM|word_buff[2]       ; DCLK         ; DCLK        ; 200.000      ; -0.032     ; 2.424      ;
+; 197.561 ; read_byte:Read_FSM|\read:word_cnt[28]  ; read_byte:Read_FSM|word_buff[7]       ; DCLK         ; DCLK        ; 200.000      ; -0.029     ; 2.417      ;
+; 197.561 ; read_byte:Read_FSM|\read:word_cnt[30]  ; read_byte:Read_FSM|word_buff[7]       ; DCLK         ; DCLK        ; 200.000      ; -0.029     ; 2.417      ;
+; 197.561 ; read_byte:Read_FSM|\read:word_cnt[28]  ; read_byte:Read_FSM|word_buff[6]       ; DCLK         ; DCLK        ; 200.000      ; -0.029     ; 2.417      ;
+; 197.561 ; read_byte:Read_FSM|\read:word_cnt[30]  ; read_byte:Read_FSM|word_buff[6]       ; DCLK         ; DCLK        ; 200.000      ; -0.029     ; 2.417      ;
+; 197.561 ; read_byte:Read_FSM|\read:word_cnt[28]  ; read_byte:Read_FSM|word_buff[5]       ; DCLK         ; DCLK        ; 200.000      ; -0.029     ; 2.417      ;
+; 197.561 ; read_byte:Read_FSM|\read:word_cnt[30]  ; read_byte:Read_FSM|word_buff[5]       ; DCLK         ; DCLK        ; 200.000      ; -0.029     ; 2.417      ;
+; 197.561 ; read_byte:Read_FSM|\read:word_cnt[28]  ; read_byte:Read_FSM|word_buff[4]       ; DCLK         ; DCLK        ; 200.000      ; -0.029     ; 2.417      ;
+; 197.561 ; read_byte:Read_FSM|\read:word_cnt[30]  ; read_byte:Read_FSM|word_buff[4]       ; DCLK         ; DCLK        ; 200.000      ; -0.029     ; 2.417      ;
++---------+----------------------------------------+---------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Fast 1200mV 0C Model Hold: 'DCLK'                                                                                                                               ;
++-------+-----------------------------------------+-----------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node                               ; To Node                                 ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+-----------------------------------------+-----------------------------------------+--------------+-------------+--------------+------------+------------+
+; 0.134 ; read_byte:Read_FSM|word_buff[6]         ; RR_addr[6]                              ; DCLK         ; DCLK        ; 0.000        ; 0.098      ; 0.316      ;
+; 0.135 ; read_byte:Read_FSM|word_buff[0]         ; RR_addr[0]                              ; DCLK         ; DCLK        ; 0.000        ; 0.098      ; 0.317      ;
+; 0.137 ; read_byte:Read_FSM|word_buff[7]         ; RR_addr[7]                              ; DCLK         ; DCLK        ; 0.000        ; 0.098      ; 0.319      ;
+; 0.138 ; read_byte:Read_FSM|word_buff[2]         ; RR_addr[2]                              ; DCLK         ; DCLK        ; 0.000        ; 0.098      ; 0.320      ;
+; 0.138 ; read_byte:Read_FSM|word_buff[4]         ; RR_addr[4]                              ; DCLK         ; DCLK        ; 0.000        ; 0.098      ; 0.320      ;
+; 0.186 ; read_byte:Read_FSM|state_fsm.s_wait_low ; read_byte:Read_FSM|state_fsm.s_wait_low ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.307      ;
+; 0.186 ; read_byte:Read_FSM|state_fsm.s_error    ; read_byte:Read_FSM|state_fsm.s_error    ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.307      ;
+; 0.186 ; read_byte:Read_FSM|state_fsm.s_read     ; read_byte:Read_FSM|state_fsm.s_read     ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.307      ;
+; 0.186 ; read_err~reg0                           ; read_err~reg0                           ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.307      ;
+; 0.186 ; rr_state.s4                             ; rr_state.s4                             ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.307      ;
+; 0.186 ; rr_state.s5                             ; rr_state.s5                             ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.307      ;
+; 0.186 ; rr_state.s3                             ; rr_state.s3                             ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.307      ;
+; 0.186 ; rr_state.s7                             ; rr_state.s7                             ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.307      ;
+; 0.186 ; we                                      ; we                                      ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.307      ;
+; 0.187 ; read_byte:Read_FSM|\read:word[7]        ; read_byte:Read_FSM|\read:word[7]        ; DCLK         ; DCLK        ; 0.000        ; 0.036      ; 0.307      ;
+; 0.187 ; read_byte:Read_FSM|\read:word[6]        ; read_byte:Read_FSM|\read:word[6]        ; DCLK         ; DCLK        ; 0.000        ; 0.036      ; 0.307      ;
+; 0.187 ; read_byte:Read_FSM|\read:word[5]        ; read_byte:Read_FSM|\read:word[5]        ; DCLK         ; DCLK        ; 0.000        ; 0.036      ; 0.307      ;
+; 0.187 ; read_byte:Read_FSM|\read:word[4]        ; read_byte:Read_FSM|\read:word[4]        ; DCLK         ; DCLK        ; 0.000        ; 0.036      ; 0.307      ;
+; 0.187 ; read_byte:Read_FSM|\read:word[0]        ; read_byte:Read_FSM|\read:word[0]        ; DCLK         ; DCLK        ; 0.000        ; 0.036      ; 0.307      ;
+; 0.187 ; read_byte:Read_FSM|\read:word[3]        ; read_byte:Read_FSM|\read:word[3]        ; DCLK         ; DCLK        ; 0.000        ; 0.036      ; 0.307      ;
+; 0.187 ; read_byte:Read_FSM|\read:word[1]        ; read_byte:Read_FSM|\read:word[1]        ; DCLK         ; DCLK        ; 0.000        ; 0.036      ; 0.307      ;
+; 0.187 ; read_byte:Read_FSM|\read:word[2]        ; read_byte:Read_FSM|\read:word[2]        ; DCLK         ; DCLK        ; 0.000        ; 0.036      ; 0.307      ;
+; 0.187 ; current_task.reading                    ; current_task.reading                    ; DCLK         ; DCLK        ; 0.000        ; 0.036      ; 0.307      ;
+; 0.187 ; rr_state.s8                             ; rr_state.s8                             ; DCLK         ; DCLK        ; 0.000        ; 0.036      ; 0.307      ;
+; 0.187 ; rr_state.s0                             ; rr_state.s0                             ; DCLK         ; DCLK        ; 0.000        ; 0.036      ; 0.307      ;
+; 0.187 ; Write_byte:Write_FSM|state_fsm.s_idle   ; Write_byte:Write_FSM|state_fsm.s_idle   ; DCLK         ; DCLK        ; 0.000        ; 0.036      ; 0.307      ;
+; 0.187 ; Write_byte:Write_FSM|state_fsm.s_send   ; Write_byte:Write_FSM|state_fsm.s_send   ; DCLK         ; DCLK        ; 0.000        ; 0.036      ; 0.307      ;
+; 0.187 ; Write_byte:Write_FSM|ready              ; Write_byte:Write_FSM|ready              ; DCLK         ; DCLK        ; 0.000        ; 0.036      ; 0.307      ;
+; 0.205 ; read_byte:Read_FSM|word_buff[3]         ; RR_addr[3]                              ; DCLK         ; DCLK        ; 0.000        ; 0.098      ; 0.387      ;
+; 0.206 ; byte_cnt[7]                             ; byte_cnt[7]                             ; DCLK         ; DCLK        ; 0.000        ; 0.036      ; 0.326      ;
+; 0.209 ; read_byte:Read_FSM|word_buff[1]         ; RR_addr[1]                              ; DCLK         ; DCLK        ; 0.000        ; 0.098      ; 0.391      ;
+; 0.209 ; read_byte:Read_FSM|state_fsm.s_high     ; read_byte:Read_FSM|state_fsm.s_error    ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.330      ;
+; 0.209 ; Write_byte:Write_FSM|state_fsm.s_send   ; Write_byte:Write_FSM|pin_out            ; DCLK         ; DCLK        ; 0.000        ; 0.036      ; 0.329      ;
+; 0.210 ; Write_byte:Write_FSM|state_fsm.s_send   ; Write_byte:Write_FSM|ready              ; DCLK         ; DCLK        ; 0.000        ; 0.036      ; 0.330      ;
+; 0.212 ; read_byte:Read_FSM|word_buff[5]         ; RR_addr[5]                              ; DCLK         ; DCLK        ; 0.000        ; 0.098      ; 0.394      ;
+; 0.213 ; read_byte:Read_FSM|state_fsm.s_read     ; read_byte:Read_FSM|state_fsm.s_high     ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.334      ;
+; 0.216 ; Write_byte:Write_FSM|state_fsm.s_high   ; Write_byte:Write_FSM|state_fsm.s_idle   ; DCLK         ; DCLK        ; 0.000        ; 0.036      ; 0.336      ;
+; 0.257 ; rr_state.s0                             ; current_task.idling_m                   ; DCLK         ; DCLK        ; 0.000        ; 0.036      ; 0.377      ;
+; 0.264 ; Write_byte:Write_FSM|state_fsm.s_idle   ; Write_byte:Write_FSM|pin_out            ; DCLK         ; DCLK        ; 0.000        ; 0.036      ; 0.384      ;
+; 0.273 ; rr_state.s5                             ; rr_state.s6                             ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.394      ;
+; 0.276 ; rr_state.s2                             ; re                                      ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.397      ;
+; 0.290 ; Write_byte:Write_FSM|word_sent          ; rr_state.s7                             ; DCLK         ; DCLK        ; 0.000        ; 0.036      ; 0.410      ;
+; 0.296 ; read_byte:Read_FSM|\read:word_cnt[13]   ; read_byte:Read_FSM|\read:word_cnt[13]   ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.417      ;
+; 0.296 ; simple_cnt[3]                           ; simple_cnt[3]                           ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.417      ;
+; 0.296 ; Write_byte:Write_FSM|\send:word_cnt[13] ; Write_byte:Write_FSM|\send:word_cnt[13] ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.417      ;
+; 0.296 ; Write_byte:Write_FSM|\send:word_cnt[14] ; Write_byte:Write_FSM|\send:word_cnt[14] ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.417      ;
+; 0.297 ; read_byte:Read_FSM|\read:word_cnt[12]   ; read_byte:Read_FSM|\read:word_cnt[12]   ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.418      ;
+; 0.297 ; Write_byte:Write_FSM|\send:word_cnt[12] ; Write_byte:Write_FSM|\send:word_cnt[12] ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.418      ;
+; 0.298 ; read_byte:Read_FSM|\read:word_cnt[10]   ; read_byte:Read_FSM|\read:word_cnt[10]   ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.419      ;
+; 0.298 ; read_byte:Read_FSM|\read:word_cnt[11]   ; read_byte:Read_FSM|\read:word_cnt[11]   ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.419      ;
+; 0.298 ; simple_cnt[5]                           ; simple_cnt[5]                           ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.419      ;
+; 0.299 ; simple_cnt[2]                           ; simple_cnt[2]                           ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.420      ;
+; 0.299 ; simple_cnt[4]                           ; simple_cnt[4]                           ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.420      ;
+; 0.299 ; byte_cnt[2]                             ; byte_cnt[2]                             ; DCLK         ; DCLK        ; 0.000        ; 0.036      ; 0.419      ;
+; 0.299 ; byte_cnt[3]                             ; byte_cnt[3]                             ; DCLK         ; DCLK        ; 0.000        ; 0.036      ; 0.419      ;
+; 0.299 ; byte_cnt[5]                             ; byte_cnt[5]                             ; DCLK         ; DCLK        ; 0.000        ; 0.036      ; 0.419      ;
+; 0.300 ; read_byte:Read_FSM|busy_signal          ; rr_state.s3                             ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.421      ;
+; 0.301 ; byte_cnt[4]                             ; byte_cnt[4]                             ; DCLK         ; DCLK        ; 0.000        ; 0.036      ; 0.421      ;
+; 0.301 ; idle_cnt[7]                             ; idle_cnt[7]                             ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.422      ;
+; 0.302 ; simple_cnt[6]                           ; simple_cnt[6]                           ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.423      ;
+; 0.302 ; idle_cnt[5]                             ; idle_cnt[5]                             ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.423      ;
+; 0.303 ; read_byte:Read_FSM|\read:word_cnt[5]    ; read_byte:Read_FSM|\read:word_cnt[5]    ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.424      ;
+; 0.303 ; read_byte:Read_FSM|\read:word_cnt[14]   ; read_byte:Read_FSM|\read:word_cnt[14]   ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.424      ;
+; 0.303 ; FIFO_cnt[31]                            ; FIFO_cnt[31]                            ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.424      ;
+; 0.303 ; FIFO_cnt[15]                            ; FIFO_cnt[15]                            ; DCLK         ; DCLK        ; 0.000        ; 0.036      ; 0.423      ;
+; 0.303 ; simple_cnt[7]                           ; simple_cnt[7]                           ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.424      ;
+; 0.303 ; idle_cnt[6]                             ; idle_cnt[6]                             ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.424      ;
+; 0.303 ; Write_byte:Write_FSM|\send:word_cnt[5]  ; Write_byte:Write_FSM|\send:word_cnt[5]  ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.424      ;
+; 0.304 ; read_byte:Read_FSM|\read:word_cnt[1]    ; read_byte:Read_FSM|\read:word_cnt[1]    ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.425      ;
+; 0.304 ; read_byte:Read_FSM|\read:word_cnt[2]    ; read_byte:Read_FSM|\read:word_cnt[2]    ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.425      ;
+; 0.304 ; read_byte:Read_FSM|\read:word_cnt[4]    ; read_byte:Read_FSM|\read:word_cnt[4]    ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.425      ;
+; 0.304 ; read_byte:Read_FSM|\read:word_cnt[7]    ; read_byte:Read_FSM|\read:word_cnt[7]    ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.425      ;
+; 0.304 ; read_byte:Read_FSM|\read:word_cnt[15]   ; read_byte:Read_FSM|\read:word_cnt[15]   ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.425      ;
+; 0.304 ; read_byte:Read_FSM|\read:word_cnt[21]   ; read_byte:Read_FSM|\read:word_cnt[21]   ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.425      ;
+; 0.304 ; read_byte:Read_FSM|\read:word_cnt[30]   ; read_byte:Read_FSM|\read:word_cnt[30]   ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.425      ;
+; 0.304 ; FIFO_cnt[29]                            ; FIFO_cnt[29]                            ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.425      ;
+; 0.304 ; FIFO_cnt[27]                            ; FIFO_cnt[27]                            ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.425      ;
+; 0.304 ; FIFO_cnt[21]                            ; FIFO_cnt[21]                            ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.425      ;
+; 0.304 ; FIFO_cnt[19]                            ; FIFO_cnt[19]                            ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.425      ;
+; 0.304 ; FIFO_cnt[17]                            ; FIFO_cnt[17]                            ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.425      ;
+; 0.304 ; FIFO_cnt[13]                            ; FIFO_cnt[13]                            ; DCLK         ; DCLK        ; 0.000        ; 0.036      ; 0.424      ;
+; 0.304 ; FIFO_cnt[5]                             ; FIFO_cnt[5]                             ; DCLK         ; DCLK        ; 0.000        ; 0.036      ; 0.424      ;
+; 0.304 ; FIFO_cnt[3]                             ; FIFO_cnt[3]                             ; DCLK         ; DCLK        ; 0.000        ; 0.036      ; 0.424      ;
+; 0.304 ; Write_byte:Write_FSM|\send:word_cnt[30] ; Write_byte:Write_FSM|\send:word_cnt[30] ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.425      ;
+; 0.304 ; Write_byte:Write_FSM|\send:word_cnt[1]  ; Write_byte:Write_FSM|\send:word_cnt[1]  ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.425      ;
+; 0.304 ; Write_byte:Write_FSM|\send:word_cnt[2]  ; Write_byte:Write_FSM|\send:word_cnt[2]  ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.425      ;
+; 0.304 ; Write_byte:Write_FSM|\send:word_cnt[4]  ; Write_byte:Write_FSM|\send:word_cnt[4]  ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.425      ;
+; 0.304 ; Write_byte:Write_FSM|\send:word_cnt[7]  ; Write_byte:Write_FSM|\send:word_cnt[7]  ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.425      ;
+; 0.304 ; Write_byte:Write_FSM|\send:word_cnt[15] ; Write_byte:Write_FSM|\send:word_cnt[15] ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.425      ;
+; 0.304 ; Write_byte:Write_FSM|\send:word_cnt[21] ; Write_byte:Write_FSM|\send:word_cnt[21] ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.425      ;
+; 0.305 ; read_byte:Read_FSM|\read:word_cnt[6]    ; read_byte:Read_FSM|\read:word_cnt[6]    ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.426      ;
+; 0.305 ; read_byte:Read_FSM|\read:word_cnt[9]    ; read_byte:Read_FSM|\read:word_cnt[9]    ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.426      ;
+; 0.305 ; read_byte:Read_FSM|\read:word_cnt[17]   ; read_byte:Read_FSM|\read:word_cnt[17]   ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.426      ;
+; 0.305 ; read_byte:Read_FSM|\read:word_cnt[16]   ; read_byte:Read_FSM|\read:word_cnt[16]   ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.426      ;
+; 0.305 ; read_byte:Read_FSM|\read:word_cnt[19]   ; read_byte:Read_FSM|\read:word_cnt[19]   ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.426      ;
+; 0.305 ; read_byte:Read_FSM|\read:word_cnt[18]   ; read_byte:Read_FSM|\read:word_cnt[18]   ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.426      ;
+; 0.305 ; read_byte:Read_FSM|\read:word_cnt[20]   ; read_byte:Read_FSM|\read:word_cnt[20]   ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.426      ;
+; 0.305 ; read_byte:Read_FSM|\read:word_cnt[23]   ; read_byte:Read_FSM|\read:word_cnt[23]   ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.426      ;
+; 0.305 ; read_byte:Read_FSM|\read:word_cnt[26]   ; read_byte:Read_FSM|\read:word_cnt[26]   ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.426      ;
+; 0.305 ; read_byte:Read_FSM|\read:word_cnt[28]   ; read_byte:Read_FSM|\read:word_cnt[28]   ; DCLK         ; DCLK        ; 0.000        ; 0.037      ; 0.426      ;
++-------+-----------------------------------------+-----------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
+----------------------------------------------
+; Fast 1200mV 0C Model Metastability Summary ;
+----------------------------------------------
+The design MTBF is not calculated because there are no specified synchronizers in the design.
+Number of Synchronizer Chains Found: 8
+Shortest Synchronizer Chain: 3 Registers
+Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
+Worst Case Available Settling Time: 397.622 ns
+
+
+
+
++-------------------------------------------------------------------------------+
+; Multicorner Timing Analysis Summary                                           ;
++------------------+---------+-------+----------+---------+---------------------+
+; Clock            ; Setup   ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
++------------------+---------+-------+----------+---------+---------------------+
+; Worst-case Slack ; 193.729 ; 0.134 ; N/A      ; N/A     ; 4.910               ;
+;  DCLK            ; 193.729 ; 0.134 ; N/A      ; N/A     ; 4.910               ;
+; Design-wide TNS  ; 0.0     ; 0.0   ; 0.0      ; 0.0     ; 0.0                 ;
+;  DCLK            ; 0.000   ; 0.000 ; N/A      ; N/A     ; 0.000               ;
++------------------+---------+-------+----------+---------+---------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Board Trace Model Assignments                                                                                                                                                                                                                                                                                                                                                                                    ;
++---------------+--------------+-------------------+-------------------------+-------------------------+---------------+---------------------+----------------+------------------+--------+------------------+------------------------+------------------------+--------------+---------------+-----------------+-------+---------------------+--------------------+---------------+-----------------+-------------+
+; Pin           ; I/O Standard ; Near Tline Length ; Near Tline L per Length ; Near Tline C per Length ; Near Series R ; Near Differential R ; Near Pull-up R ; Near Pull-down R ; Near C ; Far Tline Length ; Far Tline L per Length ; Far Tline C per Length ; Far Series R ; Far Pull-up R ; Far Pull-down R ; Far C ; Termination Voltage ; Far Differential R ; EBD File Name ; EBD Signal Name ; EBD Far-end ;
++---------------+--------------+-------------------+-------------------------+-------------------------+---------------+---------------------+----------------+------------------+--------+------------------+------------------------+------------------------+--------------+---------------+-----------------+-------+---------------------+--------------------+---------------+-----------------+-------------+
+; read_err      ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; data_led[0]   ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; data_led[1]   ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; data_led[2]   ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; data_led[3]   ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; data_led[4]   ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; data_led[5]   ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; data_led[6]   ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; data_led[7]   ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; CTRL          ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ~ALTERA_DCLK~ ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ~ALTERA_nCEO~ ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
++---------------+--------------+-------------------+-------------------------+-------------------------+---------------+---------------------+----------------+------------------+--------+------------------+------------------------+------------------------+--------------+---------------+-----------------+-------+---------------------+--------------------+---------------+-----------------+-------------+
+
+
++----------------------------------------------------------------------------+
+; Input Transition Times                                                     ;
++-------------------------+--------------+-----------------+-----------------+
+; Pin                     ; I/O Standard ; 10-90 Rise Time ; 90-10 Fall Time ;
++-------------------------+--------------+-----------------+-----------------+
+; pwr_enable              ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; CTRL                    ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; rstn                    ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; DCLK                    ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; btn                     ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; ~ALTERA_ASDO_DATA1~     ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; ~ALTERA_FLASH_nCE_nCSO~ ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; ~ALTERA_DATA0~          ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
++-------------------------+--------------+-----------------+-----------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Signal Integrity Metrics (Slow 1200mv 0c Model)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; Pin           ; I/O Standard ; Board Delay on Rise ; Board Delay on Fall ; Steady State Voh at FPGA Pin ; Steady State Vol at FPGA Pin ; Voh Max at FPGA Pin ; Vol Min at FPGA Pin ; Ringback Voltage on Rise at FPGA Pin ; Ringback Voltage on Fall at FPGA Pin ; 10-90 Rise Time at FPGA Pin ; 90-10 Fall Time at FPGA Pin ; Monotonic Rise at FPGA Pin ; Monotonic Fall at FPGA Pin ; Steady State Voh at Far-end ; Steady State Vol at Far-end ; Voh Max at Far-end ; Vol Min at Far-end ; Ringback Voltage on Rise at Far-end ; Ringback Voltage on Fall at Far-end ; 10-90 Rise Time at Far-end ; 90-10 Fall Time at Far-end ; Monotonic Rise at Far-end ; Monotonic Fall at Far-end ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; read_err      ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 5.95e-09 V                   ; 2.38 V              ; -0.016 V            ; 0.22 V                               ; 0.025 V                              ; 3.06e-10 s                  ; 3.3e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 5.95e-09 V                  ; 2.38 V             ; -0.016 V           ; 0.22 V                              ; 0.025 V                             ; 3.06e-10 s                 ; 3.3e-10 s                  ; Yes                       ; Yes                       ;
+; data_led[0]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 5.95e-09 V                   ; 2.38 V              ; -0.016 V            ; 0.22 V                               ; 0.025 V                              ; 3.06e-10 s                  ; 3.3e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 5.95e-09 V                  ; 2.38 V             ; -0.016 V           ; 0.22 V                              ; 0.025 V                             ; 3.06e-10 s                 ; 3.3e-10 s                  ; Yes                       ; Yes                       ;
+; data_led[1]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 5.95e-09 V                   ; 2.38 V              ; -0.016 V            ; 0.22 V                               ; 0.025 V                              ; 3.06e-10 s                  ; 3.3e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 5.95e-09 V                  ; 2.38 V             ; -0.016 V           ; 0.22 V                              ; 0.025 V                             ; 3.06e-10 s                 ; 3.3e-10 s                  ; Yes                       ; Yes                       ;
+; data_led[2]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 5.95e-09 V                   ; 2.38 V              ; -0.016 V            ; 0.22 V                               ; 0.025 V                              ; 3.06e-10 s                  ; 3.3e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 5.95e-09 V                  ; 2.38 V             ; -0.016 V           ; 0.22 V                              ; 0.025 V                             ; 3.06e-10 s                 ; 3.3e-10 s                  ; Yes                       ; Yes                       ;
+; data_led[3]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 5.95e-09 V                   ; 2.38 V              ; -0.016 V            ; 0.22 V                               ; 0.025 V                              ; 3.06e-10 s                  ; 3.3e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 5.95e-09 V                  ; 2.38 V             ; -0.016 V           ; 0.22 V                              ; 0.025 V                             ; 3.06e-10 s                 ; 3.3e-10 s                  ; Yes                       ; Yes                       ;
+; data_led[4]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.44e-09 V                   ; 2.38 V              ; -0.0145 V           ; 0.169 V                              ; 0.026 V                              ; 4.83e-10 s                  ; 4.71e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 4.44e-09 V                  ; 2.38 V             ; -0.0145 V          ; 0.169 V                             ; 0.026 V                             ; 4.83e-10 s                 ; 4.71e-10 s                 ; Yes                       ; Yes                       ;
+; data_led[5]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.44e-09 V                   ; 2.33 V              ; -0.00624 V          ; 0.185 V                              ; 0.097 V                              ; 2.82e-09 s                  ; 2.56e-09 s                  ; No                         ; Yes                        ; 2.32 V                      ; 4.44e-09 V                  ; 2.33 V             ; -0.00624 V         ; 0.185 V                             ; 0.097 V                             ; 2.82e-09 s                 ; 2.56e-09 s                 ; No                        ; Yes                       ;
+; data_led[6]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.44e-09 V                   ; 2.39 V              ; -0.0265 V           ; 0.2 V                                ; 0.033 V                              ; 2.94e-10 s                  ; 3.12e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 4.44e-09 V                  ; 2.39 V             ; -0.0265 V          ; 0.2 V                               ; 0.033 V                             ; 2.94e-10 s                 ; 3.12e-10 s                 ; Yes                       ; Yes                       ;
+; data_led[7]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.44e-09 V                   ; 2.33 V              ; -0.00624 V          ; 0.185 V                              ; 0.097 V                              ; 2.82e-09 s                  ; 2.56e-09 s                  ; No                         ; Yes                        ; 2.32 V                      ; 4.44e-09 V                  ; 2.33 V             ; -0.00624 V         ; 0.185 V                             ; 0.097 V                             ; 2.82e-09 s                 ; 2.56e-09 s                 ; No                        ; Yes                       ;
+; CTRL          ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 5.95e-09 V                   ; 2.38 V              ; -0.016 V            ; 0.22 V                               ; 0.025 V                              ; 3.06e-10 s                  ; 3.3e-10 s                   ; Yes                        ; Yes                        ; 2.32 V                      ; 5.95e-09 V                  ; 2.38 V             ; -0.016 V           ; 0.22 V                              ; 0.025 V                             ; 3.06e-10 s                 ; 3.3e-10 s                  ; Yes                       ; Yes                       ;
+; ~ALTERA_DCLK~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 3.45e-09 V                   ; 2.38 V              ; -0.0609 V           ; 0.148 V                              ; 0.095 V                              ; 2.82e-10 s                  ; 2.59e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 3.45e-09 V                  ; 2.38 V             ; -0.0609 V          ; 0.148 V                             ; 0.095 V                             ; 2.82e-10 s                 ; 2.59e-10 s                 ; Yes                       ; Yes                       ;
+; ~ALTERA_nCEO~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 5.61e-09 V                   ; 2.38 V              ; -0.00274 V          ; 0.141 V                              ; 0.006 V                              ; 4.7e-10 s                   ; 6.02e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 5.61e-09 V                  ; 2.38 V             ; -0.00274 V         ; 0.141 V                             ; 0.006 V                             ; 4.7e-10 s                  ; 6.02e-10 s                 ; Yes                       ; Yes                       ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Signal Integrity Metrics (Slow 1200mv 85c Model)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; Pin           ; I/O Standard ; Board Delay on Rise ; Board Delay on Fall ; Steady State Voh at FPGA Pin ; Steady State Vol at FPGA Pin ; Voh Max at FPGA Pin ; Vol Min at FPGA Pin ; Ringback Voltage on Rise at FPGA Pin ; Ringback Voltage on Fall at FPGA Pin ; 10-90 Rise Time at FPGA Pin ; 90-10 Fall Time at FPGA Pin ; Monotonic Rise at FPGA Pin ; Monotonic Fall at FPGA Pin ; Steady State Voh at Far-end ; Steady State Vol at Far-end ; Voh Max at Far-end ; Vol Min at Far-end ; Ringback Voltage on Rise at Far-end ; Ringback Voltage on Fall at Far-end ; 10-90 Rise Time at Far-end ; 90-10 Fall Time at Far-end ; Monotonic Rise at Far-end ; Monotonic Fall at Far-end ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; read_err      ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.06e-06 V                   ; 2.36 V              ; -0.00724 V          ; 0.107 V                              ; 0.02 V                               ; 4.5e-10 s                   ; 4.25e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.06e-06 V                  ; 2.36 V             ; -0.00724 V         ; 0.107 V                             ; 0.02 V                              ; 4.5e-10 s                  ; 4.25e-10 s                 ; Yes                       ; Yes                       ;
+; data_led[0]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.06e-06 V                   ; 2.36 V              ; -0.00724 V          ; 0.107 V                              ; 0.02 V                               ; 4.5e-10 s                   ; 4.25e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.06e-06 V                  ; 2.36 V             ; -0.00724 V         ; 0.107 V                             ; 0.02 V                              ; 4.5e-10 s                  ; 4.25e-10 s                 ; Yes                       ; Yes                       ;
+; data_led[1]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.06e-06 V                   ; 2.36 V              ; -0.00724 V          ; 0.107 V                              ; 0.02 V                               ; 4.5e-10 s                   ; 4.25e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.06e-06 V                  ; 2.36 V             ; -0.00724 V         ; 0.107 V                             ; 0.02 V                              ; 4.5e-10 s                  ; 4.25e-10 s                 ; Yes                       ; Yes                       ;
+; data_led[2]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.06e-06 V                   ; 2.36 V              ; -0.00724 V          ; 0.107 V                              ; 0.02 V                               ; 4.5e-10 s                   ; 4.25e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.06e-06 V                  ; 2.36 V             ; -0.00724 V         ; 0.107 V                             ; 0.02 V                              ; 4.5e-10 s                  ; 4.25e-10 s                 ; Yes                       ; Yes                       ;
+; data_led[3]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.06e-06 V                   ; 2.36 V              ; -0.00724 V          ; 0.107 V                              ; 0.02 V                               ; 4.5e-10 s                   ; 4.25e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.06e-06 V                  ; 2.36 V             ; -0.00724 V         ; 0.107 V                             ; 0.02 V                              ; 4.5e-10 s                  ; 4.25e-10 s                 ; Yes                       ; Yes                       ;
+; data_led[4]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 7.16e-07 V                   ; 2.35 V              ; -0.00832 V          ; 0.101 V                              ; 0.024 V                              ; 6.39e-10 s                  ; 6e-10 s                     ; Yes                        ; Yes                        ; 2.32 V                      ; 7.16e-07 V                  ; 2.35 V             ; -0.00832 V         ; 0.101 V                             ; 0.024 V                             ; 6.39e-10 s                 ; 6e-10 s                    ; Yes                       ; Yes                       ;
+; data_led[5]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 7.16e-07 V                   ; 2.33 V              ; -0.00349 V          ; 0.163 V                              ; 0.074 V                              ; 3.33e-09 s                  ; 3.14e-09 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 7.16e-07 V                  ; 2.33 V             ; -0.00349 V         ; 0.163 V                             ; 0.074 V                             ; 3.33e-09 s                 ; 3.14e-09 s                 ; Yes                       ; Yes                       ;
+; data_led[6]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 7.16e-07 V                   ; 2.36 V              ; -0.00476 V          ; 0.096 V                              ; 0.013 V                              ; 4.39e-10 s                  ; 4.15e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 7.16e-07 V                  ; 2.36 V             ; -0.00476 V         ; 0.096 V                             ; 0.013 V                             ; 4.39e-10 s                 ; 4.15e-10 s                 ; Yes                       ; Yes                       ;
+; data_led[7]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 7.16e-07 V                   ; 2.33 V              ; -0.00349 V          ; 0.163 V                              ; 0.074 V                              ; 3.33e-09 s                  ; 3.14e-09 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 7.16e-07 V                  ; 2.33 V             ; -0.00349 V         ; 0.163 V                             ; 0.074 V                             ; 3.33e-09 s                 ; 3.14e-09 s                 ; Yes                       ; Yes                       ;
+; CTRL          ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.06e-06 V                   ; 2.36 V              ; -0.00724 V          ; 0.107 V                              ; 0.02 V                               ; 4.5e-10 s                   ; 4.25e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.06e-06 V                  ; 2.36 V             ; -0.00724 V         ; 0.107 V                             ; 0.02 V                              ; 4.5e-10 s                  ; 4.25e-10 s                 ; Yes                       ; Yes                       ;
+; ~ALTERA_DCLK~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 5.74e-07 V                   ; 2.36 V              ; -0.0201 V           ; 0.072 V                              ; 0.033 V                              ; 4.04e-10 s                  ; 3.29e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 5.74e-07 V                  ; 2.36 V             ; -0.0201 V          ; 0.072 V                             ; 0.033 V                             ; 4.04e-10 s                 ; 3.29e-10 s                 ; Yes                       ; Yes                       ;
+; ~ALTERA_nCEO~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 9.45e-07 V                   ; 2.35 V              ; -0.00643 V          ; 0.081 V                              ; 0.031 V                              ; 5.31e-10 s                  ; 7.59e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 9.45e-07 V                  ; 2.35 V             ; -0.00643 V         ; 0.081 V                             ; 0.031 V                             ; 5.31e-10 s                 ; 7.59e-10 s                 ; Yes                       ; Yes                       ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Signal Integrity Metrics (Fast 1200mv 0c Model)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; Pin           ; I/O Standard ; Board Delay on Rise ; Board Delay on Fall ; Steady State Voh at FPGA Pin ; Steady State Vol at FPGA Pin ; Voh Max at FPGA Pin ; Vol Min at FPGA Pin ; Ringback Voltage on Rise at FPGA Pin ; Ringback Voltage on Fall at FPGA Pin ; 10-90 Rise Time at FPGA Pin ; 90-10 Fall Time at FPGA Pin ; Monotonic Rise at FPGA Pin ; Monotonic Fall at FPGA Pin ; Steady State Voh at Far-end ; Steady State Vol at Far-end ; Voh Max at Far-end ; Vol Min at Far-end ; Ringback Voltage on Rise at Far-end ; Ringback Voltage on Fall at Far-end ; 10-90 Rise Time at Far-end ; 90-10 Fall Time at Far-end ; Monotonic Rise at Far-end ; Monotonic Fall at Far-end ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+; read_err      ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 4.05e-08 V                   ; 2.72 V              ; -0.0349 V           ; 0.173 V                              ; 0.1 V                                ; 2.72e-10 s                  ; 2.69e-10 s                  ; Yes                        ; Yes                        ; 2.62 V                      ; 4.05e-08 V                  ; 2.72 V             ; -0.0349 V          ; 0.173 V                             ; 0.1 V                               ; 2.72e-10 s                 ; 2.69e-10 s                 ; Yes                       ; Yes                       ;
+; data_led[0]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 4.05e-08 V                   ; 2.72 V              ; -0.0349 V           ; 0.173 V                              ; 0.1 V                                ; 2.72e-10 s                  ; 2.69e-10 s                  ; Yes                        ; Yes                        ; 2.62 V                      ; 4.05e-08 V                  ; 2.72 V             ; -0.0349 V          ; 0.173 V                             ; 0.1 V                               ; 2.72e-10 s                 ; 2.69e-10 s                 ; Yes                       ; Yes                       ;
+; data_led[1]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 4.05e-08 V                   ; 2.72 V              ; -0.0349 V           ; 0.173 V                              ; 0.1 V                                ; 2.72e-10 s                  ; 2.69e-10 s                  ; Yes                        ; Yes                        ; 2.62 V                      ; 4.05e-08 V                  ; 2.72 V             ; -0.0349 V          ; 0.173 V                             ; 0.1 V                               ; 2.72e-10 s                 ; 2.69e-10 s                 ; Yes                       ; Yes                       ;
+; data_led[2]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 4.05e-08 V                   ; 2.72 V              ; -0.0349 V           ; 0.173 V                              ; 0.1 V                                ; 2.72e-10 s                  ; 2.69e-10 s                  ; Yes                        ; Yes                        ; 2.62 V                      ; 4.05e-08 V                  ; 2.72 V             ; -0.0349 V          ; 0.173 V                             ; 0.1 V                               ; 2.72e-10 s                 ; 2.69e-10 s                 ; Yes                       ; Yes                       ;
+; data_led[3]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 4.05e-08 V                   ; 2.72 V              ; -0.0349 V           ; 0.173 V                              ; 0.1 V                                ; 2.72e-10 s                  ; 2.69e-10 s                  ; Yes                        ; Yes                        ; 2.62 V                      ; 4.05e-08 V                  ; 2.72 V             ; -0.0349 V          ; 0.173 V                             ; 0.1 V                               ; 2.72e-10 s                 ; 2.69e-10 s                 ; Yes                       ; Yes                       ;
+; data_led[4]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 2.74e-08 V                   ; 2.71 V              ; -0.0317 V           ; 0.148 V                              ; 0.064 V                              ; 4.51e-10 s                  ; 4.15e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 2.74e-08 V                  ; 2.71 V             ; -0.0317 V          ; 0.148 V                             ; 0.064 V                             ; 4.51e-10 s                 ; 4.15e-10 s                 ; No                        ; Yes                       ;
+; data_led[5]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 2.74e-08 V                   ; 2.64 V              ; -0.0117 V           ; 0.202 V                              ; 0.176 V                              ; 2.38e-09 s                  ; 2.22e-09 s                  ; No                         ; Yes                        ; 2.62 V                      ; 2.74e-08 V                  ; 2.64 V             ; -0.0117 V          ; 0.202 V                             ; 0.176 V                             ; 2.38e-09 s                 ; 2.22e-09 s                 ; No                        ; Yes                       ;
+; data_led[6]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 2.74e-08 V                   ; 2.73 V              ; -0.0384 V           ; 0.169 V                              ; 0.089 V                              ; 2.7e-10 s                   ; 2.62e-10 s                  ; Yes                        ; Yes                        ; 2.62 V                      ; 2.74e-08 V                  ; 2.73 V             ; -0.0384 V          ; 0.169 V                             ; 0.089 V                             ; 2.7e-10 s                  ; 2.62e-10 s                 ; Yes                       ; Yes                       ;
+; data_led[7]   ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 2.74e-08 V                   ; 2.64 V              ; -0.0117 V           ; 0.202 V                              ; 0.176 V                              ; 2.38e-09 s                  ; 2.22e-09 s                  ; No                         ; Yes                        ; 2.62 V                      ; 2.74e-08 V                  ; 2.64 V             ; -0.0117 V          ; 0.202 V                             ; 0.176 V                             ; 2.38e-09 s                 ; 2.22e-09 s                 ; No                        ; Yes                       ;
+; CTRL          ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 4.05e-08 V                   ; 2.72 V              ; -0.0349 V           ; 0.173 V                              ; 0.1 V                                ; 2.72e-10 s                  ; 2.69e-10 s                  ; Yes                        ; Yes                        ; 2.62 V                      ; 4.05e-08 V                  ; 2.72 V             ; -0.0349 V          ; 0.173 V                             ; 0.1 V                               ; 2.72e-10 s                 ; 2.69e-10 s                 ; Yes                       ; Yes                       ;
+; ~ALTERA_DCLK~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 2.22e-08 V                   ; 2.74 V              ; -0.06 V             ; 0.158 V                              ; 0.08 V                               ; 2.68e-10 s                  ; 2.19e-10 s                  ; Yes                        ; Yes                        ; 2.62 V                      ; 2.22e-08 V                  ; 2.74 V             ; -0.06 V            ; 0.158 V                             ; 0.08 V                              ; 2.68e-10 s                 ; 2.19e-10 s                 ; Yes                       ; Yes                       ;
+; ~ALTERA_nCEO~ ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 3.54e-08 V                   ; 2.7 V               ; -0.00943 V          ; 0.276 V                              ; 0.035 V                              ; 3.19e-10 s                  ; 4.99e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 3.54e-08 V                  ; 2.7 V              ; -0.00943 V         ; 0.276 V                             ; 0.035 V                             ; 3.19e-10 s                 ; 4.99e-10 s                 ; No                        ; Yes                       ;
++---------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
+
+
++-------------------------------------------------------------------+
+; Setup Transfers                                                   ;
++------------+----------+----------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+----------+----------+----------+----------+
+; DCLK       ; DCLK     ; 4999     ; 0        ; 0        ; 0        ;
++------------+----------+----------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
++-------------------------------------------------------------------+
+; Hold Transfers                                                    ;
++------------+----------+----------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+----------+----------+----------+----------+
+; DCLK       ; DCLK     ; 4999     ; 0        ; 0        ; 0        ;
++------------+----------+----------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
+---------------
+; Report TCCS ;
+---------------
+No dedicated SERDES Transmitter circuitry present in device or used in design
+
+
+---------------
+; Report RSKM ;
+---------------
+No non-DPA dedicated SERDES Receiver circuitry present in device or used in design
+
+
++------------------------------------------------+
+; Unconstrained Paths Summary                    ;
++---------------------------------+-------+------+
+; Property                        ; Setup ; Hold ;
++---------------------------------+-------+------+
+; Illegal Clocks                  ; 0     ; 0    ;
+; Unconstrained Clocks            ; 1     ; 1    ;
+; Unconstrained Input Ports       ; 3     ; 3    ;
+; Unconstrained Input Port Paths  ; 141   ; 141  ;
+; Unconstrained Output Ports      ; 10    ; 10   ;
+; Unconstrained Output Port Paths ; 13    ; 13   ;
++---------------------------------+-------+------+
+
+
++-----------------------------------------------------+
+; Clock Status Summary                                ;
++----------------------+-------+------+---------------+
+; Target               ; Clock ; Type ; Status        ;
++----------------------+-------+------+---------------+
+; DCLK                 ; DCLK  ; Base ; Constrained   ;
+; current_task.reading ;       ; Base ; Unconstrained ;
++----------------------+-------+------+---------------+
+
+
++---------------------------------------------------------------------------------------------------+
+; Unconstrained Input Ports                                                                         ;
++------------+--------------------------------------------------------------------------------------+
+; Input Port ; Comment                                                                              ;
++------------+--------------------------------------------------------------------------------------+
+; CTRL       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; btn        ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; rstn       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
++------------+--------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Unconstrained Output Ports                                                                          ;
++-------------+---------------------------------------------------------------------------------------+
+; Output Port ; Comment                                                                               ;
++-------------+---------------------------------------------------------------------------------------+
+; CTRL        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; data_led[0] ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; data_led[1] ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; data_led[2] ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; data_led[3] ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; data_led[4] ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; data_led[5] ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; data_led[6] ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; data_led[7] ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; read_err    ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
++-------------+---------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------+
+; Unconstrained Input Ports                                                                         ;
++------------+--------------------------------------------------------------------------------------+
+; Input Port ; Comment                                                                              ;
++------------+--------------------------------------------------------------------------------------+
+; CTRL       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; btn        ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; rstn       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
++------------+--------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Unconstrained Output Ports                                                                          ;
++-------------+---------------------------------------------------------------------------------------+
+; Output Port ; Comment                                                                               ;
++-------------+---------------------------------------------------------------------------------------+
+; CTRL        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; data_led[0] ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; data_led[1] ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; data_led[2] ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; data_led[3] ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; data_led[4] ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; data_led[5] ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; data_led[6] ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; data_led[7] ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; read_err    ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
++-------------+---------------------------------------------------------------------------------------+
+
+
++--------------------------+
+; Timing Analyzer Messages ;
++--------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Timing Analyzer
+    Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+    Info: Processing started: Wed Jan 22 11:38:51 2020
+Info: Command: quartus_sta ALPIDE_test -c ALPIDE_test
+Info: qsta_default_script.tcl version: #1
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Info (21077): Low junction temperature is 0 degrees C
+Info (21077): High junction temperature is 85 degrees C
+Warning (335093): The Timing Analyzer is analyzing 1 combinational loops as latches. For more details, run the Check Timing command in the Timing Analyzer or view the "User-Specified and Inferred Latches" table in the Analysis & Synthesis report.
+Info (332104): Reading SDC File: 'output_files/top.sdc'
+Warning (332060): Node: current_task.reading was determined to be a clock but was found without an associated clock assignment.
+    Info (13166): Latch pin_in is being clocked by current_task.reading
+Warning (332056): PLL cross checking found inconsistent PLL clock settings:
+    Warning (332056): Node: PH90_inst|altpll_component|auto_generated|pll1|clk[0] was found missing 1 generated clock that corresponds to a base clock with a period of: 25.000
+    Warning (332056): Node: PH90_inst|altpll_component|auto_generated|pll1|clk[1] was found missing 1 generated clock that corresponds to a base clock with a period of: 25.000
+Critical Warning (332168): The following clock transfers have no clock uncertainty assignment. For more accurate results, apply clock uncertainty assignments or use the derive_clock_uncertainty command.
+    Critical Warning (332169): From DCLK (Rise) to DCLK (Rise) (setup and hold)
+Info: Found TIMING_ANALYZER_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
+Info: Analyzing Slow 1200mV 85C Model
+Info (332146): Worst-case setup slack is 193.729
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):   193.729               0.000 DCLK 
+Info (332146): Worst-case hold slack is 0.274
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     0.274               0.000 DCLK 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is 4.910
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     4.910               0.000 DCLK 
+Info (332114): Report Metastability: Found 8 synchronizer chains.
+    Info (332114): The design MTBF is not calculated because there are no specified synchronizers in the design.
+    Info (332114): Number of Synchronizer Chains Found: 8
+    Info (332114): Shortest Synchronizer Chain: 3 Registers
+    Info (332114): Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
+    Info (332114): Worst Case Available Settling Time: 395.790 ns
+    Info (332114): 
+Info: Analyzing Slow 1200mV 0C Model
+Info (334003): Started post-fitting delay annotation
+Info (334004): Delay annotation completed successfully
+Warning (332060): Node: current_task.reading was determined to be a clock but was found without an associated clock assignment.
+    Info (13166): Latch pin_in is being clocked by current_task.reading
+Warning (332056): PLL cross checking found inconsistent PLL clock settings:
+    Warning (332056): Node: PH90_inst|altpll_component|auto_generated|pll1|clk[0] was found missing 1 generated clock that corresponds to a base clock with a period of: 25.000
+    Warning (332056): Node: PH90_inst|altpll_component|auto_generated|pll1|clk[1] was found missing 1 generated clock that corresponds to a base clock with a period of: 25.000
+Critical Warning (332168): The following clock transfers have no clock uncertainty assignment. For more accurate results, apply clock uncertainty assignments or use the derive_clock_uncertainty command.
+    Critical Warning (332169): From DCLK (Rise) to DCLK (Rise) (setup and hold)
+Info (332146): Worst-case setup slack is 194.339
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):   194.339               0.000 DCLK 
+Info (332146): Worst-case hold slack is 0.249
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     0.249               0.000 DCLK 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is 4.921
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     4.921               0.000 DCLK 
+Info (332114): Report Metastability: Found 8 synchronizer chains.
+    Info (332114): The design MTBF is not calculated because there are no specified synchronizers in the design.
+    Info (332114): Number of Synchronizer Chains Found: 8
+    Info (332114): Shortest Synchronizer Chain: 3 Registers
+    Info (332114): Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
+    Info (332114): Worst Case Available Settling Time: 396.259 ns
+    Info (332114): 
+Info: Analyzing Fast 1200mV 0C Model
+Warning (332060): Node: current_task.reading was determined to be a clock but was found without an associated clock assignment.
+    Info (13166): Latch pin_in is being clocked by current_task.reading
+Warning (332056): PLL cross checking found inconsistent PLL clock settings:
+    Warning (332056): Node: PH90_inst|altpll_component|auto_generated|pll1|clk[0] was found missing 1 generated clock that corresponds to a base clock with a period of: 25.000
+    Warning (332056): Node: PH90_inst|altpll_component|auto_generated|pll1|clk[1] was found missing 1 generated clock that corresponds to a base clock with a period of: 25.000
+Critical Warning (332168): The following clock transfers have no clock uncertainty assignment. For more accurate results, apply clock uncertainty assignments or use the derive_clock_uncertainty command.
+    Critical Warning (332169): From DCLK (Rise) to DCLK (Rise) (setup and hold)
+Info (332146): Worst-case setup slack is 196.390
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):   196.390               0.000 DCLK 
+Info (332146): Worst-case hold slack is 0.134
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     0.134               0.000 DCLK 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is 5.000
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     5.000               0.000 DCLK 
+Info (332114): Report Metastability: Found 8 synchronizer chains.
+    Info (332114): The design MTBF is not calculated because there are no specified synchronizers in the design.
+    Info (332114): Number of Synchronizer Chains Found: 8
+    Info (332114): Shortest Synchronizer Chain: 3 Registers
+    Info (332114): Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
+    Info (332114): Worst Case Available Settling Time: 397.622 ns
+    Info (332114): 
+Info (332102): Design is not fully constrained for setup requirements
+Info (332102): Design is not fully constrained for hold requirements
+Info: Quartus Prime Timing Analyzer was successful. 0 errors, 20 warnings
+    Info: Peak virtual memory: 4761 megabytes
+    Info: Processing ended: Wed Jan 22 11:38:54 2020
+    Info: Elapsed time: 00:00:03
+    Info: Total CPU time (on all processors): 00:00:02
+
+

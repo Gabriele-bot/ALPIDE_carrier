@@ -1,0 +1,35 @@
+
+State Machine - |ALPIDE_Test|rr_state
+Name rr_state.s10 rr_state.s9 rr_state.s8 rr_state.s7 rr_state.s6 rr_state.s5 rr_state.s4 rr_state.s3 rr_state.s2 rr_state.s1 rr_state.s0 
+rr_state.s0 0 0 0 0 0 0 0 0 0 0 0 
+rr_state.s1 0 0 0 0 0 0 0 0 0 1 1 
+rr_state.s2 0 0 0 0 0 0 0 0 1 0 1 
+rr_state.s3 0 0 0 0 0 0 0 1 0 0 1 
+rr_state.s4 0 0 0 0 0 0 1 0 0 0 1 
+rr_state.s5 0 0 0 0 0 1 0 0 0 0 1 
+rr_state.s6 0 0 0 0 1 0 0 0 0 0 1 
+rr_state.s7 0 0 0 1 0 0 0 0 0 0 1 
+rr_state.s8 0 0 1 0 0 0 0 0 0 0 1 
+rr_state.s9 0 1 0 0 0 0 0 0 0 0 1 
+rr_state.s10 1 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |ALPIDE_Test|current_task
+Name current_task.idling_s current_task.reading current_task.sending current_task.idling_m 
+current_task.idling_m 0 0 0 0 
+current_task.sending 0 0 1 1 
+current_task.reading 0 1 0 1 
+current_task.idling_s 1 0 0 1 
+
+State Machine - |ALPIDE_Test|Write_byte:Write_FSM|state_fsm
+Name state_fsm.s_high state_fsm.s_send state_fsm.s_low state_fsm.s_idle 
+state_fsm.s_idle 0 0 0 0 
+state_fsm.s_low 0 0 1 1 
+state_fsm.s_send 0 1 0 1 
+state_fsm.s_high 1 0 0 1 
+
+State Machine - |ALPIDE_Test|read_byte:Read_FSM|state_fsm
+Name state_fsm.s_error state_fsm.s_high state_fsm.s_read state_fsm.s_wait_low 
+state_fsm.s_wait_low 0 0 0 0 
+state_fsm.s_read 0 0 1 1 
+state_fsm.s_high 0 1 0 1 
+state_fsm.s_error 1 0 0 1 
