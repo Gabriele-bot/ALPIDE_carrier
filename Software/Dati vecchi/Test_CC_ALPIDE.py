@@ -144,6 +144,7 @@ if __name__ == "__main__":
 			send_cmd(clear_err)
 		elif ip == "ro":
 			if initialized == True:
+				Total_readout_time=time.time()
 				send_cmd(read_out)
 				while True:
 					try:
@@ -165,11 +166,18 @@ if __name__ == "__main__":
 					except KeyboardInterrupt:
 						hw.getNode("CSR.ctrl.ro_stop").write(0b1)
 						hw.dispatch()
-        					break
-				time.sleep(0.005)
+						Total_readout_time=time.time()-Total_readout_time
+						break
+				
+				
+				time.sleep(0.001)
 				hw.getNode("CSR.ctrl.ro_stop").write(0b0)
 				hw.dispatch()
-				print "\n %d data of %d is/are corrupted" % (err_cnt,byte_cnt)
+				print """
+				%d data of %d is/are corrupted
+				Readout_time = %fs
+				Throughput[Mbps] = %f
+				"""	% (err_cnt, byte_cnt, Total_readout_time, byte_cnt*24/(Total_readout_time*1000000))			
 				cnt = 0
 				byte_cnt = 0
 				err_cnt = 0

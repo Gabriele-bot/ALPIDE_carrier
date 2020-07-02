@@ -2,11 +2,20 @@ import uhal
 import time
 from subprocess import call
 import numpy as np
+import math
 import matplotlib.pyplot as plt
 from matplotlib import cm
 from matplotlib.colors import ListedColormap, LinearSegmentedColormap
 import matplotlib.colors as colors
 import matplotlib.cbook as cbook
+from scipy.optimize import curve_fit
+from scipy import special
+
+def fit_err_func(x, mu, sigma):
+	return 0.5*(1+special.erf((x-mu)/(math.sqrt(2)*sigma)))
+
+def linear_func(x, a, b):
+	return a+b*x
 
 def send_cmd(cmd):	#send command to perform into FPGA
 	hw.getNode("CSR.ctrl.op_sw").write(cmd)
@@ -62,6 +71,129 @@ def send_broadcast(CMD):	#send broadcast command
 	hw.getNode("cmd_addr.OP_command").write(CMD)
 	hw.dispatch()
 	send_cmd(write_cmd)
+
+def SP_thr_test(x,y):	#single pixel threshold test
+	Q_inj_arr=[]
+	N_fired_arr=[]
+	N_fired_err_arr=[]
+	file = open("SP_Threshold_test.txt", "w")
+	enablePulserAllPixels(False)	#enable pulse on all pixels
+	maskAllPixels(True)	#mask all pixels
+	maskPixel(x, y, False)	#unmask selected pixel
+	enablePulserPixel(x, y, True)
+	writeregister(0x0004, 0x0060)  # Analog pulse, automatic strobe after pulse command
+	writeregister(0x0606, 0x0000)  # Set PULSEL to 0.37V (DAC offset)
+	for k in range (120):
+		pulse_test_array = []  # initialize empty array
+		Q_inj = ((k)*7.06e-3*230e-18)/(1.602e-19)
+		writeregister(0x0605,k)  # Set PULSEH to k*7.06 mV
+		time.sleep(0.0001)
+		prf = thr_test() #pixel respond fraction
+		mean = prf
+		std = math.sqrt(prf*(1-prf)/40)
+		file.write("%f	%f	0	%f\n" % (Q_inj, mean, std))
+	file.close()
+	writeregister(0x0004, 0x0000)
+	maskAllPixels(False)	#unmask all pixels
+	data = np.loadtxt('SP_Threshold_test.txt')
+	charge = [row[0] for row in data]
+	pixel_react_times  = [row[1] for row in data] 
+	yerror = [row[3] for row in data]
+	fit_error = [max(i,0.0029) for i in yerror]
+	popt, pcov = curve_fit(fit_err_func, charge, pixel_react_times, p0=[750, 15], sigma=fit_error, absolute_sigma=True, bounds=([300,5], [1200,60]))
+	print '''
+Threshold=%f +/- %f
+Electron noise=%f +/- %f
+	''' % (popt[0],pcov[0,0],popt[1],pcov[1,1])
+
+def thr_test():
+	hitmap_matrix = np.zeros((512, 1024))
+	region = 0
+	n_events = 0
+	writeregister(0x0001, mode_cfg)  # mode cotrol register configuration (see above)
+	writeregister(0x0005, 0x0003)  # STROBE duration 3+1 clk clycles
+	writeregister(0x0006, 0x0000)  # gap between 2 STROBES
+	writeregister(0x0007, 0x0005)  # delay from PULSE to STROBE 5+1 clk cycles
+	writeregister(0x0008, 0x0009)  # PULSE duration 9+1 clk cylces
+	for i in range(40):
+		send_broadcast(0x78)  # send PULSE command
+	send_cmd(read_out)
+	for i in range(10):
+		time.sleep(0.0002)
+		mem_readable = hw.getNode("CSR.status.mem_readable").read()
+		hw.dispatch()
+		if mem_readable:
+			FIFO = hw.getNode("DATA.ro_data").readBlock(0x200)
+			hw.dispatch()
+			for word in FIFO:
+				if (word & 0xF00000) == 0xA00000:  # chip header
+					plane_id = (word & 0x0F0000) >> 16
+					bc = (word & 0x00FF00) >> 8
+				elif (word & 0xF00000) == 0xB00000:  # chip trailer
+					ro_flags = (word & 0x0F0000) >> 16
+				elif (word & 0xF00000) == 0xE00000:  # chip empty
+					plane_id = (word & 0x0F0000) >> 16
+					bc = (word & 0x00FF00) >> 8
+				elif (word & 0xE00000) == 0xC00000:  # reagion header
+					region = (word >> 16) & 0x1F
+				elif (word & 0xC00000) == 0x400000:  # short
+					word_shifted = word >> 8
+					x = region << 5 | word_shifted >> 9 & 0x1E | (
+								word_shifted ^ word_shifted >> 1) & 0x1  # region*32 + encoderid*2 + addr correction
+					y = word_shifted >> 1 & 0x1FF  # addr/2
+					hitmap_matrix[y, x] = hitmap_matrix[y, x] + 1
+					n_events = n_events + 1
+				elif (word & 0xC00000) == 0x000000:  # long
+					word_shifted = word >> 8
+					address = word_shifted & 0x3ff
+					x = region << 5 | word_shifted >> 9 & 0x1E | (word_shifted ^ word_shifted >> 1) & 0x1
+					y = word_shifted >> 1 & 0x1FF
+					hitmap_matrix[y, x] = hitmap_matrix[y, x] + 1
+					hitmap = word & 0x7F
+					n_events = n_events + 1
+					for i in range(7):
+						hitmap_shifted = hitmap >> i
+						if (hitmap_shifted & 0x1) == 0x1:
+							addressmap = address + i + 1
+							xhm = region << 5 | word_shifted >> 9 & 0x1E | (
+										addressmap ^ addressmap >> 1) & 0x1  # x hit map
+							yhm = addressmap >> 1  # y hit map
+							hitmap_matrix[yhm, xhm] = hitmap_matrix[yhm, xhm] + 1
+							n_events = n_events + 1
+			# elif word == 0xFFFFFF:	#idle
+			# elif word == 0xF1FFFF:	#busy on
+			# elif word == 0xF0FFFF:	#busy off
+			# else:
+			hw.getNode("CSR.ctrl.mem_read").write(0b1)
+			hw.getNode("CSR.ctrl.mem_read").write(0b0)
+			hw.dispatch()
+	hw.getNode("CSR.ctrl.ro_stop").write(0b1)
+	hw.dispatch()
+	#save_hitmap(hitmap_matrix, 'PulseHitmap.png')
+	fired_fraction = float(n_events) / 40
+	string_1 = 'Pixel x,y responds %f' % (fired_fraction * 100)
+	string = string_1 + chr(37) + ' of the times\n'
+	print string
+	writeregister(0x0007, 0x0000)
+	writeregister(0x0008, 0x0000)
+	get_status()
+	if err_slave:  # more then 51 clk cycles driven by slave
+		print
+		"Slave drive on time out"
+	if err_idle:
+		print
+		"high signal not detected on idle phase"
+	if err_read:
+		print
+		"stop bit not detected"
+	if err_chip_id:
+		print
+		"different chip ID recieved"
+	time.sleep(0.001)
+	hw.getNode("CSR.ctrl.ro_stop").write(0b0)
+	hw.dispatch()
+	return fired_fraction
+
 
 def pulse_test(mode_cfg):
 	hitmap_matrix = np.zeros((512, 1024))
@@ -665,6 +797,9 @@ if __name__ == "__main__":
 			en = input("Enable or disable pulse on selected pixel(True or False)\n")
 			enablePulserPixel(x,y,en)
 		elif ip == "spt":	#start pulse test
+			raw_data = []
+			writeregister(0x0606, 0x0000)  # Set PULSEL to 0.37V (DAC offset)
+			writeregister(0x0605, 0x00FF)  # Set PULSEH to 1.8V
 			Pt = raw_input("Pulse type Analog(a) or Digital(d)\n")
 			if Pt == "a":
 				writeregister(0x0004,0x0060)	#Analog pulse, automatic strobe after pulse command
@@ -673,8 +808,54 @@ if __name__ == "__main__":
 			else:
 				print "Bad input"
 				break
-			pixel_react=pulse_test(mode_cfg)
+			writeregister(0x0001, mode_cfg)  # mode cotrol register configuration (see above)
+			writeregister(0x0005, 0x0005)	#STROBE duration 5 clk clycles
+			writeregister(0x0006, 0x0000)	#gap between 2 STROBES
+			writeregister(0x0007, 0x0008)	#delay from PULSE to STROBE 8+1 clk cycles
+			writeregister(0x0008, 0x000F)	#PULSE duration 16 clk cylces
+			send_broadcast(0x78)	#send PULSE command
+			#read_out()
+			send_cmd(read_out)
+			while True:
+				try:
+					mem_readable = hw.getNode("CSR.status.mem_readable").read()
+					hw.dispatch()
+					if mem_readable:
+						FIFO = hw.getNode("DATA.ro_data").readBlock(0x200)
+						hw.dispatch()
+						raw_data.extend(FIFO)
+						hw.getNode("CSR.ctrl.mem_read").write(0b1)
+						hw.getNode("CSR.ctrl.mem_read").write(0b0)
+						hw.dispatch()
+				except KeyboardInterrupt:
+					hw.getNode("CSR.ctrl.ro_stop").write(0b1)
+					hw.dispatch()
+					np.save('Rawdata', raw_data)  # save data on npy file
+					raw_data = []
+					break
 			writeregister(0x0004, 0x0000)
+			writeregister(0x0007, 0x0000)
+			writeregister(0x0008, 0x0000)
+			get_status()
+			if err_slave:  # more then 51 clk cycles driven by slave
+				print
+				"Slave drive on time out"
+			if err_idle:
+				print
+				"high signal not detected on idle phase"
+			if err_read:
+				print
+				"stop bit not detected"
+			if err_chip_id:
+				print
+				"different chip ID recieved"
+			time.sleep(0.001)
+			hw.getNode("CSR.ctrl.ro_stop").write(0b0)
+			hw.dispatch()
+		elif ip == "sptt":
+			x = input("pixel x coordinate\n")
+			y = input("pixel y coordinate\n")
+			SP_thr_test(x,y)	
 		elif ip == "tt":  # start test threshold
 			file = open("Threshold_test.txt", "w")
 			enablePulserAllPixels(False)	#disable pulse on all pixels
