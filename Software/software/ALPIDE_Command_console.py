@@ -4,534 +4,16 @@ from subprocess import call
 import numpy as np
 import math
 import matplotlib.pyplot as plt
+import matplotlib
 from matplotlib import cm
 from matplotlib.colors import ListedColormap, LinearSegmentedColormap
 import matplotlib.colors as colors
 import matplotlib.cbook as cbook
 from scipy.optimize import curve_fit
 from scipy import special
+import ALPIDEfunctions as Afunc
 
-def fit_err_func(x, mu, sigma):
-	return 0.5*(1+special.erf((x-mu)/(math.sqrt(2)*sigma)))
-
-def linear_func(x, a, b):
-	return a+b*x
-
-def send_cmd(cmd):	#send command to perform into FPGA
-	hw.getNode("CSR.ctrl.op_sw").write(cmd)
-	hw.getNode("CSR.ctrl.strt").write(0b1)
-	#hw.dispatch()
-	#time.sleep(0.001)
-	hw.getNode("CSR.ctrl.strt").write(0b0)
-	hw.dispatch()
-
-def get_status():	#get all status of ALPIDE CARRIER
-	global powered
-	global initialized
-	global busy
-	global FIFO_full
-	global FIFO_empty
-	global FIFO_prg_full
-	global mem_readable
-	global err_slave
-	global err_idle
-	global err_read
-	global err_chip_id
-	global lkd_AC
-	global lkd_ipbus 
-	powered = hw.getNode("CSR.status.powered").read()
-	initialized = hw.getNode("CSR.status.init").read()
-	busy = hw.getNode("CSR.status.busy").read()
-	FIFO_full = hw.getNode("CSR.status.FIFO_full").read()
-	FIFO_empty = hw.getNode("CSR.status.FIFO_empty").read()
-	FIFO_prg_full = hw.getNode("CSR.status.FIFO_prog_full").read()
-	mem_readable = hw.getNode("CSR.status.mem_readable").read()
-	err_slave = hw.getNode("CSR.status.err_slave").read()
-	err_idle = hw.getNode("CSR.status.err_idle").read()
-	err_read = hw.getNode("CSR.status.err_read").read()
-	err_chip_id = hw.getNode("CSR.status.err_chip_id").read()
-	lkd_AC = hw.getNode("CSR.status.lkd_AC").read()
-	lkd_ipbus = hw.getNode("CSR.status.lkd_ipbus").read()
-	hw.dispatch()
-
-def writeregister(addr,data):	#Write ALPIDE register
-	hw.getNode("cmd_addr.WR_addr").write(addr)
-	hw.getNode("cmd_addr.WR_data").write(data)
-	hw.dispatch()
-	send_cmd(write_register)
-
-def readregister(addr):	#Read ALPIDE register
-	hw.getNode("cmd_addr.RR_addr").write(addr)
-	send_cmd(read_register)
-	reg_read = hw.getNode("DATA.reg_read").read()
-	hw.dispatch()
-	return reg_read
-
-def send_broadcast(CMD):	#send broadcast command
-	hw.getNode("cmd_addr.OP_command").write(CMD)
-	hw.dispatch()
-	send_cmd(write_cmd)
-
-def SP_thr_test(x,y):	#single pixel threshold test
-	Q_inj_arr=[]
-	N_fired_arr=[]
-	N_fired_err_arr=[]
-	file = open("SP_Threshold_test.txt", "w")
-	enablePulserAllPixels(False)	#enable pulse on all pixels
-	maskAllPixels(True)	#mask all pixels
-	maskPixel(x, y, False)	#unmask selected pixel
-	enablePulserPixel(x, y, True)
-	writeregister(0x0004, 0x0060)  # Analog pulse, automatic strobe after pulse command
-	writeregister(0x0606, 0x0000)  # Set PULSEL to 0.37V (DAC offset)
-	for k in range (120):
-		pulse_test_array = []  # initialize empty array
-		Q_inj = ((k)*7.06e-3*230e-18)/(1.602e-19)
-		writeregister(0x0605,k)  # Set PULSEH to k*7.06 mV
-		time.sleep(0.0001)
-		prf = thr_test() #pixel respond fraction
-		mean = prf
-		std = math.sqrt(prf*(1-prf)/40)
-		file.write("%f	%f	0	%f\n" % (Q_inj, mean, std))
-	file.close()
-	writeregister(0x0004, 0x0000)
-	maskAllPixels(False)	#unmask all pixels
-	data = np.loadtxt('SP_Threshold_test.txt')
-	charge = [row[0] for row in data]
-	pixel_react_times  = [row[1] for row in data] 
-	yerror = [row[3] for row in data]
-	fit_error = [max(i,0.0029) for i in yerror]
-	popt, pcov = curve_fit(fit_err_func, charge, pixel_react_times, p0=[750, 15], sigma=fit_error, absolute_sigma=True, bounds=([300,5], [1200,60]))
-	print '''
-Threshold=%f +/- %f
-Electron noise=%f +/- %f
-	''' % (popt[0],pcov[0,0],popt[1],pcov[1,1])
-
-def thr_test():
-	hitmap_matrix = np.zeros((512, 1024))
-	region = 0
-	n_events = 0
-	writeregister(0x0001, mode_cfg)  # mode cotrol register configuration (see above)
-	writeregister(0x0005, 0x0003)  # STROBE duration 3+1 clk clycles
-	writeregister(0x0006, 0x0000)  # gap between 2 STROBES
-	writeregister(0x0007, 0x0005)  # delay from PULSE to STROBE 5+1 clk cycles
-	writeregister(0x0008, 0x0009)  # PULSE duration 9+1 clk cylces
-	for i in range(40):
-		send_broadcast(0x78)  # send PULSE command
-	send_cmd(read_out)
-	for i in range(10):
-		time.sleep(0.0002)
-		mem_readable = hw.getNode("CSR.status.mem_readable").read()
-		hw.dispatch()
-		if mem_readable:
-			FIFO = hw.getNode("DATA.ro_data").readBlock(0x200)
-			hw.dispatch()
-			for word in FIFO:
-				if (word & 0xF00000) == 0xA00000:  # chip header
-					plane_id = (word & 0x0F0000) >> 16
-					bc = (word & 0x00FF00) >> 8
-				elif (word & 0xF00000) == 0xB00000:  # chip trailer
-					ro_flags = (word & 0x0F0000) >> 16
-				elif (word & 0xF00000) == 0xE00000:  # chip empty
-					plane_id = (word & 0x0F0000) >> 16
-					bc = (word & 0x00FF00) >> 8
-				elif (word & 0xE00000) == 0xC00000:  # reagion header
-					region = (word >> 16) & 0x1F
-				elif (word & 0xC00000) == 0x400000:  # short
-					word_shifted = word >> 8
-					x = region << 5 | word_shifted >> 9 & 0x1E | (
-								word_shifted ^ word_shifted >> 1) & 0x1  # region*32 + encoderid*2 + addr correction
-					y = word_shifted >> 1 & 0x1FF  # addr/2
-					hitmap_matrix[y, x] = hitmap_matrix[y, x] + 1
-					n_events = n_events + 1
-				elif (word & 0xC00000) == 0x000000:  # long
-					word_shifted = word >> 8
-					address = word_shifted & 0x3ff
-					x = region << 5 | word_shifted >> 9 & 0x1E | (word_shifted ^ word_shifted >> 1) & 0x1
-					y = word_shifted >> 1 & 0x1FF
-					hitmap_matrix[y, x] = hitmap_matrix[y, x] + 1
-					hitmap = word & 0x7F
-					n_events = n_events + 1
-					for i in range(7):
-						hitmap_shifted = hitmap >> i
-						if (hitmap_shifted & 0x1) == 0x1:
-							addressmap = address + i + 1
-							xhm = region << 5 | word_shifted >> 9 & 0x1E | (
-										addressmap ^ addressmap >> 1) & 0x1  # x hit map
-							yhm = addressmap >> 1  # y hit map
-							hitmap_matrix[yhm, xhm] = hitmap_matrix[yhm, xhm] + 1
-							n_events = n_events + 1
-			# elif word == 0xFFFFFF:	#idle
-			# elif word == 0xF1FFFF:	#busy on
-			# elif word == 0xF0FFFF:	#busy off
-			# else:
-			hw.getNode("CSR.ctrl.mem_read").write(0b1)
-			hw.getNode("CSR.ctrl.mem_read").write(0b0)
-			hw.dispatch()
-	hw.getNode("CSR.ctrl.ro_stop").write(0b1)
-	hw.dispatch()
-	#save_hitmap(hitmap_matrix, 'PulseHitmap.png')
-	fired_fraction = float(n_events) / 40
-	string_1 = 'Pixel x,y responds %f' % (fired_fraction * 100)
-	string = string_1 + chr(37) + ' of the times\n'
-	print string
-	writeregister(0x0007, 0x0000)
-	writeregister(0x0008, 0x0000)
-	get_status()
-	if err_slave:  # more then 51 clk cycles driven by slave
-		print
-		"Slave drive on time out"
-	if err_idle:
-		print
-		"high signal not detected on idle phase"
-	if err_read:
-		print
-		"stop bit not detected"
-	if err_chip_id:
-		print
-		"different chip ID recieved"
-	time.sleep(0.001)
-	hw.getNode("CSR.ctrl.ro_stop").write(0b0)
-	hw.dispatch()
-	return fired_fraction
-
-
-def pulse_test(mode_cfg):
-	hitmap_matrix = np.zeros((512, 1024))
-	region = 0
-	n_events = 0
-	writeregister(0x0001, mode_cfg)  # mode cotrol register configuration (see above)
-	writeregister(0x0005, 0x0002)  # STROBE duration 3 clk clycles
-	writeregister(0x0006, 0x0000)  # gap between 2 STROBES
-	writeregister(0x0007, 0x0008)  # delay from PULSE to STROBE 8+1 clk cycles
-	writeregister(0x0008, 0x000E)  # PULSE duration 12 clk cylces
-	send_broadcast(0x78)  # send PULSE command
-	send_cmd(read_out)
-	for i in range(800):
-		time.sleep(0.00001)
-		mem_readable = hw.getNode("CSR.status.mem_readable").read()
-		hw.dispatch()
-		if mem_readable:
-			FIFO = hw.getNode("DATA.ro_data").readBlock(0x200)
-			hw.dispatch()
-			for word in FIFO:
-				if (word & 0xF00000) == 0xA00000:  # chip header
-					plane_id = (word & 0x0F0000) >> 16
-					bc = (word & 0x00FF00) >> 8
-				elif (word & 0xF00000) == 0xB00000:  # chip trailer
-					ro_flags = (word & 0x0F0000) >> 16
-				elif (word & 0xF00000) == 0xE00000:  # chip empty
-					plane_id = (word & 0x0F0000) >> 16
-					bc = (word & 0x00FF00) >> 8
-				elif (word & 0xE00000) == 0xC00000:  # reagion header
-					region = (word >> 16) & 0x1F
-				elif (word & 0xC00000) == 0x400000:  # short
-					word_shifted = word >> 8
-					x = region << 5 | word_shifted >> 9 & 0x1E | (
-								word_shifted ^ word_shifted >> 1) & 0x1  # region*32 + encoderid*2 + addr correction
-					y = word_shifted >> 1 & 0x1FF  # addr/2
-					hitmap_matrix[y, x] = hitmap_matrix[y, x] + 1
-					n_events = n_events + 1
-				elif (word & 0xC00000) == 0x000000:  # long
-					word_shifted = word >> 8
-					address = word_shifted & 0x3ff
-					x = region << 5 | word_shifted >> 9 & 0x1E | (word_shifted ^ word_shifted >> 1) & 0x1
-					y = word_shifted >> 1 & 0x1FF
-					hitmap_matrix[y, x] = hitmap_matrix[y, x] + 1
-					hitmap = word & 0x7F
-					n_events = n_events + 1
-					for i in range(7):
-						hitmap_shifted = hitmap >> i
-						if (hitmap_shifted & 0x1) == 0x1:
-							addressmap = address + i + 1
-							xhm = region << 5 | word_shifted >> 9 & 0x1E | (
-										addressmap ^ addressmap >> 1) & 0x1  # x hit map
-							yhm = addressmap >> 1  # y hit map
-							hitmap_matrix[yhm, xhm] = hitmap_matrix[yhm, xhm] + 1
-							n_events = n_events + 1
-			# elif word == 0xFFFFFF:	#idle
-			# elif word == 0xF1FFFF:	#busy on
-			# elif word == 0xF0FFFF:	#busy off
-			# else:
-			hw.getNode("CSR.ctrl.mem_read").write(0b1)
-			hw.getNode("CSR.ctrl.mem_read").write(0b0)
-			hw.dispatch()
-	hw.getNode("CSR.ctrl.ro_stop").write(0b1)
-	hw.dispatch()
-	#save_hitmap(hitmap_matrix, 'PulseHitmap.png')
-	pixel_fraction = float(n_events) / 200
-	string_1 = 'Pulse test, %f' % (pixel_fraction * 100)
-	string = string_1 + chr(37) + ' pixels respond\n'
-	#print string
-	writeregister(0x0007, 0x0000)
-	writeregister(0x0008, 0x0000)
-	get_status()
-	if err_slave:  # more then 51 clk cycles driven by slave
-		print
-		"Slave drive on time out"
-	if err_idle:
-		print
-		"high signal not detected on idle phase"
-	if err_read:
-		print
-		"stop bit not detected"
-	if err_chip_id:
-		print
-		"different chip ID recieved"
-	time.sleep(0.001)
-	hw.getNode("CSR.ctrl.ro_stop").write(0b0)
-	hw.dispatch()
-	return pixel_fraction
-
-def decode_data(): #decode data and save as txt file DecodedData.txt
-	n_events = 0
-	rawdata = np.load('Rawdata.npy')
-	file = open("DecodedData.txt", "w")
-	hitmap_matrix  = np.zeros((512,1024))
-	for word in rawdata:
-		if (word & 0xF00000) == 0xA00000:  # chip header
-			plane_id = (word & 0x0F0000) >> 16
-			bc = (word & 0x00FF00) >> 8
-			file.write("CHIP HEADER: plane=%d\n" % plane_id)
-			file.write("Bunch counter=%d\n" % bc)
-		elif (word & 0xF00000) == 0xB00000:  # chip trailer
-			ro_flags = (word & 0x0F0000) >> 16
-			file.write("CHIP TRAILER: flags=0x%x\n\n" % ro_flags)
-		elif (word & 0xF00000) == 0xE00000:  # chip empty
-			plane_id = (word & 0x0F0000) >> 16
-			bc = (word & 0x00FF00) >> 8
-			file.write("CHIP EMPTY: plane=%d\n" % plane_id)
-			file.write("Bunch counter=%d\n\n" % bc)
-		elif (word & 0xE00000) == 0xC00000:  # reagion header
-			region= (word>>16) & 0x1F
-			file.write("REAGION_HEADER: region=%d\n" % region)
-		elif (word & 0xC00000) == 0x400000:  # short
-			word_shifted = word>>8
-			x = region<<5 | word_shifted>>9 & 0x1E | (word_shifted ^ word_shifted>>1) & 0x1	#region*32 + encoderid*2 + addr correction
-			y = word_shifted>>1 & 0x1FF	#addr/2
-			hitmap_matrix[y,x] = hitmap_matrix[y,x] + 1
-			file.write("DATA_SHORT: \nx=%d , y=%d \n" % (x, y))
-			n_events = n_events +1
-		elif (word & 0xC00000) == 0x000000:  # long
-			word_shifted = word>>8
-			address = word_shifted & 0x3ff
-			x = region<<5 | word_shifted>>9 & 0x1E | (word_shifted ^ word_shifted>>1) & 0x1
-			y = word_shifted>>1 & 0x1FF
-			hitmap_matrix[y,x] = hitmap_matrix[y,x] + 1
-			hitmap = word & 0x7F
-			file.write("DATA LONG: \nx=%d , y=%d \n" % (x, y))
-			n_events = n_events + 1
-			for i in range(7):
-				hitmap_shifted = hitmap>>i
-				if (hitmap_shifted & 0x1) == 0x1:
-					addressmap = address + i + 1
-					xhm = region<<5 | word_shifted>>9 & 0x1E | (addressmap ^ addressmap>>1) & 0x1	#x hit map
-					yhm = addressmap>>1	#y hit map
-					hitmap_matrix[yhm, xhm] = hitmap_matrix[yhm, xhm] + 1
-					file.write("x=%d , y=%d \n" % (xhm, yhm))
-					n_events = n_events + 1
-		#elif word == 0xFFFFFF:	#idle
-		elif word == 0xF1FFFF:	#busy on
-			file.write("BUSY ON\n")
-		elif word == 0xF0FFFF:	#busy off
-			file.write("BUSY OFF\n")
-		# else:
-	file.write("Total events detected=%d \n" % n_events)
-	file.close()
-	print "File saved as DecodedData.txt"
-
-def print_error():
-	get_status()
-	if err_slave:  # more then 51 clk cycles driven by slave
-		print
-		"Slave drive on time out"
-	if err_idle:
-		print
-		"high signal not detected on idle phase"
-	if err_read:
-		print
-		"stop bit not detected"
-	if err_chip_id:
-		print
-		"different chip ID recieved"
-
-def save_hitmap(matrix, file_name):
-	fig, ax = plt.subplots()
-	colormap = cm.get_cmap('jet')
-	psm = ax.pcolormesh(matrix, cmap=colormap, vmin=0, vmax=np.max(matrix))
-	cbar=plt.colorbar(psm, shrink=0.5, ax=ax)
-	cbar.set_label("N. hits")
-	plt.axis('scaled')
-	ax.set(xlim=(0, 1023), ylim=(0, 511))
-	plt.xlabel("Column")
-	plt.ylabel("Row")
-	plt.savefig(file_name, dpi=1600)
-
-def save_hitmap_logscale(matrix, file_name):
-	fig, ax = plt.subplots()
-	colormap = cm.get_cmap('jet')
-	psm = ax.pcolormesh(matrix, cmap=colormap, norm=colors.LogNorm(), vmin=1, vmax=np.max(matrix))
-	cbar=plt.colorbar(psm, shrink=0.5, ax=ax)
-	cbar.set_label("N. hits")
-	plt.axis('scaled')
-	ax.set(xlim=(0, 1023), ylim=(0, 511))
-	plt.xlabel("Column")
-	plt.ylabel("Row")
-	plt.savefig(file_name, dpi=1600)
-
-def ADC_calibration():
-	writeregister(0x0610, 0x0001)  # calibration mode and AVSS ADC input discriminator = 0
-	writeregister(0x0000, 0xFF20)  # mesure command
-	time.sleep(0.01)
-	val1 = readregister(0x0612)  # store value with dis = 0
-	writeregister(0x0610, 0x0101)  # calibration mode and AVSS ADC input discriminator = 1
-	writeregister(0x0000, 0xFF20)  # mesure command
-	time.sleep(0.01)
-	val2 = readregister(0x0612)  # store value with dis = 1
-	if val1 > val2 :
-		writeregister(0x0610, 0x001D)  # calibration mode and Bandgap ADC input disc=0 HBT=0
-		writeregister(0x0000, 0xFF20)  # mesure command
-		time.sleep(0.01)
-		val3 = readregister(0x0612)  # store value with HBT = 0
-		writeregister(0x0610, 0x081D)  # calibration mode and Bandgap ADC input disc=0 HBT=1
-		writeregister(0x0000, 0xFF20)  # mesure command
-		time.sleep(0.01)
-		val4 = readregister(0x0612)  # store value with dis = 1
-		if val3 > val4:
-			writeregister(0x0610,0x0001)	#cal mode dis=0 HBT=0
-			ADC_reg_data = 0x0000
-			print 'Discriminator=0 HBT=0\n'
-		else :
-			writeregister(0x0610, 0x0801)	#cal mode dis=0 HBT=1
-			ADC_reg_data = 0x0800
-			print 'Discriminator=0 HBT=1\n'
-	else :
-		writeregister(0x0610, 0x011D)  # calibration mode and Bandgap ADC input disc=1 HBT=0
-		writeregister(0x0000, 0xFF20)  # mesure command
-		time.sleep(0.01)
-		val3 = readregister(0x0612)  # store value with HBT = 0
-		writeregister(0x0610, 0x091D)  # calibration mode and Bandgap ADC input disc=1 HBT=1
-		writeregister(0x0000, 0xFF20)  # mesure command
-		time.sleep(0.01)
-		val4 = readregister(0x0612)  # store value with dis = 1
-		if val3 > val4:
-			writeregister(0x0610, 0x0101)	#cal mode dis=1 HBT=0
-			ADC_reg_data = 0x0100
-			print 'Discriminator=1 HBT=0\n'
-		else :
-			writeregister(0x0610, 0x0901)	#cal mode dis=1 HBT=1
-			ADC_reg_data = 0x0900
-			print 'Discriminator=1 HBT=1\n'
-	writeregister(0x0000, 0xFF20)  # mesure command, manual measure on AVSS(0mV)
-	time.sleep(0.01)
-	offset = readregister(0x0612)
-	print "ADC measure offset = %d\n" % offset
-	writeregister(0x0610,ADC_reg_data + 2)	#auto mode and whatever dis and HBT
-	return offset
-
-def V_out(ADC_VALUE, ADC_OFFSET):
-	V_mis = (ADC_VALUE - ADC_OFFSET)*2*1.068 #mV
-	return V_mis
-
-def I_out(ADC_VALUE, ADC_OFFSET):
-	I_mis = (ADC_VALUE - ADC_OFFSET)*1.068/5 #uA
-	return I_mis
-
-def measure_ADC():
-	ADC_offset = ADC_calibration()
-	writeregister(0x0000,0xFF20)	#mesure ADC
-	time.sleep(0.100)	#wait 100ms
-	ADC_VRSTP = readregister(0x61B)
-	ADC_VRSTD = readregister(0x61C)
-	ADC_AVDD= readregister(0x616)
-	ADC_VPULSEH = readregister(0x619)
-	ADC_VPULSEL = readregister(0x61A)
-	ADC_VCASN = readregister(0x617)
-	ADC_VCASP = readregister(0x618)
-	ADC_VCASN2 = readregister(0x61D)
-	ADC_ITHR = readregister(0x620)
-	ADC_TEMP = readregister(0x627)
-	VRSTP = V_out(ADC_VRSTP, ADC_offset)
-	print "VRSTP=%d mV\n" % (VRSTP - 370)
-	VRSTD = V_out(ADC_VRSTD,ADC_offset)
-	print "VRSTD=%d mV\n" % (VRSTD-370)
-	AVDD = V_out(ADC_AVDD,ADC_offset)
-	print "AVDD=%d mV\n" % AVDD
-	VPULSEH = V_out(ADC_VPULSEH, ADC_offset)
-	print "VPULSEH=%d mV\n" % (VPULSEH-370)
-	VPULSEL = V_out(ADC_VPULSEL, ADC_offset)
-	print "VPULSEL=%d mV\n" % (VPULSEL-370)
-	VCASN = V_out(ADC_VCASN, ADC_offset)
-	print "VCASN=%d mV\n" % VCASN
-	VCASP = V_out(ADC_VCASP, ADC_offset)
-	print "VCASP=%d mV\n" % VCASP
-	VCASN2 = V_out(ADC_VCASN2, ADC_offset)
-	print "VCASN2=%d mV\n" % VCASN2
-	ITHR = I_out(ADC_ITHR, ADC_offset)
-	print "(this one should be divided by 54000)ITHR=%d uA\n" % ITHR
-	#TEMP_read = (ADC_TEMP - ADC_offset)*0.147-51.5
-	TEMP_read = (ADC_TEMP - ADC_offset) * 0.147
-	print "Temperature=%d C" % TEMP_read
-
-def maskAllPixels(enable):
-  writeregister(0x0487,0x0000)
-  writeregister(0x0500,0x0002 if enable == True else 0x0000)
-  writeregister(0x0487,0xFFFF)
-  writeregister(0x0487,0x0000)
-
-
-def enablePulserAllPixels(enable):
-  writeregister(0x0487,0x0000)
-  writeregister(0x0500,0x0003 if enable == True  else 0x0001)
-  writeregister(0x0487,0xFFFF)
-  writeregister(0x0487,0x0000)
-
-
-def maskPixel(x,y,enable):
-  writeregister(0x0487,0x0000)
-  writeregister(0x0500,0x0002 if enable == True else 0x0000)
-  writeregister((x&0x3E0)<<6|0x0400|(1+(x>>4&0x1)),1<<(x&0xF))
-  writeregister((y&0x1F0)<<7|0x0404               ,1<<(y&0xF))
-  writeregister(0x0487,0x0000)
-
-def enablePulserPixel(x,y,enable):
-  writeregister(0x0487,0x0000)
-  writeregister(0x0500,0x0003 if enable == True else 0x0001)
-  writeregister(((x&0x3E0)<<6)|0x0400|(1+(x>>4&0x1)),1<<(x&0xF))
-  writeregister(((y&0x1F0)<<7)|0x0404               ,1<<(y&0xF))
-  writeregister(0x0487,0x0000)
-
-def cc_print():
-	print """
-		ALPIDE COMMAND console
-		power on			:	pon
-		power off			:	poff
-		initialize			:	init
-		change Chip_ID 			:	ci
-		write broadcast command	:	bc
-		write register			:	wr 
-		multicast write			:	mw
-		read register			:	rr
-		trigger				:	tr
-		clear all error (MASTER)	:	rerr
-		readout options				:	roop
-		continous read out			:	roc
-		raw data read out				:rord
-		decode raw data					:dd
-		pulse all pixels		:	pa
-		pulse a pixel			:	ps
-		mask all pixels			:	ma
-		mask pixel			:	ms
-		start pulse test		:	spt
-		test threshold			: tt
-		print cmd and address		:	pcmd
-		list of register addresses	:	lra
-		list of cmds			:	lcmd
-		list of data			:	ld
-		command console			:	cc
-		measure				: 	me
-		mask noisy pixels : mnp
-		exit programm			:	exit
-	"""
+matplotlib.rcParams['text.usetex'] = True
 
 #routine list
 power_off = 0b0000
@@ -542,19 +24,25 @@ read_out = 0b0101
 write_cmd = 0b1000
 write_register = 0b1001
 trigger_cmd = 0b1010
-clear_err = 0b1111	
+clear_err = 0b1111
+	
+
 
 
 if __name__ == "__main__":
 
-	#connection to the arty via ipbus
+	Afunc.init()
+	region = 0
+	Masked_pixels_list = []
+	global manager
+	global hw
 	manager = uhal.ConnectionManager("file://ALPIDE_connection.xml")
 	hw = manager.getDevice("ALPIDE")
-	hw.getNode("CSR.ctrl.strt").write(0b0)	#stet start to 0
+	hw.getNode("CSR.ctrl.strt").write(0b0)
 	hw.dispatch()
-
+	print 'Initialization comlpete'
 	
-	get_status()	#get all status
+	powered, initialized, busy, FIFO_full, FIFO_empty, FIFO_prg_full, mem_readable, err_slave, err_idle, err_read, err_chip_id, lkd_AC, lkd_ipbus = Afunc.get_status()	#get all status
 	exit = 0
 	RR_addr = 0xFFFF	#register to be read
 	OP_cmd = 0xFF	#broadcast command to send (should be a logical restriction among the possibilities)
@@ -563,23 +51,23 @@ if __name__ == "__main__":
 	WR_data = 0xFFFF	#data to be written in register
 	mode_cfg = 0x0208	#0x0208 matrix readout speed every 2 clk cycles and read out form CMU
 	#print command console
-	cc_print()
+	Afunc.cc_print()
 
 	while exit == 0:
 		
 		ip = raw_input()
 		if ip == "pon":
-			send_cmd(power_on)
-			get_status()
+			Afunc.send_cmd(power_on)
+			powered, initialized, busy, FIFO_full, FIFO_empty, FIFO_prg_full, mem_readable, err_slave, err_idle, err_read, err_chip_id, lkd_AC, lkd_ipbus = Afunc.get_status()
 
 		elif ip == "poff":
-			send_cmd(power_off)
-			get_status()
+			Afunc.send_cmd(power_off)
+			powered, initialized, busy, FIFO_full, FIFO_empty, FIFO_prg_full, mem_readable, err_slave, err_idle, err_read, err_chip_id, lkd_AC, lkd_ipbus = Afunc.get_status()
 
 		elif ip == "init":
 			if powered:
-				send_cmd(initialize)
-				get_status()
+				Afunc.send_cmd(initialize)
+				powered, initialized, busy, FIFO_full, FIFO_empty, FIFO_prg_full, mem_readable, err_slave, err_idle, err_read, err_chip_id, lkd_AC, lkd_ipbus = Afunc.get_status()
 			else:
 				print "ALPIDE not powererd"
 
@@ -591,7 +79,7 @@ if __name__ == "__main__":
 		elif ip == "bc":
 			if initialized:
 				OP_cmd = input("Write the OP command to send\n")
-				send_broadcast(OP_cmd)
+				Afunc.send_broadcast(OP_cmd)
 			else:
 				print "ALPIDE not initialized"
 
@@ -599,8 +87,8 @@ if __name__ == "__main__":
 			if initialized:
 				WR_addr = input("Write address register\n")
 				WR_data = input("Write data to write on address 0x%04x\n" % (WR_addr))
-				writeregister(WR_addr, WR_data)
-				get_status()
+				Afunc.writeregister(WR_addr, WR_data)
+				powered, initialized, busy, FIFO_full, FIFO_empty, FIFO_prg_full, mem_readable, err_slave, err_idle, err_read, err_chip_id, lkd_AC, lkd_ipbus = Afunc.get_status()
 			else:
 				print "ALPIDE not initialized"
 
@@ -610,7 +98,7 @@ if __name__ == "__main__":
 				hw.dispatch()
 				WR_addr = input("Write address register\n")
 				WR_data = input("Write data to write on address 0x%04x\n" % (WR_addr))
-				writeregister(WR_addr, WR_data)
+				Afunc.writeregister(WR_addr, WR_data)
 				hw.getNode("cmd_addr.Chip_ID").write(Chip_ID)	#reset previous CHIP ID
 				hw.dispatch()
 			else:
@@ -619,28 +107,17 @@ if __name__ == "__main__":
 		elif ip == "rr":
 			if initialized:
 				RR_addr = input("Write address register\n")
-				reg_read = readregister(RR_addr)
+				reg_read = Afunc.readregister(RR_addr)
 				print "@ Address [0x%04x] is stored the value : 0x%04x" % (RR_addr, reg_read)
-				get_status()
-				if err_slave:	#more then 51 clk cycles driven by slave
-					print "Slave drive on time out"
-				if err_idle:
-					print "high signal not detected on idle phase"
-				if err_read:
-					print "stop bit not detected"
-				if err_chip_id:
-					print "different chip ID recieved"
-			else:
-				print "ALPIDE not initialized"
-
+				Afunc.print_error()
 		elif ip == "tr":
 			if initialized:
-				send_cmd(trigger_cmd)
+				Afunc.send_cmd(trigger_cmd)
 			else:
 				print "ALPIDE not initialized"
 
 		elif ip == "rerr":
-			send_cmd(clear_err)
+			Afunc.send_cmd(clear_err)
 
 		elif ip == "roop":	#read out option
 			ro_op_mask = 0x000000
@@ -653,7 +130,7 @@ if __name__ == "__main__":
 			if en_op:
 				ro_op_mask = ro_op_mask | 0x000004	#enable on bit 2
 			mode_cfg = 0x0208 | ro_op_mask	#0x0208 matrix readout speed every 2 clk cycles and read out form CMU
-			writeregister(0x0001, mode_cfg)	#mode cotrol register
+			Afunc.writeregister(0x0001, mode_cfg)	#mode cotrol register
 
 		elif ip == "roc":
 			if initialized:
@@ -665,13 +142,13 @@ if __name__ == "__main__":
 				STB_dur = input("Clk cycles strobe duration =\n")
 				STB_gap = input("Clk cycles strobe gap =\n")
 				hitmap_matrix  = np.zeros((512,1024))	#hitmap matrix set all to zeros
-				writeregister(0x0001, mode_cfg)  # mode cotrol register configuration (see above)
-				writeregister(0x0004, 0x0018)	# FROMU CFG reg 1, enable internal STROBE(bit 3), enable busy monitoring (bit 4)
-				writeregister(0x0005, STB_dur)	#STROBE duration STB_dur*25ns
-				writeregister(0x0006, STB_gap)	#gap between 2 STROBES	STB_gap*25ns
+				Afunc.writeregister(0x0001, mode_cfg)  # mode cotrol register configuration (see above)
+				Afunc.writeregister(0x0004, 0x0018)	# FROMU CFG reg 1, enable internal STROBE(bit 3), enable busy monitoring (bit 4)
+				Afunc.writeregister(0x0005, STB_dur)	#STROBE duration STB_dur*25ns
+				Afunc.writeregister(0x0006, STB_gap)	#gap between 2 STROBES	STB_gap*25ns
 				Total_readout_time=time.time()
-				send_cmd(trigger_cmd)	#need to first external start the STROBE generation
-				send_cmd(read_out)
+				Afunc.send_cmd(trigger_cmd)	#need to first external start the STROBE generation
+				Afunc.send_cmd(read_out)
 				while True:
 					try:
 						mem_readable = hw.getNode("CSR.status.mem_readable").read()	#get memory readable status from FPGA
@@ -679,59 +156,17 @@ if __name__ == "__main__":
 						if mem_readable:
 							FIFO = hw.getNode("DATA.ro_data").readBlock(0x200)
 							hw.dispatch()
-							for word in FIFO:
-								n_data = n_data + 1
-								if (word & 0xF00000) == 0xA00000:  # chip header
-									#plane_id = (word & 0x0F0000) >> 16
-									bc = (word & 0x00FF00) >> 8
-								elif (word & 0xF00000) == 0xB00000:  # chip trailer
-									ro_flags = (word & 0x0F0000) >> 16
-									if ro_flags != 0x0 :
-										file.write("Read out flags [0x%x] detected on bunch counter  %d\n" % (ro_flags, bc))
-								#elif (word & 0xF00000) == 0xE00000:  # chip empty
-									#plane_id = (word & 0x0F0000) >> 16
-									#bc = (word & 0x00FF00) >> 8
-								elif (word & 0xE00000) == 0xC00000:  # reagion header
-									region= (word>>16) & 0x1F
-								elif (word & 0xC00000) == 0x400000:  # short
-									word_shifted = word>>8
-									x = region<<5 | word_shifted>>9 & 0x1E | (word_shifted ^ word_shifted>>1) & 0x1	#region*32 + encoderid*2 + addr correction
-									y = word_shifted>>1 & 0x1FF	#addr/2
-									hitmap_matrix[y,x] = hitmap_matrix[y,x] + 1
-									n_events = n_events +1
-								elif (word & 0xC00000) == 0x000000:  # long
-									word_shifted = word>>8
-									address = word_shifted & 0x3ff
-									x = region<<5 | word_shifted>>9 & 0x1E | (word_shifted ^ word_shifted>>1) & 0x1
-									y = word_shifted>>1 & 0x1FF
-									hitmap_matrix[y,x] = hitmap_matrix[y,x] + 1
-									hitmap = word & 0x7F
-									n_events = n_events + 1
-									for i in range(7):
-										hitmap_shifted = hitmap>>i
-										if (hitmap_shifted & 0x1) == 0x1:
-											addressmap = address + i + 1
-											xhm = region<<5 | word_shifted>>9 & 0x1E | (addressmap ^ addressmap>>1) & 0x1	#x hit map
-											yhm = addressmap>>1	#y hit map
-											hitmap_matrix[yhm, xhm] = hitmap_matrix[yhm, xhm] + 1
-											n_events = n_events + 1
-								elif word == 0xFFFFFF:	#idle
-									n_idle = n_idle + 1
-								elif word == 0xF1FFFF:	#busy on
-									n_busy = n_busy + 1
-								elif word == 0xF0FFFF:	#busy off
-									n_busy = n_busy + 1
-								#else:
+							n_events, n_idle, n_busy, n_data, region, hitmap_matrix = Afunc.decode_block(FIFO, n_events, n_idle, n_busy, n_data, region, hitmap_matrix)
 							hw.getNode("CSR.ctrl.mem_read").write(0b1)
 							hw.getNode("CSR.ctrl.mem_read").write(0b0)
 							hw.dispatch()
 					except KeyboardInterrupt:
 						hw.getNode("CSR.ctrl.ro_stop").write(0b1)
 						hw.dispatch()
-						writeregister(0x0004, 0x0000)  # FROMU CFG reg 1, disable internal STROBE
+						Afunc.writeregister(0x0004, 0x0000)  # FROMU CFG reg 1, disable internal STROBE
 						Total_readout_time=time.time()-Total_readout_time
 						break
-				print_error()
+				Afunc.print_error()
 				dead_time = float(n_idle)/n_data*100
 				print """
 				Data recieved	= %d
@@ -744,8 +179,8 @@ if __name__ == "__main__":
 				""" % (n_data, Total_readout_time,  n_idle, n_busy, dead_time, n_events, n_data*24/(Total_readout_time*1000000))
 				np.save('hitmap_matrix', hitmap_matrix)
 				file.close()	#close Read out flags txt file
-				#save_hitmap(hitmap_matrix, 'Hitmap.png')
-				#save_hitmap_logscale(hitmap_matrix, 'Hitmap_log.png')
+				#AAfunc.save_hitmap(hitmap_matrix, 'Hitmap.png')
+				#Afunc.save_hitmap_logscale(hitmap_matrix, 'Hitmap_log.png')
 				time.sleep(0.001)
 				hw.getNode("CSR.ctrl.ro_stop").write(0b0)
 				hw.dispatch()
@@ -755,13 +190,13 @@ if __name__ == "__main__":
 		elif ip == "rord":	#raw data readout
 			if initialized:
 				raw_data=[]
-				writeregister(0x0001, mode_cfg)  # mode cotrol register configuration (see above)
+				Afunc.writeregister(0x0001, mode_cfg)  # mode cotrol register configuration (see above)
 				# FROMU CFG reg 1, enable internal STROBE(bit 3), enable busy monitoring (bit 4)
-				writeregister(0x0004, 0x0018)
-				writeregister(0x0005, 0x000F)	#STROBE duration 4 clk cycles (400ns)
-				writeregister(0x0006, 0x0640)	#gap between 2 STROBES	640 clk cycles (16us)
-				send_cmd(trigger_cmd)	#need to first external start the STROBE generation
-				send_cmd(read_out)
+				Afunc.writeregister(0x0004, 0x0018)
+				Afunc.writeregister(0x0005, 0x000F)	#STROBE duration 4 clk cycles (400ns)
+				Afunc.writeregister(0x0006, 0x0640)	#gap between 2 STROBES	640 clk cycles (16us)
+				Afunc.send_cmd(trigger_cmd)	#need to first external start the STROBE generation
+				Afunc.send_cmd(read_out)
 				while True:
 					try:
 						mem_readable = hw.getNode("CSR.status.mem_readable").read()	#get memory readable status from FPGA
@@ -776,46 +211,59 @@ if __name__ == "__main__":
 					except KeyboardInterrupt:
 						hw.getNode("CSR.ctrl.ro_stop").write(0b1)	#send stop  read out to FPGA
 						hw.dispatch()
-						writeregister(0x0004, 0x0000)  # FROMU CFG reg 1, disable internal STROBE
+						Afunc.writeregister(0x0004, 0x0000)  # FROMU CFG reg 1, disable internal STROBE
 						np.save('Rawdata', raw_data)  # save data on npy file
 						raw_data = []
 						break
-				print_error()
+				Afunc.print_error()
 				time.sleep(0.001)
 				hw.getNode("CSR.ctrl.ro_stop").write(0b0)
 				hw.dispatch()
 			else:
 				print "ALPIDE not initialized"
 		elif ip == "dd":
-			decode_data()
+			Afunc.decode_data()
 		elif ip == "pa":
 			en = input("Enable Pulser on all pixels? (True or False)\n")
-			enablePulserAllPixels(en)
+			Afunc.enablePulserAllPixels(en)
+		elif ip == "prr":
+			rowregion = input("Row Region\n")
+			nrow = input("Wich rows\n") 
+			en = input("Enable or disable pulse on selected region(True or False)\n")
+			Afunc.enablePulserRow_Region(rowregion,nrow,en)
+		elif ip == "pr":
+			region = input("Region\n")
+			en = input("Enable or disable pulse on selected region(True or False)\n")
+			Afunc.enablePulserRegion(region,en)
+		elif ip == "prow":
+			row = input("Row\n")
+			en = input("Enable or disable pulse on selected region(True or False)\n")
+			Afunc.enablePulserRow(row,en)
 		elif ip == "ps":
 			x = input("pixel x coordinate\n")
 			y = input("pixel y coordinate\n")
 			en = input("Enable or disable pulse on selected pixel(True or False)\n")
-			enablePulserPixel(x,y,en)
+			Afunc.enablePulserPixel(x,y,en)
 		elif ip == "spt":	#start pulse test
 			raw_data = []
-			writeregister(0x0606, 0x0000)  # Set PULSEL to 0.37V (DAC offset)
-			writeregister(0x0605, 0x00FF)  # Set PULSEH to 1.8V
+			Afunc.writeregister(0x0606, 0x0000)  # Set PULSEL to 0.37V (DAC offset)
+			Afunc.writeregister(0x0605, 0x00ff)  # Set PULSEH to 1.8V
 			Pt = raw_input("Pulse type Analog(a) or Digital(d)\n")
 			if Pt == "a":
-				writeregister(0x0004,0x0060)	#Analog pulse, automatic strobe after pulse command
+				Afunc.writeregister(0x0004,0x0060)	#Analog pulse, automatic strobe after pulse command
 			elif Pt == "d":
-				writeregister(0x0004, 0x0040)  # Digital pulse, automatic strobe after pulse command
+				Afunc.writeregister(0x0004,0x0040)  # Digital pulse, automatic strobe after pulse command
 			else:
 				print "Bad input"
 				break
-			writeregister(0x0001, mode_cfg)  # mode cotrol register configuration (see above)
-			writeregister(0x0005, 0x0005)	#STROBE duration 5 clk clycles
-			writeregister(0x0006, 0x0000)	#gap between 2 STROBES
-			writeregister(0x0007, 0x0008)	#delay from PULSE to STROBE 8+1 clk cycles
-			writeregister(0x0008, 0x000F)	#PULSE duration 16 clk cylces
-			send_broadcast(0x78)	#send PULSE command
-			#read_out()
-			send_cmd(read_out)
+			Afunc.writeregister(0x0001, 0x020E)  # mode cotrol register configuration 
+			Afunc.writeregister(0x0005, 0x0002)  # STROBE duration (n+1) clk clycles
+			Afunc.writeregister(0x0006, 0x0000)  # gap between 2 STROBES (n+1) clk clycles
+			Afunc.writeregister(0x0007, 0x0013)  # delay from PULSE to STROBE (n+1) clk cycles
+			Afunc.writeregister(0x0008, 0x0016)  # PULSE duration n clk cylces
+			time.sleep(0.001)
+			Afunc.send_broadcast(0x78)	#send PULSE command
+			Afunc.send_cmd(read_out)
 			while True:
 				try:
 					mem_readable = hw.getNode("CSR.status.mem_readable").read()
@@ -833,10 +281,10 @@ if __name__ == "__main__":
 					np.save('Rawdata', raw_data)  # save data on npy file
 					raw_data = []
 					break
-			writeregister(0x0004, 0x0000)
-			writeregister(0x0007, 0x0000)
-			writeregister(0x0008, 0x0000)
-			get_status()
+			Afunc.writeregister(0x0004, 0x0000)
+			Afunc.writeregister(0x0007, 0x0000)
+			Afunc.writeregister(0x0008, 0x0000)
+			powered, initialized, busy, FIFO_full, FIFO_empty, FIFO_prg_full, mem_readable, err_slave, err_idle, err_read, err_chip_id, lkd_AC, lkd_ipbus = Afunc.get_status()
 			if err_slave:  # more then 51 clk cycles driven by slave
 				print
 				"Slave drive on time out"
@@ -855,41 +303,54 @@ if __name__ == "__main__":
 		elif ip == "sptt":
 			x = input("pixel x coordinate\n")
 			y = input("pixel y coordinate\n")
-			SP_thr_test(x,y)	
+			Afunc.SP_thr_test(x,y)	
 		elif ip == "tt":  # start test threshold
 			file = open("Threshold_test.txt", "w")
-			enablePulserAllPixels(False)	#disable pulse on all pixels
-			maskAllPixels(True)	#mask all pixels
+			Afunc.enablePulserAllPixels(False)	#disable pulse on all pixels
+			Afunc.maskAllPixels(True)	#mask all pixels
 			for k in range(20):
 				for i in range(10):
-					maskPixel(30+k, 485+i, False)	#unmask selected pixel
-					enablePulserPixel(30+k, 485+i, True) #enable pulse on 200 pixels
-			writeregister(0x0004, 0x0060)  # Analog pulse, automatic strobe after pulse command
-			writeregister(0x0606, 0x0000)  # Set PULSEL to 0.37V (DAC offset)
+					Afunc.maskPixel(30+k, 485+i, False)	#unmask selected pixel
+					Afunc.enablePulserPixel(30+k, 485+i, True) #enable pulse on 200 pixels
+			Afunc.writeregister(0x0004, 0x0060)  # Analog pulse, automatic strobe after pulse command
+			Afunc.writeregister(0x0606, 0x0000)  # Set PULSEL to 0.37V (DAC offset)
 			for k in range (120):
 				pulse_test_array = []  # initialize empty array
 				Q_inj = ((k)*7.06e-3*230e-18)/(1.602e-19)
-				writeregister(0x0605,k)  # Set PULSEH to k*7.06 mV
+				Afunc.writeregister(0x0605,k)  # Set PULSEH to k*7.06 mV
 				time.sleep(0.0001)
 				for j in range (15):
 					time.sleep(0.0001)
-					ppf = pulse_test(mode_cfg) #pixel pulsed fraction
+					ppf = Afunc.pulse_test(mode_cfg) #pixel pulsed fraction
 					pulse_test_array.append(ppf)
 					#np.append(pulse_test_array, ppf)
 				mean = np.mean(pulse_test_array)
 				std = np.nanstd(pulse_test_array)
 				file.write("%f	%f	0	%f\n" % (Q_inj, mean, std))
 			file.close()
-			writeregister(0x0004, 0x0000)
-			maskAllPixels(False)	#unmask all pixels
+			Afunc.writeregister(0x0004, 0x0000)
+			Afunc.maskAllPixels(False)	#unmask all pixels
 		elif ip == "ma":
 			en = input("Mask or unmask all pixels? (True for masking)\n")
-			maskAllPixels(en)
+			Afunc.maskAllPixels(en)
+		elif ip == "mr":
+			region = input("Region\n")
+			en = input("Mask or unmask(True or False)\n")
+			Afunc.maskRegion(region,en)
+		elif ip == "mrr":
+			rowregion = input("Row Region\n")
+			nrow = input("Wich rows\n") 
+			en = input("Mask or unmask(True or False)\n")
+			Afunc.maskRow_Region(rowregion,nrow,en)
+		elif ip == "mrow":
+			row = input("Row\n")
+			en = input("Mask or unmask(True or False)\n")
+			Afunc.maskRow(row,en)
 		elif ip == "ms":
 			x = input("pixel x coordinate\n")
 			y = input("pixel y coordinate\n")
 			en = input("Mask or unmask(True or False)\n")
-			maskPixel(x,y,en)
+			Afunc.maskPixel(x,y,en)
 		elif ip == "pcmd":
 			RR_addr = hw.getNode("cmd_addr.RR_addr").read()
 			OP_command = hw.getNode("cmd_addr.OP_command").read()
@@ -951,86 +412,21 @@ if __name__ == "__main__":
 				ALPIDE_DATA_BUSY_OFF[8]		= 0xF0
 			"""
 		elif ip == "cc":
-			cc_print()
+			Afunc.cc_print()
 		elif ip == "me":
-			measure_ADC()
+			Afunc.measure_ADC()
 		elif ip == "mnp":
 			if initialized:
-				raw_data=[]
-				read_cnt = 0
-				hitmap_matrix  = np.zeros((512,1024))
-				writeregister(0x0001, mode_cfg)  # mode cotrol register configuration (see above)
-				# FROMU CFG reg 1, enable internal STROBE(bit 3), enable busy monitoring (bit 4)
-				writeregister(0x0004, 0x0018)
-				writeregister(0x0005, 400)	#STROBE duration 16 clk cycles (10us)
-				writeregister(0x0006, 9600)	#gap between 2 STROBES	384 clk cycles (240us) sample every 250 us-->4kHz
-				send_cmd(trigger_cmd)	#need to first external start the STROBE generation
-				send_cmd(read_out)
-				while read_cnt < 10000:
-					mem_readable = hw.getNode("CSR.status.mem_readable").read()	#get memory readable status from FPGA
-					hw.dispatch()
-					if mem_readable:
-						read_cnt = read_cnt + 1
-						FIFO = hw.getNode("DATA.ro_data").readBlock(0x200)
-						hw.dispatch()
-						for word in FIFO:
-							if (word & 0xF00000) == 0xA00000:  # chip header
-								plane_id = (word & 0x0F0000) >> 16
-								bc = (word & 0x00FF00) >> 8
-							elif (word & 0xF00000) == 0xB00000:  # chip trailer
-								ro_flags = (word & 0x0F0000) >> 16
-							elif (word & 0xF00000) == 0xE00000:  # chip empty
-								plane_id = (word & 0x0F0000) >> 16
-								bc = (word & 0x00FF00) >> 8
-							elif (word & 0xE00000) == 0xC00000:  # reagion header
-								region= (word>>16) & 0x1F
-							elif (word & 0xC00000) == 0x400000:  # short
-								word_shifted = word>>8
-								x = region<<5 | word_shifted>>9 & 0x1E | (word_shifted ^ word_shifted>>1) & 0x1	#region*32 + encoderid*2 + addr correction
-								y = word_shifted>>1 & 0x1FF	#addr/2
-								hitmap_matrix[y,x] = hitmap_matrix[y,x] + 1
-							elif (word & 0xC00000) == 0x000000:  # long
-								word_shifted = word>>8
-								address = word_shifted & 0x3ff
-								x = region<<5 | word_shifted>>9 & 0x1E | (word_shifted ^ word_shifted>>1) & 0x1
-								y = word_shifted>>1 & 0x1FF
-								hitmap_matrix[y,x] = hitmap_matrix[y,x] + 1
-								hitmap = word & 0x7F
-								for i in range(7):
-									hitmap_shifted = hitmap>>i
-									if (hitmap_shifted & 0x1) == 0x1:
-										addressmap = address + i + 1
-										xhm = region<<5 | word_shifted>>9 & 0x1E | (addressmap ^ addressmap>>1) & 0x1	#x hit map
-										yhm = addressmap>>1	#y hit map
-										hitmap_matrix[yhm, xhm] = hitmap_matrix[yhm, xhm] + 1
-							#elif word == 0xFFFFFF:	#idle
-							#elif word == 0xF1FFFF:	#busy on
-							#elif word == 0xF0FFFF:	#busy off
-							#else:
-						hw.getNode("CSR.ctrl.mem_read").write(0b1)	#send memory read signal to FPGA
-						hw.getNode("CSR.ctrl.mem_read").write(0b0)
-						hw.dispatch()
-				hw.getNode("CSR.ctrl.ro_stop").write(0b1)	#send stop  read out to FPGA
-				hw.dispatch()
-				writeregister(0x0004, 0x0000)  # FROMU CFG reg 1, disable internal STROBE
-				hw.dispatch()
-				n_pixel_masked = 0
-				for row in range(512):
-					for column in range (1024):
-						if hitmap_matrix[row,column] > 2:
-							n_pixel_masked = n_pixel_masked + 1
-							maskPixel(column,row, True)
-							print "\nMasked pixel x=%d  y=%d\n" % (column, row)
-				print "Masked %d Pixels in total" % n_pixel_masked
-				print_error()
-				time.sleep(0.001)
-				hw.getNode("CSR.ctrl.ro_stop").write(0b0)
-				hw.dispatch()
+				Masked_pixels_list = Afunc.mask_noisy_pixels()
 			else:
 				print "ALPIDE not initialized"	
+
+		elif ip == "gtt":
+			Afunc.global_thr_test(50,Masked_pixels_list)
+
 		elif ip == "exit":	
 			exit = 1
 		else:
 			print "Command not found\n"
 
-	send_cmd(power_off)	
+	Afunc.send_cmd(power_off)	

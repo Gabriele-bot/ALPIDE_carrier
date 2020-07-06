@@ -17,7 +17,7 @@ def save_hitmap(matrix, file_name):
 	ax.set(xlim=(0, 1023), ylim=(0, 511))
 	plt.xlabel("Column")
 	plt.ylabel("Row")
-	plt.savefig(file_name, dpi=1600)
+	plt.savefig(file_name, dpi=300)
 
 def save_hitmap_logscale(matrix, file_name):
 	fig, ax = plt.subplots()
@@ -29,7 +29,7 @@ def save_hitmap_logscale(matrix, file_name):
 	ax.set(xlim=(0, 1023), ylim=(0, 511))
 	plt.xlabel("Column")
 	plt.ylabel("Row")
-	plt.savefig(file_name, dpi=1600)
+	plt.savefig(file_name, dpi=300)
 
 def find_next_pixel(yf,xf,hmap):
 	#global hitmap

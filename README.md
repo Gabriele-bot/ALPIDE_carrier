@@ -12,7 +12,7 @@ Software
 
 1.ALPIDE command console (DEMO to be improved)
 
-2.Cluster analyzer
+2.Cluster analyzer(Via DBSCAN)
 
 3.Hitmap decoder
 
