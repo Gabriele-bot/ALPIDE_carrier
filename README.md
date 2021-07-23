@@ -36,7 +36,7 @@ Available routines:
 ALPIDE simulation with a DE0-nano board for debugging and testing purposes;  
 - listend to the read command
 - store the address of the target register
-- send back the address as data or a data pattern taht will be checked via software
+- send back the address as data or a data pattern that will be checked via software
 
 ## Software
 
