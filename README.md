@@ -4,7 +4,7 @@
 
 ### Simple ALPIDE-to-FPGA comuniction (via CTRL port @40MHZ)  
 **` V0.4/ALPIDE_firmware `**: Arty-A7 firmware, it controls the ALPIDE mountend on an Arduino shield;  
-The pinout is the following:  
+Pinout:  
 Signals and controls   
 - **`DCLK`**:  IO10(Chipkit);
 - **`PW_EN`**: IO09(Chipkit);
@@ -19,17 +19,17 @@ Voltages and grounds
 
 Error LEDs:  
 - **`Read_err`**: Stop bit not detected;
-- **`Idle_err`**: High bit non detected on idle phase;
-- **`Slave_err`**: Slave drive the line for 51 or more clk cycles;
-- **`Chip_id_err`**: Wrong CHIP ID recived;  
+- **`Idle_err`**: High bit not detected on idle phase;
+- **`Slave_err`**: Slave drives the line for 51 or more clk cycles;
+- **`Chip_id_err`**: Wrong CHIP ID recieved;  
 
   
 Available routines:  
 - **`POWER ON/OF`**: Set PW_EN to 1 or 0; 
 - **`INIT`**: ALPIDE initialization that set some register at a specific values (VCASN for example);
-- **`BROAADCAST`**:  Send a broadcast command (e.g TRIGGER); 
+- **`BROADCAST`**:  Send a broadcast command (e.g TRIGGER); 
 - **`READ/WRITE REG`**: Read/writes a specific register;
-- **`READOUT`**:  Continuous reading of the two register that contain the data acquired;
+- **`READOUT`**:  Continuous reading of the two registers that contain the data acquired;
 
 
 ### ALPIDE simulation with DE0 nano
