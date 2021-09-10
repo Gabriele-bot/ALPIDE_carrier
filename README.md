@@ -3,7 +3,7 @@
 ## Firmware
 
 ### Simple ALPIDE-to-FPGA comuniction (via CTRL port @40MHZ)  
-**` V0.4/ALPIDE_firmware `**: Arty-A7 firmware, it controls the ALPIDE mountend on an Arduino shield;  
+**` V0.4/ALPIDE_firmware `**: Arty-A7 firmware, it controls the ALPIDE mounted on an Arduino shield;  
 Pinout:  
 Signals and controls   
 - **`DCLK`**:  IO10(Chipkit);
